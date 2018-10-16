@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDI VFD", "MDI VFD\MDI VFD.csproj", "{FE43831D-0C27-4D31-AD61-1C85445F33C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE43831D-0C27-4D31-AD61-1C85445F33C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE43831D-0C27-4D31-AD61-1C85445F33C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE43831D-0C27-4D31-AD61-1C85445F33C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE43831D-0C27-4D31-AD61-1C85445F33C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76979122-A39C-4EA6-BE7C-246BC73A66BB}
+	EndGlobalSection
+EndGlobal
