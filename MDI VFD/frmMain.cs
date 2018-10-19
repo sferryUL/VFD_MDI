@@ -36,12 +36,19 @@ namespace MDI_VFD
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if(!dBConn.Open(UL_Srv, UL_EEdB, true, "ElecTest", "ElecTest"))
-            {
-                MsgBox.Err("Unable to open Database!", "Program Error");
-                this.Close();
-            }
             LoadCommComboBoxes();
+
+            if(Environment.UserName == "sferry")
+                chkWinAuth.Checked = true;
+            else
+                chkWinAuth.Checked = false;
+
+            btnDBConn_Click(sender, e);
+
+            if(dBConn.State == ConnectionState.Open)
+            {
+                msMain_File_Prog_Click(sender, e);
+            }
         }
 
         private void msMain_Exit_Click(object sender, EventArgs e)
@@ -49,7 +56,7 @@ namespace MDI_VFD
             Application.Exit();
         }
 
-        private void msMain_VFDProg_Click(object sender, EventArgs e)
+        private void msMain_File_Prog_Click(object sender, EventArgs e)
         {
             if(VFDProg == null)
             {
@@ -64,7 +71,7 @@ namespace MDI_VFD
             }
         }
 
-        private void msMain_VFDMon_Click(object sender, EventArgs e)
+        private void msMain_File_OpMon_Click(object sender, EventArgs e)
         {
             if(VFDMonOp == null)
             {
@@ -189,6 +196,64 @@ namespace MDI_VFD
             else
             {
                 VFDFlt.BringToFront();
+            }
+        }
+
+        private void chkWinAuth_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkWinAuth.Checked)
+            {
+                txtUsr.Enabled = false;
+                txtUsr.Text = Environment.UserName;
+                txtPass.Enabled = false;
+                txtPass.Text = "";
+            }
+            else
+            {
+                txtUsr.Enabled = true;
+                txtUsr.Text = "ElecTest";
+                txtPass.Enabled = true;
+                txtPass.Text = "ElecTest";
+            }
+
+        }
+
+        private void btnDBConn_Click(object sender, EventArgs e)
+        {
+            if(dBConn.State == ConnectionState.Closed)
+            {
+                bool auth = chkWinAuth.Checked;
+                if(!dBConn.Open(txtDB.Text, UL_EEdB, auth, txtUsr.Text, txtPass.Text))
+                    MsgBox.Err("Unable to open Database!", "Program Error");
+                else
+                {
+                    txtDB.Enabled = false;
+                    btnDBConn.Text = "Disconnect";
+                }
+            }
+            else if (dBConn.State == ConnectionState.Open)
+            {
+                dBConn.Close();
+                txtDB.Enabled = true;
+                btnDBConn.Text = "Connect";
+            }
+        }
+
+        private void msMain_File_Click(object sender, EventArgs e)
+        {
+            if(dBConn.State == ConnectionState.Open)
+            {
+                msMain_File_Prog.Enabled = true;
+                msMain_File_OpMon.Enabled = true;
+                msMain_File_MonMaint.Enabled = true;
+                msMain_File_FltTrc.Enabled = true;
+            }
+            else
+            {
+                msMain_File_Prog.Enabled = false;
+                msMain_File_OpMon.Enabled = false;
+                msMain_File_MonMaint.Enabled = false;
+                msMain_File_FltTrc.Enabled = false;
             }
         }
     }
