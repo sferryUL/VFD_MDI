@@ -811,9 +811,8 @@ namespace V1000_Prog_SQL
                             // the Datagridview for modified parameters. 
                             dgvParamViewMisMatch.Rows.Add(CloneRow(dgvParamViewFull, i));
                             int idx = dgvParamViewMisMatch.RowCount - 1;
-                            dgvParamViewMisMatch.Rows[idx].Cells[3].Value = param_chk[i].ParamVal;
-                            dgvParamViewMisMatch.Rows[idx].Cells[4].Value = Param_Vrfy[i].ParamVal;
-
+                            dgvParamViewMisMatch.Rows[idx].Cells[3].Value = param_chk[i].ParamValDisp;
+                            dgvParamViewMisMatch.Rows[idx].Cells[4].Value = Param_Vrfy[i].ParamValDisp;
 
                             ProgressArgs.VFDVer_ParamMismatch_Cnt++; // Increment parameter mismatch count
                         }
@@ -990,13 +989,15 @@ namespace V1000_Prog_SQL
         {
             if (Param_Mod.Count > 0)
             {
-                ctxtDriveMod_Save.Enabled = true;
-                ctxtDriveMod_Clear.Enabled = true;
+                ctxtDriveMod.Enabled = true;
+                //ctxtDriveMod_Save.Enabled = true;
+                //ctxtDriveMod_Clear.Enabled = true;
             }
             else
             {
-                ctxtDriveMod_Save.Enabled = false;
-                ctxtDriveMod_Clear.Enabled = false;
+                ctxtDriveMod.Enabled = false;
+                //ctxtDriveMod_Save.Enabled = false;
+                //ctxtDriveMod_Clear.Enabled = false;
             }
         }
 
@@ -2365,7 +2366,35 @@ namespace V1000_Prog_SQL
         }
 
         #endregion
-        
+
+        private void ctxtDriveMod_UpdDefParam_Click(object sender, EventArgs e)
+        {
+            if(MsgBox.YN("Updates to the default parameter list are permenant! Do you wish to continue?", "Database Defaults Update") == DialogResult.No)
+                return;
+
+            // First build the column name
+            string def_col = "DEF_"; // default column prefix
+            def_col += DrvInf[cmbDrvList.SelectedIndex].Info.PartNum + "_";
+            if(cmbDrvDuty.SelectedIndex == 0)
+                def_col += "ND";
+            else
+                def_col += "HD";
+
+            // update the database
+            for(int i=0;i<Param_Vrfy.Count;i++)
+            {
+                if(!dB.Update(ref dBConn, "DRV_V1000_PARAM", def_col, Param_Vrfy[i].ParamVal.ToString(), "PARAM_NUM", dB.StringConv(Param_Vrfy[i].ParamNum)))
+                {
+                    MsgBox.dBErr("Database update error!");
+                    break;
+                }
+            }
+        }
+
+        private void ctxtDriveMod_StoreParamList_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ThreadProgressArgs : EventArgs

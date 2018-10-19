@@ -64,6 +64,8 @@
             this.ctxtDriveMod = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctxtDriveMod_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxtDriveMod_Clear = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtDriveMod_UpdDefParam = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtDriveMod_StoreParamList = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVFDMod = new System.Windows.Forms.Button();
             this.bwrkModVFD = new System.ComponentModel.BackgroundWorker();
             this.grpSetDrive = new System.Windows.Forms.GroupBox();
@@ -331,9 +333,11 @@
             // 
             this.ctxtDriveMod.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctxtDriveMod_Save,
-            this.ctxtDriveMod_Clear});
+            this.ctxtDriveMod_Clear,
+            this.ctxtDriveMod_UpdDefParam,
+            this.ctxtDriveMod_StoreParamList});
             this.ctxtDriveMod.Name = "ctxtDriveMod";
-            this.ctxtDriveMod.Size = new System.Drawing.Size(247, 48);
+            this.ctxtDriveMod.Size = new System.Drawing.Size(247, 114);
             this.ctxtDriveMod.Opening += new System.ComponentModel.CancelEventHandler(this.ctxtDriveMod_Opening);
             // 
             // ctxtDriveMod_Save
@@ -349,6 +353,20 @@
             this.ctxtDriveMod_Clear.Size = new System.Drawing.Size(246, 22);
             this.ctxtDriveMod_Clear.Text = "Clear List";
             this.ctxtDriveMod_Clear.Click += new System.EventHandler(this.clearListToolStripMenuItem_Click);
+            // 
+            // ctxtDriveMod_UpdDefParam
+            // 
+            this.ctxtDriveMod_UpdDefParam.Name = "ctxtDriveMod_UpdDefParam";
+            this.ctxtDriveMod_UpdDefParam.Size = new System.Drawing.Size(246, 22);
+            this.ctxtDriveMod_UpdDefParam.Text = "Update Default Parameters";
+            this.ctxtDriveMod_UpdDefParam.Click += new System.EventHandler(this.ctxtDriveMod_UpdDefParam_Click);
+            // 
+            // ctxtDriveMod_StoreParamList
+            // 
+            this.ctxtDriveMod_StoreParamList.Name = "ctxtDriveMod_StoreParamList";
+            this.ctxtDriveMod_StoreParamList.Size = new System.Drawing.Size(246, 22);
+            this.ctxtDriveMod_StoreParamList.Text = "Store Parameter List";
+            this.ctxtDriveMod_StoreParamList.Click += new System.EventHandler(this.ctxtDriveMod_StoreParamList_Click);
             // 
             // btnVFDMod
             // 
@@ -1406,6 +1424,8 @@
         private System.Windows.Forms.ComboBox cmbMtr2VoltMax;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbMtr2FreqBase;
+        private System.Windows.Forms.ToolStripMenuItem ctxtDriveMod_UpdDefParam;
+        private System.Windows.Forms.ToolStripMenuItem ctxtDriveMod_StoreParamList;
     }
 }
 

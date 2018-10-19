@@ -59,11 +59,11 @@ namespace MDI_VFD
             FltTrc_Data = CreateMonList(dBConn.Table.Rows);
 
             string query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME NOT LIKE '%Time%';", UL_Flt_Tbl);
-            FltHstCnt = dBConn.QueryStr(query);
+            FltHstCnt = dBConn.QuerySQL(query);
             FltHst_Data = CreateMonList(dBConn.Table.Rows);
 
             query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME LIKE '%Time%';", UL_Flt_Tbl);
-            FltHstTimeCnt = dBConn.QueryStr(query);
+            FltHstTimeCnt = dBConn.QuerySQL(query);
             FltHstTime_Data = CreateMonList(dBConn.Table.Rows);
 
             FltHstTot = FltHstCnt + FltHstTimeCnt;

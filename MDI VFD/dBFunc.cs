@@ -388,6 +388,25 @@ namespace ULdB
             return ExQuery(sql);
         }
 
+        public int QueryStr(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true)
+        {
+            string sql = String.Format("SELECT {0} FROM {1}", p_Cols, p_Tbl);
+
+            if(p_CondItem != "")
+                sql += String.Format(" WHERE {0} = '{1}';", p_CondItem, p_Cond);
+
+            if(p_OrderBy != "")
+            {
+                sql += String.Format(" ORDER BY {0}", p_OrderBy);
+                if(p_Asc)
+                    sql += String.Format(" ASC;");
+                else
+                    sql += String.Format(" DESC;");
+            }
+
+            return ExQuery(sql);
+        }
+
         public int QueryLike(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true)
         {
             string sql = String.Format("SELECT {0} FROM {1}", p_Cols, p_Tbl);
@@ -426,7 +445,7 @@ namespace ULdB
             return ExQuery(sql);
         }
 
-        public int QueryStr(string p_SQL)
+        public int QuerySQL(string p_SQL)
         {
             return ExQuery(p_SQL);
         }
