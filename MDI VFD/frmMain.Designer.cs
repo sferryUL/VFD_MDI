@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.msMain_File = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_File_Prog = new System.Windows.Forms.ToolStripMenuItem();
@@ -230,6 +231,7 @@
             this.txtUsr.Name = "txtUsr";
             this.txtUsr.Size = new System.Drawing.Size(100, 20);
             this.txtUsr.TabIndex = 18;
+            this.txtUsr.Text = "ElecTest";
             // 
             // txtPass
             // 
@@ -238,6 +240,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(100, 20);
             this.txtPass.TabIndex = 19;
+            this.txtPass.Text = "ElecTest";
             // 
             // btnDBConn
             // 
@@ -266,6 +269,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tsComm);
             this.Controls.Add(this.msMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
