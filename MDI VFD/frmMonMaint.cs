@@ -20,32 +20,29 @@ namespace MDI_VFD
 {
     public partial class frmMonMaint : Form
     {
-        // Database Manipulation Variables
+        // Dependent objects for database and serial comm
+        dBClient dBConn;
+        public bool CommPort = false;
+        System.IO.Ports.SerialPort spVFD;
+        public byte VFDAddr = 0;
 
+        // Database Manipulation Variables
         const string UL_Srv = "ULSQL12T";
         const string UL_dB = "ElectricalApps";
         const string UL_Mon_Tbl = "DRV_V1000_MON";
 
         int MaintMonCnt = 0;
         
-        dBClient dBConn;
-
-        public byte VFDAddr = 0x1F;
-        public bool CommPort = false;
-
-
-        System.IO.Ports.SerialPort spVFD;
-
         List<V1000_Mon_Data> Maint_Data = new List<V1000_Mon_Data>();
         V1000_ModbusRTU_Comm Comm = new V1000_ModbusRTU_Comm();
 
-        public frmMonMaint(dBClient p_SqlClient, System.IO.Ports.SerialPort p_Port, bool p_CommPort) 
+        public frmMonMaint(dBClient p_SqlClient, bool p_CommPort, System.IO.Ports.SerialPort p_Port, byte p_SlaveAddr)
         { 
-            InitializeComponent(); 
+            InitializeComponent();
             dBConn = p_SqlClient;
-            spVFD = p_Port;
             CommPort = p_CommPort;
-
+            spVFD = p_Port;
+            VFDAddr = p_SlaveAddr;
             StartPosition = FormStartPosition.CenterScreen;
         }
         
@@ -109,7 +106,6 @@ namespace MDI_VFD
                     Comm.CloseCommPort(ref spVFD);  // close the comm port
                 }
                 stat_Maint_Prog.PerformStep();
-                Thread.Sleep(100);
             }
             stat_Maint.Visible = false;
             stat_Maint_Prog.Enabled = false;

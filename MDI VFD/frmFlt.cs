@@ -20,10 +20,13 @@ namespace MDI_VFD
 {
     public partial class frmFlt : Form
     {
-        // Database Manipulation Variables
+        // Dependent objects for database and serial comm
+        dBClient dBConn;
+        public bool CommPort = false;
+        System.IO.Ports.SerialPort spVFD;
+        public byte VFDAddr = 0;
 
-        const string UL_Srv = "ULSQL12T";
-        const string UL_dB = "ElectricalApps";
+        // Database Manipulation Variables
         const string UL_Flt_Tbl = "DRV_V1000_FLT";
         
         int FltTrcCnt = 0;
@@ -31,25 +34,18 @@ namespace MDI_VFD
         int FltHstTimeCnt = 0;
         int FltHstTot = 0;
 
-        dBClient dBConn;
-
-        public byte VFDAddr = 0x1F;
-        public bool CommPort = false;
-
-        System.IO.Ports.SerialPort spVFD;
-
         List<V1000_Mon_Data> FltTrc_Data;
         List<V1000_Mon_Data> FltHst_Data;
         List<V1000_Mon_Data> FltHstTime_Data;
         V1000_ModbusRTU_Comm Comm = new V1000_ModbusRTU_Comm();
 
-        public frmFlt(dBClient p_SqlClient, System.IO.Ports.SerialPort p_Port, bool p_CommPort) 
+        public frmFlt(dBClient p_SqlClient, bool p_CommPort, System.IO.Ports.SerialPort p_Port, byte p_SlaveAddr)
         { 
-            InitializeComponent(); 
+            InitializeComponent();
             dBConn = p_SqlClient;
-            spVFD = p_Port;
             CommPort = p_CommPort;
-
+            spVFD = p_Port;
+            VFDAddr = p_SlaveAddr;
             StartPosition = FormStartPosition.CenterScreen;
         }
         

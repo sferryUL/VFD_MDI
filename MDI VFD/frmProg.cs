@@ -17,8 +17,8 @@ using XL = Microsoft.Office.Interop.Excel;
 using V1000_Prog_SQL;
 using ModbusRTU;
 using V1000_ModbusRTU;
-using dBFunc;
 using GenFunc;
+using ULdB;
 
 namespace V1000_Prog_SQL
 {
@@ -26,20 +26,31 @@ namespace V1000_Prog_SQL
     {
         #region Global Class Object/Variable Declarations
 
-        // Database Manipulation Variables
+        // Dependent objects for database and serial comm
+        dBClient dBConn;
+        public bool CommPort = false;
+        System.IO.Ports.SerialPort spVFD;
+        public byte VFDAddr = 0;
 
-        const string UL_Srv = "ULSQL12T";
-        const string UL_dB = "ElectricalApps";
-
-        SqlConnection dBConn = new SqlConnection();
+        // Database Constants
+        const string UL_EEdB = "ElectricalApps";
+        const string Tbl_Mtr = "MTR_DATA";
+        const string Tbl_Chrt_Lst = "CHRT_LST";
+        const string Tbl_Chrt_V1000 = "CHRT_V1000";
+        const string Tbl_Drv_Lst = "DRV_LIST";
+        const string Tbl_Drv_V1000_Param = "DRV_V1000_PARAM";
+        const string Tbl_Mach = "MACH_DATA";
 
         // VFD status and communication variables
         uint VFDReadRegCnt = 0;
-        public byte VFDAddr = 0x1F;
-        public bool CommPort = false;
-        System.IO.Ports.SerialPort spVFD;
 
-        // VFD Parameter Objects 
+        // Drive Information Lists
+        List<VFDInfo> DrvInf = new List<VFDInfo>();
+        List<ParamGrpInfo> GrpInf = new List<ParamGrpInfo>();
+
+        // VFD Parameter Constants 
+        const byte VFD_V1000 = 0x01;
+
         ushort AccLvlRegAddr;
         ushort InitRegAddr;
         ushort CtrlMethodRegAddr;
@@ -60,8 +71,7 @@ namespace V1000_Prog_SQL
         string Mtr2FreqBaseParamNum;
         string Mtr2RatedCurrParamNum;
 
-        const byte VFD_V1000 = 0x01;
-
+        // Parameter List Objects
         List<V1000_Param_Data> Param_List;
         List<V1000_Param_Data> Param_List_ND = new List<V1000_Param_Data>();
         List<V1000_Param_Data> Param_List_HD = new List<V1000_Param_Data>();
@@ -69,36 +79,30 @@ namespace V1000_Prog_SQL
         List<V1000_Param_Data> Param_Chng = new List<V1000_Param_Data>();
         List<V1000_Param_Data> Param_Vrfy = new List<V1000_Param_Data>();
 
-        List<V1000_Param_Data> Param_List_SQL = new List<V1000_Param_Data>();
-        List<VFDInfo> DrvInf = new List<VFDInfo>();
-        List<ParamGrpInfo> GrpInf = new List<ParamGrpInfo>();
-
         // Background Worker status 
         ThreadProgressArgs ProgressArgs = new ThreadProgressArgs();
 
         // Datagridview Existing Value Storage
         string dgvCellVal;
+        string dgvChngCellVal;
 
         #endregion
 
         #region Main Form Functions
+        
 
-        public frmProg(System.IO.Ports.SerialPort p_Port, bool p_CommPort)
+        public frmProg(dBClient p_SqlClient, bool p_CommPort, System.IO.Ports.SerialPort p_Port, byte p_SlaveAddr)
         {
             InitializeComponent();
-            spVFD = p_Port;
+            dBConn = p_SqlClient;
             CommPort = p_CommPort;
+            spVFD = p_Port;
+            VFDAddr = p_SlaveAddr;
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void frmProg_Load(object sender, EventArgs e)
         {
-            // Open Database
-            if(!dB.Open(ref dBConn, UL_Srv, UL_dB, true, "ElecTest", "ElecTest"))
-            {
-                MsgBox.Err("Unable to open Database!", "Program Error");
-                this.Close();
-            }
-
             if(CommPort)
                 grpDrvComm.Enabled = true;
 
@@ -110,7 +114,7 @@ namespace V1000_Prog_SQL
             LoadMachComboboxes();
 
             SetVFDCommBtnEnable(0x00);
-            cmbDrvList.Focus();
+            cmbMachSel.Focus();
 
             // In order to protect the database, and rather than using a password, if the
             // Store and Delete Parameter List buttons aren't visible, don't allow
@@ -131,9 +135,7 @@ namespace V1000_Prog_SQL
         {
             if (spVFD.IsOpen)
                 spVFD.Close();
-            dB.Close(ref dBConn);
-
-            this.Dispose();
+            //dB.Close(ref dBConn);
         }
 
         #endregion
@@ -159,19 +161,16 @@ namespace V1000_Prog_SQL
             string param_col = "DEF_" + drv_num + "_" + duty;
 
             // Get the parameter list
-            DataTable tbl = new DataTable();
             string cols = "REG_ADDR, PARAM_NUM, PARAM_NAME, MULTIPLIER, NUM_BASE, UNITS, " + param_col;
-            dB.Query(ref dBConn, ref tbl, param_tbl, cols, p_OrderBy:"PARAM_NUM");
-            GetParamListSQL(tbl, ref Param_List);
+            dBConn.Query(param_tbl, cols, p_OrderBy: "PARAM_NUM");
+            GetParamListSQL(dBConn.Table, ref Param_List);
             SetDriveParamConsts(drv_fam);
 
             // Get the parameter grouping list
             cmbDrvParamGrp.Items.Clear();
             GrpInf.Clear();
-            tbl.Dispose();
-            tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, grp_tbl, "*", p_OrderBy:"DRV_GRP");
-            foreach(DataRow dr in tbl.Rows)
+            dBConn.Query(grp_tbl, "*", p_OrderBy:"DRV_GRP");
+            foreach(DataRow dr in dBConn.Table.Rows)
             {
                 ParamGrpInfo inf = new ParamGrpInfo();
                 inf.GrpID = dr["DRV_GRP"].ToString();
@@ -191,7 +190,6 @@ namespace V1000_Prog_SQL
             cmbDrvParamGrp.SelectedIndex = 0;
             cmbDrvDuty.Enabled = true;
             msFile_LoadParamList.Enabled = true;                // Allow a parameter update spreadsheet to be loaded
-            //grpSetMotor.Enabled = true;
             btnMtrSetVals.Enabled = true;
             grpSetMach.Enabled = true;
         }
@@ -238,10 +236,8 @@ namespace V1000_Prog_SQL
 
         public void LoadDriveList()
         {
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "DRV_LIST", "*", p_OrderBy:"DRV_NUM");
-            
-            foreach(DataRow dr in tbl.Rows)
+            dBConn.Query(Tbl_Drv_Lst, "*", p_OrderBy:"DRV_NUM");
+            foreach(DataRow dr in dBConn.Table.Rows)
             {
                 VFDInfo inf = new VFDInfo();
                 inf.Info.PartNum = dr["DRV_NUM"].ToString();
@@ -261,48 +257,18 @@ namespace V1000_Prog_SQL
 
         #endregion
 
-        #region Textbox Functions
-
-        /*
-        private void txtSlaveAddr_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((e.KeyValue == (int)Keys.Enter) || (e.KeyValue == (int)Keys.Tab))
-            {
-                // Check if the value in the textbox is hex or base 10. If the  
-                // value is invalid temp_val will be 0 and we just set the value 
-                // back to the default 0x1F
-                byte temp_val = Hex2Byte(txtSlaveAddr.Text);
-                if (temp_val > 0)
-                    VFDSlaveAddr = temp_val;
-                else
-                    VFDSlaveAddr = 0x1F;
-
-                // Reformat the the text to be displayed as standard hexadecimal format.
-                txtSlaveAddr.Text = "0x" + VFDSlaveAddr.ToString("X2");
-
-                // Set the focus elsewhere and reload the parameter list
-                if (btnVFDRead.Enabled)
-                {
-                    cmbDrvList_SelectedIndexChanged(sender, e);
-                    btnVFDRead.Focus();
-                }
-                else if (cmbDrvList.SelectedIndex == -1)
-                    cmbDrvList.Focus();
-                else
-                    cmbDrvList_SelectedIndexChanged(sender, e);
-
-            }
-        }
-        */
-
-        #endregion
-
         #region Datagridview Functions
 
         private void dgvParamViewFull_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Single chng_val = 0;
             Single def_val;
+
+            if(dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value == null)
+            {
+                dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value = dgvCellVal;
+                return;
+            }
 
             // try to get default and changed cell values in a version that can be compared
             try
@@ -328,11 +294,41 @@ namespace V1000_Prog_SQL
             UpdateParamViews(chng_param_val, e.RowIndex);
         }
 
-        
-
         private void dgvParamViewFull_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             dgvCellVal = (string)(dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value);
+        }
+
+        private void dgvParamViewChng_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            dgvChngCellVal = (string)(dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value);
+        }
+
+        private void dgvParamViewChng_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dgvParamViewChng.Rows[e.RowIndex].Cells[4].Value == null)
+            {
+                dgvParamViewChng.Rows[e.RowIndex].Cells[4].Value = dgvChngCellVal;
+                return;
+            }
+
+            Single chng_val;
+
+            try
+            {
+                chng_val = Cell2Single((String)dgvParamViewChng.Rows[e.RowIndex].Cells[4].Value, Param_Chng[e.RowIndex]);
+            }
+            catch
+            {
+                MsgBox.Err("Entry Error!");
+                return;
+            }
+
+            Single temp_float = (chng_val * Param_Chng[e.RowIndex].Multiplier);
+            ushort chng_param_val = (ushort)temp_float;
+            int idx = GetParamIndex(Param_Chng[e.RowIndex].ParamNum, Param_List);
+            UpdateParamViews(chng_param_val, idx);
+            return;
         }
 
         #endregion
@@ -1032,6 +1028,39 @@ namespace V1000_Prog_SQL
             RefreshParamViews();
         }
 
+        private void ctxtDriveMod_UpdDefParam_Click(object sender, EventArgs e)
+        {
+            if(Environment.UserName != "sferry")
+            {
+                MsgBox.dBErr("You do not have permission to delete records from the database!");
+                goto UpdDefParamReturn;
+            }
+
+            if(MsgBox.YN("Updates to the default parameter list are permenant! Do you wish to continue?", "Database Defaults Update") == DialogResult.No)
+                goto UpdDefParamReturn;
+
+            // First build the column name
+            string def_col = "DEF_"; // default column prefix
+            def_col += DrvInf[cmbDrvList.SelectedIndex].Info.PartNum + "_";
+            if(cmbDrvDuty.SelectedIndex == 0)
+                def_col += "ND";
+            else
+                def_col += "HD";
+
+            // update the database
+            for(int i = 0; i < Param_Vrfy.Count; i++)
+            {
+                if(!dBConn.UpdateStr(Tbl_Drv_V1000_Param, def_col, Param_Vrfy[i].ParamVal.ToString(), "PARAM_NUM", Param_Vrfy[i].ParamNum))
+                {
+                    MsgBox.dBErr("Database update error!");
+                    break;
+                }
+            }
+
+            UpdDefParamReturn:
+            return;
+        }
+
         private void clearScheduledChangesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClrSchedChng();
@@ -1122,8 +1151,7 @@ namespace V1000_Prog_SQL
             dgvParamViewChng.Rows.Clear();
 
             opfd.Filter = "Excel 2007 Workbook (*.xlsx)|*.xlsx";
-            //opfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            opfd.InitialDirectory = @"N:\ELECTRICAL DATA\APPLICATIONS\VFD Programmer\data";
+            opfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (opfd.ShowDialog() == DialogResult.OK)
             {
                 XL.Application xlApp = new XL.Application();
@@ -1138,13 +1166,8 @@ namespace V1000_Prog_SQL
                 {
                     V1000_File_Data file_data = new V1000_File_Data();
 
-                    //if (xlRange.Cells[i, 1] != null && xlRange.Cells[i, 1].Value2 != null)
-                    //    file_data.ParamNum = xlRange.Cells[i, 1].Value2.ToString();
-                    //else
-                    //    file_data.ParamNum = "0";
-
-                    if(xlRange.Cells[i, 2] != null && xlRange.Cells[i, 2].Value2 != null)
-                        file_data.ParamNum = xlRange.Cells[i, 2].Value2.ToString();
+                    if(xlRange.Cells[i, 1] != null && xlRange.Cells[i, 1].Value2 != null)
+                        file_data.ParamNum = xlRange.Cells[i, 1].Value2.ToString();
                     else
                         file_data.ParamNum = "0";
 
@@ -1166,10 +1189,9 @@ namespace V1000_Prog_SQL
                         // See if the parameter numbers match
                         if (Param_List[j].ParamNum == file_list[i].ParamNum)
                         {
-                            //double val = Math.Round(Convert.ToDouble(file_list[i].Value), 2);
-                            //ushort chng_val = (ushort)(val / Param_List[j].Multiplier);
-                            //UpdateParamViews(chng_val, j);
-                            UpdateParamViews(Convert.ToUInt16(file_list[i].Value), j);
+                            double val = Math.Round(Convert.ToDouble(file_list[i].Value), 2);
+                            ushort chng_val = (ushort)(val * Param_List[j].Multiplier);
+                            UpdateParamViews(chng_val, j);
                             break;
                         }
                     }
@@ -1545,12 +1567,11 @@ namespace V1000_Prog_SQL
         {
             // First clear all machine entry items strip off the machine code from the combo box
             MachSelReset();
-            string mach_code = GetMachCode(cmbMachSel.SelectedItem);    
+            string mach_code = GetMachCode(cmbMachSel.Text);    
 
             // next query the database for the number of VFDs the machine selection has
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MACH_DATA", "*", "MACH_CODE", dB.StringConv(mach_code));
-            int drv_cnt = Convert.ToInt32(tbl.Rows[0]["DRV_CNT"].ToString());
+            dBConn.QueryStr(Tbl_Mach, "*", "MACH_CODE", mach_code);
+            int drv_cnt = Convert.ToInt32(dBConn.Table.Rows[0]["DRV_CNT"].ToString());
             txtMachDrvCnt.Text = drv_cnt.ToString();
 
             // Populate drive selection comboboxes with drive selection options
@@ -1570,16 +1591,14 @@ namespace V1000_Prog_SQL
 
         private void cmbMachDrvNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable tbl = new DataTable();
-            
             // Form column name for stored drive name in the database
             string drv_col_name = "DRV" + cmbMachDrvNum.GetItemText(cmbMachDrvNum.SelectedItem) + "_NAME";
             
             // Form the machine code for searching in the database
             string mach_code = GetMachCodeSQL(cmbMachSel.SelectedItem);
 
-            dB.Query(ref dBConn, ref tbl, "MACH_DATA", drv_col_name, "MACH_CODE", mach_code);
-            txtMachDrvName.Text = tbl.Rows[0][0].ToString();
+            dBConn.Query(Tbl_Mach, drv_col_name, "MACH_CODE", mach_code);
+            txtMachDrvName.Text = dBConn.Table.Rows[0][0].ToString();
             SetDefDriveSel();
 
         }
@@ -1602,10 +1621,9 @@ namespace V1000_Prog_SQL
             // load the chart
             string chrt_tbl = GetMachChrtTbl(info.chrt_num_drv);
             string chrt_col = string.Format("CHRT_{0}", info.chrt_num_drv);
-            DataTable tbl = new DataTable();
-            if(dB.QueryNull(ref dBConn, ref tbl, 0, chrt_tbl, "PARAM_NUM, " + chrt_col, chrt_col, "PARAM_NUM") > 0)
+            if(dBConn.QueryNull(0, chrt_tbl, "PARAM_NUM, " + chrt_col, chrt_col, "PARAM_NUM") > 0)
             {
-                foreach(DataRow dr in tbl.Rows)
+                foreach(DataRow dr in dBConn.Table.Rows)
                 {
                     int idx = GetParamIndex(dr["PARAM_NUM"].ToString(), Param_List);
                     UpdateParamViews(Convert.ToUInt16(dr[chrt_col].ToString()), idx);
@@ -1618,6 +1636,13 @@ namespace V1000_Prog_SQL
 
         private void btnMachListStore_Click(object sender, EventArgs e)
         {
+            string sql = string.Format("USE {0} SELECT * FROM fn_my_permissions('dbo', 'SCHEMA') WHERE permission_name = 'INSERT' OR permission_name = 'INSERT' ;", UL_EEdB);
+            if(dBConn.QuerySQL(sql) < 1)
+            {
+                MsgBox.dBErr("You do not have permission to add records to the database!");
+                goto ChrtStoreReturn;
+            }
+
             if (cmbMachSel.SelectedIndex < 0)
             {
                 MsgBox.Err("No machine selected!");
@@ -1646,56 +1671,71 @@ namespace V1000_Prog_SQL
             string chrt_num_drv = string.Format("{0}_{1}", cmbMachChrtNum.Text, cmbMachDrvNum.Text);
 
             // Check and see if the chart for this specific drive already exists
-            DataTable tbl = new DataTable();
-            if(dB.Query(ref dBConn, ref tbl, "CHRT_LST", "IDX", "CHRT_NUM_DRV", dB.StringConv(chrt_num_drv)) > 0)
+            if(dBConn.QueryStr(Tbl_Chrt_Lst, "IDX", "CHRT_NUM_DRV", chrt_num_drv) > 0)
             {
                 // If it does check if overwrite is desired 
                 if(MsgBox.YN("This chart already exists, do you wish to overwrite?", "VFD Chart Overwrite") == DialogResult.No)
                     return;
                 // if it is then delete the chart column from the parameter change list
                 string chrt_col = "CHRT_" + chrt_num_drv;
-                dB.AlterTbl(ref dBConn, 0, "CHRT_V1000", chrt_col);
+                dBConn.AlterTbl(0, Tbl_Chrt_V1000, chrt_col);
 
                 // Also delete the entry from the master chart list.
-                dB.Delete(ref dBConn, "CHRT_LST", "CHRT_NUM_DRV", dB.StringConv(chrt_num_drv));
+                dBConn.DeleteStr(Tbl_Chrt_Lst, "CHRT_NUM_DRV", chrt_num_drv);
             }
 
-            tbl.Dispose();
-            tbl = new DataTable();
-            
             // Check and see if this is a completely new chart or just an additional drive
-            if(dB.Func(ref dBConn, ref tbl, "COUNT", "CHRT_LST", "CHRT_NUM", dB.StringConv(chrt_num)))
+            if(dBConn.FuncStr("COUNT", Tbl_Chrt_Lst, "CHRT_NUM", chrt_num) > 0)
             {
-                int cnt = Convert.ToInt32(tbl.Rows[0][0].ToString());
+                int cnt = Convert.ToInt32(dBConn.Table.Rows[0][0].ToString());
                 if(cnt == 0)
                     chrt_cnt++;
             }
 
             // Create the new chart column in the chart table
             string new_chrt_col = string.Format("CHRT_{0}", chrt_num_drv);
-            dB.AlterTbl(ref dBConn, 1, "CHRT_V1000", new_chrt_col);
+            dBConn.AlterTbl(1, Tbl_Chrt_V1000, new_chrt_col);
             
             // Add all the row entries for the parameter chart
             for(int i=0;i<Param_Chng.Count;i++)
-                dB.Update(ref dBConn, "CHRT_V1000", new_chrt_col, Param_Chng[i].ParamVal.ToString(), "PARAM_NUM", dB.StringConv(Param_Chng[i].ParamNum));
+            {
+                if(!dBConn.UpdateStr(Tbl_Chrt_V1000, new_chrt_col, Param_Chng[i].ParamVal.ToString(), "PARAM_NUM", Param_Chng[i].ParamNum))
+                    break;
+            }
            
             // Add chart data to the master chart list
             string InsCols = "CHRT_NUM_DRV, CHRT_NUM, MACH_CODE";
-            string InsVals = string.Format("{0}, {1}, {2}", dB.StringConv(chrt_num_drv), dB.StringConv(chrt_num), dB.StringConv(mach_code));
-            dB.Insert(ref dBConn, "CHRT_LST", InsCols, InsVals);
+            string InsVals = string.Format("'{0}', '{1}', '{2}'", chrt_num_drv, chrt_num, mach_code);
+            dBConn.Insert(Tbl_Chrt_Lst, InsCols, InsVals);
 
             // Update the chart count in the machine info data table
-            dB.Update(ref dBConn, "MACH_DATA", "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", dB.StringConv(mach_code));
+            dBConn.UpdateStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
 
             // Update the machine chart information area
             UpdMachChrtInf(mach_code);
 
             // Let the user know the parameters were stored
             MsgBox.Info("Parameter chart was successfully stored.");
+
+            ChrtStoreReturn:
+            return;
         }
 
         private void btnMachListDel_Click(object sender, EventArgs e)
         {
+            if(Environment.UserName != "sferry")
+            {
+                MsgBox.dBErr("You do not have permission to delete records from the database!");
+                goto ChrtDelReturn;
+            }
+
+            string sql = string.Format("USE {0} SELECT * FROM fn_my_permissions('dbo', 'SCHEMA') WHERE permission_name = 'DELETE';", UL_EEdB);
+            if(dBConn.QuerySQL(sql) < 1)
+            {
+                MsgBox.dBErr("You do not have permission to delete records from the database!");
+                goto ChrtDelReturn;
+            }
+
             // Form the machine code 
             string mach_code = GetMachCode(cmbMachSel.SelectedItem);
             string chrt_num = cmbMachChrtNum.Text;
@@ -1707,25 +1747,21 @@ namespace V1000_Prog_SQL
             string chrt_tbl = GetMachChrtTbl(chrt_num_drv);
 
             // Delete the column from the master parameter chart 
-            dB.AlterTbl(ref dBConn, 0, chrt_tbl, chrt_col);
+            dBConn.AlterTbl(0, chrt_tbl, chrt_col);
 
             // Delete the entry in the master chart list
-            dB.Delete(ref dBConn, "CHRT_LST", "CHRT_NUM_DRV", dB.StringConv(chrt_num_drv));
+            dBConn.DeleteStr(Tbl_Chrt_Lst, "CHRT_NUM_DRV", chrt_num_drv);
+            cmbMachChrtNum.Text = "";
+            ClrSchedChng();
 
             // Check and see if there are any other drives remaining for that chart part number
-            DataTable tbl = new DataTable();
-            if(dB.QueryDist(ref dBConn, ref tbl, "CHRT_LST", "CHRT_NUM", "CHRT_NUM", dB.StringConv(chrt_num)) <= 0)
+            if(dBConn.QueryDistStr(Tbl_Chrt_Lst, "CHRT_NUM", "CHRT_NUM", chrt_num) <= 0)
             {
-                tbl.Dispose();
-                tbl = new DataTable();
-
-                // if there are no more charts left for that number then query the machine info
-                // table, get the chart count, subtract one and store the updated value.
-                string mach_sql = dB.StringConv(mach_code);
-                dB.Query(ref dBConn, ref tbl, "MACH_DATA", "CHRT_CNT", "MACH_CODE", mach_sql);
-                int chrt_cnt = Convert.ToInt32(tbl.Rows[0][0].ToString()) - 1;
-                dB.Update(ref dBConn, "MACH_DATA", "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_sql);
+                dBConn.QueryStr(Tbl_Mach, "CHRT_CNT", "MACH_CODE", mach_code);
+                int chrt_cnt = Convert.ToInt32(dBConn.Table.Rows[0][0].ToString()) - 1;
+                dBConn.UpdateStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
                 UpdMachChrtInf(mach_code);
+                
             }
 
             MsgBox.Info("Parameter chart was successfully deleted.");
@@ -1787,10 +1823,8 @@ namespace V1000_Prog_SQL
             int cnt = -1;
 
             string mach_code = string.Format("'{0}'", p_MachCode);
-            DataTable tbl = new DataTable();
-            if(dB.Query(ref dBConn, ref tbl, "MACH_DATA", "CHRT_CNT", "MACH_CODE", mach_code) >=0)
-                cnt = Convert.ToInt32(tbl.Rows[0]["CHRT_CNT"].ToString());
-            tbl.Dispose();
+            if(dBConn.Query(Tbl_Mach, "CHRT_CNT", "MACH_CODE", mach_code) >=0)
+                cnt = Convert.ToInt32(dBConn.Table.Rows[0]["CHRT_CNT"].ToString());
 
             return cnt;
         }
@@ -1799,9 +1833,8 @@ namespace V1000_Prog_SQL
         {
             string chrt_tbl = "";
 
-            DataTable tbl = new DataTable();
-            if(dB.Query(ref dBConn, ref tbl, "CHRT_LST", "CHRT_TBL", "CHRT_NUM_DRV", dB.StringConv(p_ChrtNumDrv)) >= 0)
-                chrt_tbl = tbl.Rows[0]["CHRT_TBL"].ToString();
+            if(dBConn.QueryStr(Tbl_Chrt_Lst, "CHRT_TBL", "CHRT_NUM_DRV", p_ChrtNumDrv) >= 0)
+                chrt_tbl = dBConn.Table.Rows[0]["CHRT_TBL"].ToString();
 
             return chrt_tbl;
         }
@@ -1810,10 +1843,9 @@ namespace V1000_Prog_SQL
         {
             List<string> list = new List<string>();
 
-            DataTable tbl = new DataTable();
-            if(dB.QueryDist(ref dBConn, ref tbl, "CHRT_LST", "CHRT_NUM", "MACH_CODE", dB.StringConv(p_MachCode)) >= 0)
+            if(dBConn.QueryDistStr(Tbl_Chrt_Lst, "CHRT_NUM", "MACH_CODE", p_MachCode) >= 0)
             {
-                foreach(DataRow dr in tbl.Rows)
+                foreach(DataRow dr in dBConn.Table.Rows)
                     list.Add(dr[0].ToString());
             }
 
@@ -1829,10 +1861,9 @@ namespace V1000_Prog_SQL
             // If the chart count is greater than zero then populate the Chart Part Number combobox.
             if(chrt_cnt > 0)
             {
-                //string chrt_tbl = GetMachChrtTbl(mach_code);
-
                 List<string> chrt_list = new List<string>();
                 chrt_list = GetMachChrtList(p_MachCode);
+                cmbMachChrtNum.Items.Clear();
                 for(int i=0;i<chrt_list.Count;i++)
                     cmbMachChrtNum.Items.Add(chrt_list[i]);
                 
@@ -1851,28 +1882,23 @@ namespace V1000_Prog_SQL
             }
 
             // See if any charts exist for the machine
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MACH_DATA", "CHRT_CNT", "MACH_CODE", dB.StringConv(p_MachCode));
-            int chart_cnt = Convert.ToInt32(tbl.Rows[0][0].ToString());
+            dBConn.QueryStr(Tbl_Mach, "CHRT_CNT", "MACH_CODE", p_MachCode);
+            int chart_cnt = Convert.ToInt32(dBConn.Table.Rows[0][0].ToString());
             if(chart_cnt < 1)
             {
                 MsgBox.Err("No parameter charts are stored for this machine!");
                 goto VerChrtReturn;
             }
-            tbl.Dispose();
-            tbl = new DataTable();
 
             // Check and see if the chart part number exists in the master chart list
-            if(dB.QueryDist(ref dBConn, ref tbl, "CHRT_LST", "CHRT_NUM", "CHRT_NUM", dB.StringConv(p_ChrtNum)) <= 0)
+            if(dBConn.QueryDistStr(Tbl_Chrt_Lst, "CHRT_NUM", "CHRT_NUM", p_ChrtNum) <= 0)
             {
                 MsgBox.Err("Parameter Chart Number " + p_ChrtNum + " does not exist for machine model " + p_MachCode);
                 goto VerChrtReturn;
             }
-            tbl.Dispose();
-            tbl = new DataTable();
 
             string chrt_num_drv = string.Format("{0}_{1}", p_ChrtNum, p_DrvNum);
-            if(dB.Query(ref dBConn, ref tbl, "CHRT_LST", "CHRT_NUM_DRV, CHRT_TBL", "CHRT_NUM_DRV", dB.StringConv(chrt_num_drv)) <= 0)
+            if(dBConn.QueryStr(Tbl_Chrt_Lst, "CHRT_NUM_DRV, CHRT_TBL", "CHRT_NUM_DRV", chrt_num_drv) <= 0)
             {
                 MsgBox.Err("A parameter chart for drive number " + cmbMachDrvNum.Text + " does not exist for parameter chart " + p_DrvNum + " for the " + p_MachCode + " machine.");
                 goto VerChrtReturn;
@@ -1940,10 +1966,9 @@ namespace V1000_Prog_SQL
         // Load list of machine codes with their description
         public void LoadMachComboboxes()
         {
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MACH_DATA", "MACH_CODE, MACH_DESC", p_OrderBy:"MACH_CODE");
-
-            foreach(DataRow dr in tbl.Rows)
+            string cols = "MACH_CODE, MACH_DESC";
+            dBConn.Query(Tbl_Mach, cols, p_OrderBy:"MACH_CODE");
+            foreach(DataRow dr in dBConn.Table.Rows)
             {
                 string cmb_item = string.Format("{0} - {1}", dr["MACH_CODE"].ToString(), dr["MACH_DESC"].ToString());
                 cmbMachSel.Items.Add(cmb_item);
@@ -1965,9 +1990,8 @@ namespace V1000_Prog_SQL
                 db_col_name += "LV";
 
             // Get the drive number
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MACH_DATA", db_col_name, "MACH_CODE", dB.StringConv(inf.mach_code));
-            string drive_num = tbl.Rows[0][0].ToString();
+            dBConn.QueryStr(Tbl_Mach, db_col_name, "MACH_CODE", inf.mach_code);
+            string drive_num = dBConn.Table.Rows[0][0].ToString();
 
             // Find the index in the drive list for the drive selection
             int idx = -1;
@@ -2221,21 +2245,17 @@ namespace V1000_Prog_SQL
 
             // Check and see if motor exists, if not, verify user is wanting to add the motor
             string mtr_num = cmbMtrPartNum.Text;
-            DataTable tbl = new DataTable();
-            if(dB.Query(ref dBConn, ref tbl, "MTR_DATA", "IDX", "MTR_NUM", dB.StringConv(mtr_num)) < 1)
+            if(dBConn.QueryStr(Tbl_Mtr, "IDX", "MTR_NUM", mtr_num) < 1)
             {
                 if(MsgBox.YN("Motor part number " + mtr_num + " does not exist in the database, would you like to add?", "Motor Does Not Exist") == DialogResult.Yes)
-                    dB.Insert(ref dBConn, "MTR_DATA", "MTR_NUM", dB.StringConv(mtr_num));
+                    dBConn.Insert(Tbl_Mtr, "MTR_NUM", string.Format("'{0}'", mtr_num));
                 else
                     goto MtrStoreReturn;
             }
 
             string col_name = BuildMtrColName(cmbMtrVoltMax.Text, cmbMtrFreqBase.Text);
-
-            tbl.Dispose();
-            tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MTR_DATA", col_name, "MTR_NUM", dB.StringConv(mtr_num));
-            string flc = tbl.Rows[0][0].ToString();
+            dBConn.QueryStr(Tbl_Mtr, col_name, "MTR_NUM", mtr_num);
+            string flc = dBConn.Table.Rows[0][0].ToString();
             if(flc.Equals("") == false)
             {
                 string txt = "A FLC value already exists for motor part number " + mtr_num +
@@ -2246,7 +2266,7 @@ namespace V1000_Prog_SQL
             }
 
             flc = txtMtrFLC.Text;
-            dB.Update(ref dBConn, "MTR_DATA", col_name, flc, "MTR_NUM", dB.StringConv(mtr_num));
+            dBConn.UpdateStr(Tbl_Mtr, col_name, flc, "MTR_NUM", mtr_num);
 
             MsgBox.Info("Motor FLC data successfully stored.");
 
@@ -2256,6 +2276,12 @@ namespace V1000_Prog_SQL
 
         private void btnMtrDel_Click(object sender, EventArgs e)
         {
+            if(Environment.UserName != "sferry")
+            {
+                MsgBox.dBErr("You do not have permission to delete records from the database!");
+                goto MtrDelReturn;
+            }
+
             if(cmbMtrPartNum.Text == "")
             {
                 MsgBox.Err("A motor part number is required to delete any record information!");
@@ -2264,8 +2290,7 @@ namespace V1000_Prog_SQL
 
             string mtr_num = cmbMtrPartNum.Text;
 
-            DataTable tbl = new DataTable();
-            if(dB.Query(ref dBConn, ref tbl, "MTR_DATA", "IDX", "MTR_NUM", dB.StringConv(mtr_num)) < 1)
+            if(dBConn.QueryStr(Tbl_Mtr, "IDX", "MTR_NUM", mtr_num) < 1)
             {
                 MsgBox.Err("Motor part number " + mtr_num + " does not exist in the database!");
                 goto MtrDelReturn;
@@ -2276,7 +2301,7 @@ namespace V1000_Prog_SQL
             if(MsgBox.YN("Would you like to erase the entire motor information from the database?", "Motor Erase Option") == DialogResult.Yes)
             {
 
-                if(dB.Delete(ref dBConn, "MTR_DATA", "MTR_NUM", dB.StringConv(mtr_num)))
+                if(dBConn.DeleteStr(Tbl_Mtr, "MTR_NUM", mtr_num))
                 {
                     MsgBox.Info("Motor part successfully deleted");
                     cmbMtrPartNum.Text = "";
@@ -2312,9 +2337,8 @@ namespace V1000_Prog_SQL
             if(ValidateColFLC(col_name))
             {
                 // Get motor FLC data from the database
-                DataTable tbl = new DataTable();
-                if(dB.Query(ref dBConn, ref tbl, "MTR_DATA", col_name, "MTR_NUM", dB.StringConv(p_Mtr)) > 0)
-                    flc = tbl.Rows[0][0].ToString();
+                if(dBConn.QueryStr(Tbl_Mtr, col_name, "MTR_NUM", p_Mtr) > 0)
+                    flc = dBConn.Table.Rows[0][0].ToString();
             }
 
             return flc;
@@ -2347,9 +2371,8 @@ namespace V1000_Prog_SQL
         // load the list of motors 
         public void LoadMtrPartNums()
         {
-            DataTable tbl = new DataTable();
-            dB.Query(ref dBConn, ref tbl, "MTR_DATA", "MTR_NUM", p_OrderBy:"MTR_NUM");
-            foreach(DataRow dr in tbl.Rows)
+            dBConn.Query(Tbl_Mtr, "MTR_NUM", p_OrderBy:"MTR_NUM");
+            foreach(DataRow dr in dBConn.Table.Rows)
             {
                 cmbMtrPartNum.Items.Add((string)dr["MTR_NUM"]);
                 cmbMtr2PartNum.Items.Add((string)dr["MTR_NUM"]);
@@ -2367,34 +2390,11 @@ namespace V1000_Prog_SQL
 
         #endregion
 
-        private void ctxtDriveMod_UpdDefParam_Click(object sender, EventArgs e)
-        {
-            if(MsgBox.YN("Updates to the default parameter list are permenant! Do you wish to continue?", "Database Defaults Update") == DialogResult.No)
-                return;
-
-            // First build the column name
-            string def_col = "DEF_"; // default column prefix
-            def_col += DrvInf[cmbDrvList.SelectedIndex].Info.PartNum + "_";
-            if(cmbDrvDuty.SelectedIndex == 0)
-                def_col += "ND";
-            else
-                def_col += "HD";
-
-            // update the database
-            for(int i=0;i<Param_Vrfy.Count;i++)
-            {
-                if(!dB.Update(ref dBConn, "DRV_V1000_PARAM", def_col, Param_Vrfy[i].ParamVal.ToString(), "PARAM_NUM", dB.StringConv(Param_Vrfy[i].ParamNum)))
-                {
-                    MsgBox.dBErr("Database update error!");
-                    break;
-                }
-            }
-        }
-
         private void ctxtDriveMod_StoreParamList_Click(object sender, EventArgs e)
         {
 
         }
+        
     }
 
     public class ThreadProgressArgs : EventArgs

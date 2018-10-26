@@ -60,7 +60,7 @@ namespace MDI_VFD
         {
             if(VFDProg == null)
             {
-                VFDProg = new frmProg(spPort, CommPort);
+                VFDProg = new frmProg(dBConn, CommPort, spPort, SlaveAddr);
                 VFDProg.FormClosing += frmMain_ChildClosing;
                 VFDProg.MdiParent = this;
                 VFDProg.Show();
@@ -75,7 +75,7 @@ namespace MDI_VFD
         {
             if(VFDMonOp == null)
             {
-                VFDMonOp = new frmMonOp(dBConn, spPort, CommPort);
+                VFDMonOp = new frmMonOp(dBConn, CommPort, spPort, SlaveAddr);
                 VFDMonOp.FormClosing += frmMain_ChildClosing;
                 VFDMonOp.MdiParent = this;
                 VFDMonOp.Show();
@@ -173,7 +173,7 @@ namespace MDI_VFD
         {
             if(VFDMonMaint == null)
             {
-                VFDMonMaint = new frmMonMaint(dBConn, spPort, CommPort);
+                VFDMonMaint = new frmMonMaint(dBConn, CommPort, spPort, SlaveAddr);
                 VFDMonMaint.MdiParent = this;
                 VFDMonMaint.FormClosing += frmMain_ChildClosing;
                 VFDMonMaint.Show();
@@ -188,7 +188,7 @@ namespace MDI_VFD
         {
             if(VFDFlt == null)
             {
-                VFDFlt = new frmFlt(dBConn, spPort, CommPort);
+                VFDFlt = new frmFlt(dBConn, CommPort, spPort, SlaveAddr);
                 VFDFlt.MdiParent = this;
                 VFDFlt.FormClosing += frmMain_ChildClosing;
                 VFDFlt.Show();
@@ -229,6 +229,9 @@ namespace MDI_VFD
                 {
                     txtDB.Enabled = false;
                     btnDBConn.Text = "Disconnect";
+                    chkWinAuth.Enabled = false;
+                    txtUsr.Enabled = false;
+                    txtPass.Enabled = false;
                 }
             }
             else if (dBConn.State == ConnectionState.Open)
@@ -236,6 +239,9 @@ namespace MDI_VFD
                 dBConn.Close();
                 txtDB.Enabled = true;
                 btnDBConn.Text = "Connect";
+                chkWinAuth.Enabled = true;
+                txtUsr.Enabled = true;
+                txtPass.Enabled = true;
             }
         }
 

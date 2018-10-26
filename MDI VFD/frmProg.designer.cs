@@ -180,7 +180,7 @@
             this.dgvParamViewFull.Name = "dgvParamViewFull";
             this.dgvParamViewFull.RowHeadersVisible = false;
             this.dgvParamViewFull.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParamViewFull.Size = new System.Drawing.Size(598, 407);
+            this.dgvParamViewFull.Size = new System.Drawing.Size(598, 318);
             this.dgvParamViewFull.TabIndex = 36;
             this.dgvParamViewFull.TabStop = false;
             this.dgvParamViewFull.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvParamViewFull_CellBeginEdit);
@@ -253,9 +253,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statProgLabel,
             this.statProgress});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 763);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 684);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1244, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1245, 22);
             this.statusStrip1.TabIndex = 37;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -337,7 +337,7 @@
             this.ctxtDriveMod_UpdDefParam,
             this.ctxtDriveMod_StoreParamList});
             this.ctxtDriveMod.Name = "ctxtDriveMod";
-            this.ctxtDriveMod.Size = new System.Drawing.Size(247, 114);
+            this.ctxtDriveMod.Size = new System.Drawing.Size(247, 92);
             this.ctxtDriveMod.Opening += new System.ComponentModel.CancelEventHandler(this.ctxtDriveMod_Opening);
             // 
             // ctxtDriveMod_Save
@@ -394,7 +394,7 @@
             this.grpSetDrive.Controls.Add(this.dgvParamViewFull);
             this.grpSetDrive.Location = new System.Drawing.Point(7, 27);
             this.grpSetDrive.Name = "grpSetDrive";
-            this.grpSetDrive.Size = new System.Drawing.Size(610, 679);
+            this.grpSetDrive.Size = new System.Drawing.Size(610, 595);
             this.grpSetDrive.TabIndex = 45;
             this.grpSetDrive.TabStop = false;
             this.grpSetDrive.Text = "VFD Complete Parameter Information";
@@ -727,11 +727,11 @@
             this.cmMisMatchDefVal,
             this.cmMisMatchReadVal});
             this.dgvParamViewMisMatch.ContextMenuStrip = this.ctxtDriveMod;
-            this.dgvParamViewMisMatch.Location = new System.Drawing.Point(6, 309);
+            this.dgvParamViewMisMatch.Location = new System.Drawing.Point(5, 306);
             this.dgvParamViewMisMatch.Name = "dgvParamViewMisMatch";
             this.dgvParamViewMisMatch.RowHeadersVisible = false;
             this.dgvParamViewMisMatch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParamViewMisMatch.Size = new System.Drawing.Size(600, 245);
+            this.dgvParamViewMisMatch.Size = new System.Drawing.Size(600, 174);
             this.dgvParamViewMisMatch.TabIndex = 41;
             this.dgvParamViewMisMatch.TabStop = false;
             // 
@@ -795,7 +795,7 @@
             // lblParamMismatch
             // 
             this.lblParamMismatch.AutoSize = true;
-            this.lblParamMismatch.Location = new System.Drawing.Point(7, 293);
+            this.lblParamMismatch.Location = new System.Drawing.Point(6, 290);
             this.lblParamMismatch.Name = "lblParamMismatch";
             this.lblParamMismatch.Size = new System.Drawing.Size(134, 13);
             this.lblParamMismatch.TabIndex = 46;
@@ -808,9 +808,9 @@
             this.grpDrvComm.Controls.Add(this.btnVFDRead);
             this.grpDrvComm.Controls.Add(this.btnVFDMod);
             this.grpDrvComm.Enabled = false;
-            this.grpDrvComm.Location = new System.Drawing.Point(3, 705);
+            this.grpDrvComm.Location = new System.Drawing.Point(7, 628);
             this.grpDrvComm.Name = "grpDrvComm";
-            this.grpDrvComm.Size = new System.Drawing.Size(614, 53);
+            this.grpDrvComm.Size = new System.Drawing.Size(610, 53);
             this.grpDrvComm.TabIndex = 47;
             this.grpDrvComm.TabStop = false;
             this.grpDrvComm.Text = "Drive Communication Commands";
@@ -818,7 +818,7 @@
             // btnVFDVer
             // 
             this.btnVFDVer.Enabled = false;
-            this.btnVFDVer.Location = new System.Drawing.Point(478, 19);
+            this.btnVFDVer.Location = new System.Drawing.Point(474, 19);
             this.btnVFDVer.Name = "btnVFDVer";
             this.btnVFDVer.Size = new System.Drawing.Size(130, 23);
             this.btnVFDVer.TabIndex = 99;
@@ -844,7 +844,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1244, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1245, 24);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -919,9 +919,11 @@
             this.dgvParamViewChng.Name = "dgvParamViewChng";
             this.dgvParamViewChng.RowHeadersVisible = false;
             this.dgvParamViewChng.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParamViewChng.Size = new System.Drawing.Size(600, 245);
+            this.dgvParamViewChng.Size = new System.Drawing.Size(600, 243);
             this.dgvParamViewChng.TabIndex = 40;
             this.dgvParamViewChng.TabStop = false;
+            this.dgvParamViewChng.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvParamViewChng_CellBeginEdit);
+            this.dgvParamViewChng.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParamViewChng_CellEndEdit);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1079,7 +1081,7 @@
             this.grpParamChng.Controls.Add(this.lblParamMismatch);
             this.grpParamChng.Location = new System.Drawing.Point(623, 195);
             this.grpParamChng.Name = "grpParamChng";
-            this.grpParamChng.Size = new System.Drawing.Size(614, 563);
+            this.grpParamChng.Size = new System.Drawing.Size(614, 486);
             this.grpParamChng.TabIndex = 46;
             this.grpParamChng.TabStop = false;
             this.grpParamChng.Text = "VFD Parameter Changes";
@@ -1282,7 +1284,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 785);
+            this.ClientSize = new System.Drawing.Size(1245, 706);
             this.Controls.Add(this.grpMtr2Set);
             this.Controls.Add(this.grpMtrSet);
             this.Controls.Add(this.grpSetDrive);
