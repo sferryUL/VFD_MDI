@@ -259,6 +259,11 @@ namespace V1000_Prog_SQL
 
         #region Datagridview Functions
 
+        private void dgvParamViewFull_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            dgvCellVal = (string)(dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value);
+        }
+
         private void dgvParamViewFull_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Single chng_val = 0;
@@ -292,11 +297,6 @@ namespace V1000_Prog_SQL
             ushort chng_param_val = (ushort)temp_float;
 
             UpdateParamViews(chng_param_val, e.RowIndex);
-        }
-
-        private void dgvParamViewFull_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            dgvCellVal = (string)(dgvParamViewFull.Rows[e.RowIndex].Cells[4].Value);
         }
 
         private void dgvParamViewChng_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -437,7 +437,10 @@ namespace V1000_Prog_SQL
                         Param_List[i].ParamVal = msg.Data[0];
                     }
                     else
-                        Param_List[i].ParamVal = 0;
+                    {
+                        VFDReadRegCnt = 0;
+                        break;
+                    }
                 }
 
                 ProgressArgs.VFDRead_Progress = 100;
@@ -480,7 +483,6 @@ namespace V1000_Prog_SQL
 
             // clear all the status bar values and set them as invisible
             SetStatusBar(false);
-            SetVFDCommBtnEnable(0x0F);
         }
         #endregion
 
@@ -508,7 +510,6 @@ namespace V1000_Prog_SQL
                 if (status != 0x0001)
                 {
                     MessageBox.Show("VFD Parameter Reset to Default Failure!!");
-                    goto VFDResetReturn;
                 }
                 else
                 {
@@ -525,7 +526,6 @@ namespace V1000_Prog_SQL
             SetVFDCommBtnEnable(oldbtnset);
             SetStatusBar(false);
             
-            VFDResetReturn:
             return;
         }
 
@@ -547,6 +547,19 @@ namespace V1000_Prog_SQL
                     string cap = "Motor Entry Missing";
                     if(MsgBox.YN(msg, cap) == DialogResult.No)
                         return;
+                }
+
+                // If the Motor 2 checkbox is checked then make sure that there is a Motor 2 FLA parameter present
+                if(chkMtr2.Checked)
+                {
+                    int idx_mtr2 = GetParamIndex(Mtr2RatedCurrParamNum, Param_Chng);
+                    if(idx_mtr2 < 0)
+                    {
+                        string msg = "Motor 2 settings are enabled and you have not entered a FLC for motor 2, do you wish to continue without setting up the FLC for motor 2?";
+                        string cap = "Motor Entry Missing";
+                        if(MsgBox.YN(msg, cap) == DialogResult.No)
+                            return;
+                    }
                 }
 
                 ProgressArgs.ClearVFDWriteVals();
@@ -833,6 +846,32 @@ namespace V1000_Prog_SQL
 
 
             // First check if the default parameter is a hex value so we can trim off the "0x" from the beginning
+            if(p_Param.NumBase == 16)
+            {
+                ushort temp_val; 
+                p_CellVal = p_CellVal.ToUpper();
+                int idx  = p_CellVal.IndexOf('X');
+                if(idx > 0)
+                    p_CellVal = p_CellVal.Substring(idx + 1);
+                temp_val = Convert.ToUInt16(p_CellVal, 16);
+                RetVal = Convert.ToSingle(temp_val);
+            }
+            // Otherwise we need to trim off any units from the default cell value
+            else
+            {
+                RetVal = Cell2Single(p_CellVal);
+            }
+
+            return RetVal;
+        }
+
+        /*
+        private Single Cell2Single(string p_CellVal, V1000_Param_Data p_Param)
+        {
+            Single RetVal = 0;
+
+
+            // First check if the default parameter is a hex value so we can trim off the "0x" from the beginning
             if (p_Param.NumBase == 16)
             {
                 // Now check and see if the value is actually a hex value
@@ -853,6 +892,7 @@ namespace V1000_Prog_SQL
 
             return RetVal;
         }
+        */
 
         private Single Cell2Single(string p_CellVal)
         {
@@ -1341,7 +1381,13 @@ namespace V1000_Prog_SQL
                 }
             } // else if (val_change)
 
-            if (Param_Chng.Count > 0)
+            if((ParamListFind(ref Param_Chng, "E3") > 0) || (ParamListFind(ref Param_Chng, "E4") > 0))
+                chkMtr2.Checked = true;
+            else
+                chkMtr2.Checked = false;
+
+            // Enable communication buttons based on parameter change contents
+            if(Param_Chng.Count > 0)
                 SetVFDCommBtnEnable((GetVFDCommBtnStat() | (byte)0x0C)); // Turn on Modify VFD and Verify VFD buttons by turning on bits 2 & 3
             else
                 SetVFDCommBtnEnable((GetVFDCommBtnStat() & (byte)0xF3)); // Turn off Modify VFD and Verify BFD buttons by turning off bits 2 & 3
@@ -1396,6 +1442,11 @@ namespace V1000_Prog_SQL
             }
             else
                 dgvParamViewMisMatch.Rows.Clear();
+
+            if((ParamListFind(ref Param_Chng, "E3") > 0) || (ParamListFind(ref Param_Chng, "E4") > 0))
+                chkMtr2.Checked = true;
+            else
+                chkMtr2.Checked = false;
         }
 
         private DataGridViewRow CloneRow(DataGridView p_DGV, int p_Idx)
@@ -1446,6 +1497,19 @@ namespace V1000_Prog_SQL
                         break;
                 }
             }
+        }
+
+        private int ParamListFind(ref List<V1000_Param_Data> p_List, string p_Str)
+        {
+            int cnt = 0;
+
+            for(int i = 0; i < p_List.Count; i++)
+            {
+                if(p_List[i].ParamNum.Contains(p_Str))
+                    cnt++;
+            }
+
+            return cnt;
         }
 
         private void ClearParamMismatch()
@@ -1583,10 +1647,12 @@ namespace V1000_Prog_SQL
             SetDefDriveSel();
             SetMachBtnEnable(0x07);
 
+            /*
             if(mach_code.Equals("MDCA"))
                 grpMtr2Set.Visible = true;
             else
                 grpMtr2Set.Visible = false;
+            */
         }
 
         private void cmbMachDrvNum_SelectedIndexChanged(object sender, EventArgs e)
@@ -1618,7 +1684,8 @@ namespace V1000_Prog_SQL
 
             ClrSchedChng(); // Clear any existing changes
 
-            // load the chart
+            /*************** load the chart ***************/
+            // Get the chart table for the 
             string chrt_tbl = GetMachChrtTbl(info.chrt_num_drv);
             string chrt_col = string.Format("CHRT_{0}", info.chrt_num_drv);
             if(dBConn.QueryNull(0, chrt_tbl, "PARAM_NUM, " + chrt_col, chrt_col, "PARAM_NUM") > 0)
@@ -2183,45 +2250,7 @@ namespace V1000_Prog_SQL
             }
         }
 
-        private void btnMtr2SetVals_Click(object sender, EventArgs e)
-        {
-            ushort mtr2_volt_out = 0, mtr2_freq_base = 0, mtr2_fla = 0;
-
-            if((cmbMachSupplyVolt.SelectedIndex == -1) || (cmbMtr2FreqBase.SelectedIndex == -1) || (txtMtr2FLC.Text == ""))
-            {
-                MessageBox.Show("Machine supply voltage, supply frequency, and motor FLA must have valid entries!");
-                return;
-            }
-
-            // Get all the index values in the full parameter list for each of these parameters
-            int idx_volt_out = GetParamIndex(Mtr2VoltMaxOutParamNum, Param_List);
-            int idx_freq_base = GetParamIndex(Mtr2FreqBaseParamNum, Param_List);
-            int idx_fla = GetParamIndex(Mtr2RatedCurrParamNum, Param_List);
-
-            if((idx_volt_out > 0) && (idx_freq_base > 0) && (idx_fla > 0))
-            {
-                try
-                {
-                    mtr2_volt_out = Cell2RegVal((string)cmbMtr2VoltMax.SelectedItem, Param_List[idx_volt_out]);
-                    mtr2_freq_base = Cell2RegVal((string)cmbMtr2FreqBase.SelectedItem, Param_List[idx_freq_base]);
-                    mtr2_fla = Cell2RegVal(txtMtr2FLC.Text, Param_List[idx_fla]);
-                }
-                catch
-                {
-                    MessageBox.Show("Entry Error!!");
-                    return;
-                }
-
-                UpdateParamViews(mtr2_volt_out, idx_volt_out);       // Set the maximum output voltage parameter
-                UpdateParamViews(mtr2_freq_base, idx_freq_base);     // Set the base frequency parameter
-                UpdateParamViews(mtr2_fla, idx_fla);                 // Set the motor rated current parameter
-            }
-            else
-            {
-                MessageBox.Show("Parameter Location Error!!");
-            }
-
-        }
+        
 
         private void btnMtrStore_Click(object sender, EventArgs e)
         {
@@ -2326,6 +2355,54 @@ namespace V1000_Prog_SQL
             return;
         }
 
+        private void chkMtr2_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkMtr2.Checked)
+                grpMtr2Set.Visible = true;
+            else
+                grpMtr2Set.Visible = false;
+        }
+
+        private void btnMtr2SetVals_Click(object sender, EventArgs e)
+        {
+            ushort mtr2_volt_out = 0, mtr2_freq_base = 0, mtr2_fla = 0;
+
+            if((cmbMachSupplyVolt.SelectedIndex == -1) || (cmbMtr2FreqBase.SelectedIndex == -1) || (txtMtr2FLC.Text == ""))
+            {
+                MessageBox.Show("Machine supply voltage, supply frequency, and motor FLA must have valid entries!");
+                return;
+            }
+
+            // Get all the index values in the full parameter list for each of these parameters
+            int idx_volt_out = GetParamIndex(Mtr2VoltMaxOutParamNum, Param_List);
+            int idx_freq_base = GetParamIndex(Mtr2FreqBaseParamNum, Param_List);
+            int idx_fla = GetParamIndex(Mtr2RatedCurrParamNum, Param_List);
+
+            if((idx_volt_out > 0) && (idx_freq_base > 0) && (idx_fla > 0))
+            {
+                try
+                {
+                    mtr2_volt_out = Cell2RegVal((string)cmbMtr2VoltMax.SelectedItem, Param_List[idx_volt_out]);
+                    mtr2_freq_base = Cell2RegVal((string)cmbMtr2FreqBase.SelectedItem, Param_List[idx_freq_base]);
+                    mtr2_fla = Cell2RegVal(txtMtr2FLC.Text, Param_List[idx_fla]);
+                }
+                catch
+                {
+                    MessageBox.Show("Entry Error!!");
+                    return;
+                }
+
+                UpdateParamViews(mtr2_volt_out, idx_volt_out);       // Set the maximum output voltage parameter
+                UpdateParamViews(mtr2_freq_base, idx_freq_base);     // Set the base frequency parameter
+                UpdateParamViews(mtr2_fla, idx_fla);                 // Set the motor rated current parameter
+            }
+            else
+            {
+                MessageBox.Show("Parameter Location Error!!");
+            }
+
+        }
+
         private string GetMtrFLC(string p_Mtr, string p_Volt, string p_Freq)
         {
             string flc = "";
@@ -2390,9 +2467,12 @@ namespace V1000_Prog_SQL
 
         #endregion
 
-        private void ctxtDriveMod_StoreParamList_Click(object sender, EventArgs e)
+        private void ctxtDriveMod_Xfer_Click(object sender, EventArgs e)
         {
-
+            for(int i=0;i<Param_Mod.Count;i++)
+            {
+                UpdateParamViews(Param_Mod[i].ParamVal, GetParamIndex(Param_Mod[i].ParamNum, Param_List));
+            }
         }
         
     }

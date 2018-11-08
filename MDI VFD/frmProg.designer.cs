@@ -65,7 +65,7 @@
             this.ctxtDriveMod_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxtDriveMod_Clear = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxtDriveMod_UpdDefParam = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxtDriveMod_StoreParamList = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxtDriveMod_Xfer = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVFDMod = new System.Windows.Forms.Button();
             this.bwrkModVFD = new System.ComponentModel.BackgroundWorker();
             this.grpSetDrive = new System.Windows.Forms.GroupBox();
@@ -147,6 +147,7 @@
             this.cmbMtr2VoltMax = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbMtr2FreqBase = new System.Windows.Forms.ComboBox();
+            this.chkMtr2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParamViewFull)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.ctxtSchedChng.SuspendLayout();
@@ -335,7 +336,7 @@
             this.ctxtDriveMod_Save,
             this.ctxtDriveMod_Clear,
             this.ctxtDriveMod_UpdDefParam,
-            this.ctxtDriveMod_StoreParamList});
+            this.ctxtDriveMod_Xfer});
             this.ctxtDriveMod.Name = "ctxtDriveMod";
             this.ctxtDriveMod.Size = new System.Drawing.Size(247, 92);
             this.ctxtDriveMod.Opening += new System.ComponentModel.CancelEventHandler(this.ctxtDriveMod_Opening);
@@ -361,12 +362,12 @@
             this.ctxtDriveMod_UpdDefParam.Text = "Update Default Parameters";
             this.ctxtDriveMod_UpdDefParam.Click += new System.EventHandler(this.ctxtDriveMod_UpdDefParam_Click);
             // 
-            // ctxtDriveMod_StoreParamList
+            // ctxtDriveMod_Xfer
             // 
-            this.ctxtDriveMod_StoreParamList.Name = "ctxtDriveMod_StoreParamList";
-            this.ctxtDriveMod_StoreParamList.Size = new System.Drawing.Size(246, 22);
-            this.ctxtDriveMod_StoreParamList.Text = "Store Parameter List";
-            this.ctxtDriveMod_StoreParamList.Click += new System.EventHandler(this.ctxtDriveMod_StoreParamList_Click);
+            this.ctxtDriveMod_Xfer.Name = "ctxtDriveMod_Xfer";
+            this.ctxtDriveMod_Xfer.Size = new System.Drawing.Size(246, 22);
+            this.ctxtDriveMod_Xfer.Text = "Transfer to Scheduled Changes";
+            this.ctxtDriveMod_Xfer.Click += new System.EventHandler(this.ctxtDriveMod_Xfer_Click);
             // 
             // btnVFDMod
             // 
@@ -727,7 +728,7 @@
             this.cmMisMatchDefVal,
             this.cmMisMatchReadVal});
             this.dgvParamViewMisMatch.ContextMenuStrip = this.ctxtDriveMod;
-            this.dgvParamViewMisMatch.Location = new System.Drawing.Point(5, 306);
+            this.dgvParamViewMisMatch.Location = new System.Drawing.Point(6, 280);
             this.dgvParamViewMisMatch.Name = "dgvParamViewMisMatch";
             this.dgvParamViewMisMatch.RowHeadersVisible = false;
             this.dgvParamViewMisMatch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -795,7 +796,7 @@
             // lblParamMismatch
             // 
             this.lblParamMismatch.AutoSize = true;
-            this.lblParamMismatch.Location = new System.Drawing.Point(6, 290);
+            this.lblParamMismatch.Location = new System.Drawing.Point(7, 264);
             this.lblParamMismatch.Name = "lblParamMismatch";
             this.lblParamMismatch.Size = new System.Drawing.Size(134, 13);
             this.lblParamMismatch.TabIndex = 46;
@@ -895,7 +896,7 @@
             // lblParamModSched
             // 
             this.lblParamModSched.AutoSize = true;
-            this.lblParamModSched.Location = new System.Drawing.Point(7, 18);
+            this.lblParamModSched.Location = new System.Drawing.Point(7, 16);
             this.lblParamModSched.Name = "lblParamModSched";
             this.lblParamModSched.Size = new System.Drawing.Size(106, 13);
             this.lblParamModSched.TabIndex = 43;
@@ -915,11 +916,11 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.dgvParamViewChng.ContextMenuStrip = this.ctxtSchedChng;
-            this.dgvParamViewChng.Location = new System.Drawing.Point(5, 34);
+            this.dgvParamViewChng.Location = new System.Drawing.Point(5, 32);
             this.dgvParamViewChng.Name = "dgvParamViewChng";
             this.dgvParamViewChng.RowHeadersVisible = false;
             this.dgvParamViewChng.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParamViewChng.Size = new System.Drawing.Size(600, 243);
+            this.dgvParamViewChng.Size = new System.Drawing.Size(600, 220);
             this.dgvParamViewChng.TabIndex = 40;
             this.dgvParamViewChng.TabStop = false;
             this.dgvParamViewChng.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvParamViewChng_CellBeginEdit);
@@ -1079,9 +1080,9 @@
             this.grpParamChng.Controls.Add(this.lblParamModSched);
             this.grpParamChng.Controls.Add(this.dgvParamViewMisMatch);
             this.grpParamChng.Controls.Add(this.lblParamMismatch);
-            this.grpParamChng.Location = new System.Drawing.Point(623, 195);
+            this.grpParamChng.Location = new System.Drawing.Point(623, 221);
             this.grpParamChng.Name = "grpParamChng";
-            this.grpParamChng.Size = new System.Drawing.Size(614, 486);
+            this.grpParamChng.Size = new System.Drawing.Size(614, 460);
             this.grpParamChng.TabIndex = 46;
             this.grpParamChng.TabStop = false;
             this.grpParamChng.Text = "VFD Parameter Changes";
@@ -1166,7 +1167,7 @@
             this.grpMtr2Set.Controls.Add(this.cmbMtr2VoltMax);
             this.grpMtr2Set.Controls.Add(this.label10);
             this.grpMtr2Set.Controls.Add(this.cmbMtr2FreqBase);
-            this.grpMtr2Set.Location = new System.Drawing.Point(623, 112);
+            this.grpMtr2Set.Location = new System.Drawing.Point(623, 136);
             this.grpMtr2Set.Name = "grpMtr2Set";
             this.grpMtr2Set.Size = new System.Drawing.Size(614, 79);
             this.grpMtr2Set.TabIndex = 50;
@@ -1280,11 +1281,23 @@
             this.cmbMtr2FreqBase.TabIndex = 56;
             this.cmbMtr2FreqBase.SelectedIndexChanged += new System.EventHandler(this.MtrFreqBase_SelectedIndexChanged);
             // 
+            // chkMtr2
+            // 
+            this.chkMtr2.AutoSize = true;
+            this.chkMtr2.Location = new System.Drawing.Point(624, 113);
+            this.chkMtr2.Name = "chkMtr2";
+            this.chkMtr2.Size = new System.Drawing.Size(146, 17);
+            this.chkMtr2.TabIndex = 51;
+            this.chkMtr2.Text = "Enter Motor 2 Parameters";
+            this.chkMtr2.UseVisualStyleBackColor = true;
+            this.chkMtr2.CheckedChanged += new System.EventHandler(this.chkMtr2_CheckedChanged);
+            // 
             // frmProg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 706);
+            this.Controls.Add(this.chkMtr2);
             this.Controls.Add(this.grpMtr2Set);
             this.Controls.Add(this.grpMtrSet);
             this.Controls.Add(this.grpSetDrive);
@@ -1427,7 +1440,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbMtr2FreqBase;
         private System.Windows.Forms.ToolStripMenuItem ctxtDriveMod_UpdDefParam;
-        private System.Windows.Forms.ToolStripMenuItem ctxtDriveMod_StoreParamList;
+        private System.Windows.Forms.ToolStripMenuItem ctxtDriveMod_Xfer;
+        private System.Windows.Forms.CheckBox chkMtr2;
     }
 }
 
