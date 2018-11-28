@@ -77,6 +77,30 @@ namespace GenFunc
         }
     }
 
+    public class VFDInfo
+    {
+        public PartInfo Info = new PartInfo();
+        public string DrvFam;
+        public string ParamTbl;
+        public string GrpDescTbl;
+
+        public VFDInfo()
+        {
+            Info.Clear();
+            DrvFam = "";
+            ParamTbl = "";
+            GrpDescTbl = "";
+        }
+
+        public void Clear()
+        {
+            Info.Clear();
+            DrvFam = "";
+            ParamTbl = "";
+            GrpDescTbl = "";
+        }
+    }
+
     public static class NumFunc
     {
 

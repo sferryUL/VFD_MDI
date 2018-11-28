@@ -32,12 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.msMain_File = new System.Windows.Forms.ToolStripMenuItem();
-            this.msMain_File_Prog = new System.Windows.Forms.ToolStripMenuItem();
-            this.msMain_File_OpMon = new System.Windows.Forms.ToolStripMenuItem();
-            this.msMain_File_FltTrc = new System.Windows.Forms.ToolStripMenuItem();
-            this.msMain_File_MonMaint = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.msMain_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD_Prog = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD_OpMon = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD_FltData = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD_MaintMon = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Mtr = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Mtr_Info = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Mach = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Mach_Info = new System.Windows.Forms.ToolStripMenuItem();
             this.tsComm = new System.Windows.Forms.ToolStrip();
             this.tsComm_lblPort = new System.Windows.Forms.ToolStripLabel();
             this.tsComm_cmbPort = new System.Windows.Forms.ToolStripComboBox();
@@ -61,7 +65,10 @@
             // 
             this.msMain.AllowMerge = false;
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msMain_File});
+            this.msMain_File,
+            this.msMain_VFD,
+            this.msMain_Mtr,
+            this.msMain_Mach});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(957, 24);
@@ -71,56 +78,89 @@
             // msMain_File
             // 
             this.msMain_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msMain_File_Prog,
-            this.msMain_File_OpMon,
-            this.msMain_File_FltTrc,
-            this.msMain_File_MonMaint,
-            this.toolStripSeparator1,
             this.msMain_Exit});
             this.msMain_File.Name = "msMain_File";
             this.msMain_File.Size = new System.Drawing.Size(37, 20);
             this.msMain_File.Text = "&File";
-            this.msMain_File.Click += new System.EventHandler(this.msMain_File_Click);
-            // 
-            // msMain_File_Prog
-            // 
-            this.msMain_File_Prog.Name = "msMain_File_Prog";
-            this.msMain_File_Prog.Size = new System.Drawing.Size(224, 22);
-            this.msMain_File_Prog.Text = "Drive Programmer";
-            this.msMain_File_Prog.Click += new System.EventHandler(this.msMain_File_Prog_Click);
-            // 
-            // msMain_File_OpMon
-            // 
-            this.msMain_File_OpMon.Name = "msMain_File_OpMon";
-            this.msMain_File_OpMon.Size = new System.Drawing.Size(224, 22);
-            this.msMain_File_OpMon.Text = "Drive Operation Monitors";
-            this.msMain_File_OpMon.Click += new System.EventHandler(this.msMain_File_OpMon_Click);
-            // 
-            // msMain_File_FltTrc
-            // 
-            this.msMain_File_FltTrc.Name = "msMain_File_FltTrc";
-            this.msMain_File_FltTrc.Size = new System.Drawing.Size(224, 22);
-            this.msMain_File_FltTrc.Text = "Drive Fault Data";
-            this.msMain_File_FltTrc.Click += new System.EventHandler(this.msMain_File_FltTrc_Click);
-            // 
-            // msMain_File_MonMaint
-            // 
-            this.msMain_File_MonMaint.Name = "msMain_File_MonMaint";
-            this.msMain_File_MonMaint.Size = new System.Drawing.Size(224, 22);
-            this.msMain_File_MonMaint.Text = "Drive Maintenance Monitors";
-            this.msMain_File_MonMaint.Click += new System.EventHandler(this.msMain_File_MonMaint_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // msMain_Exit
             // 
             this.msMain_Exit.Name = "msMain_Exit";
-            this.msMain_Exit.Size = new System.Drawing.Size(224, 22);
+            this.msMain_Exit.Size = new System.Drawing.Size(92, 22);
             this.msMain_Exit.Text = "E&xit";
             this.msMain_Exit.Click += new System.EventHandler(this.msMain_Exit_Click);
+            // 
+            // msMain_VFD
+            // 
+            this.msMain_VFD.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMain_VFD_Prog,
+            this.msMain_VFD_OpMon,
+            this.msMain_VFD_FltData,
+            this.msMain_VFD_MaintMon});
+            this.msMain_VFD.Name = "msMain_VFD";
+            this.msMain_VFD.Size = new System.Drawing.Size(40, 20);
+            this.msMain_VFD.Text = "VFD";
+            this.msMain_VFD.Click += new System.EventHandler(this.msMain_VFD_Click);
+            // 
+            // msMain_VFD_Prog
+            // 
+            this.msMain_VFD_Prog.Name = "msMain_VFD_Prog";
+            this.msMain_VFD_Prog.Size = new System.Drawing.Size(198, 22);
+            this.msMain_VFD_Prog.Text = "Parameter Programmer";
+            this.msMain_VFD_Prog.Click += new System.EventHandler(this.msMain_VFD_Prog_Click);
+            // 
+            // msMain_VFD_OpMon
+            // 
+            this.msMain_VFD_OpMon.Name = "msMain_VFD_OpMon";
+            this.msMain_VFD_OpMon.Size = new System.Drawing.Size(198, 22);
+            this.msMain_VFD_OpMon.Text = "Operation Monitors";
+            this.msMain_VFD_OpMon.Click += new System.EventHandler(this.msMain_VFD_OpMon_Click);
+            // 
+            // msMain_VFD_FltData
+            // 
+            this.msMain_VFD_FltData.Name = "msMain_VFD_FltData";
+            this.msMain_VFD_FltData.Size = new System.Drawing.Size(198, 22);
+            this.msMain_VFD_FltData.Text = "Fault Data";
+            this.msMain_VFD_FltData.Click += new System.EventHandler(this.msMain_VFD_FltData_Click);
+            // 
+            // msMain_VFD_MaintMon
+            // 
+            this.msMain_VFD_MaintMon.Name = "msMain_VFD_MaintMon";
+            this.msMain_VFD_MaintMon.Size = new System.Drawing.Size(198, 22);
+            this.msMain_VFD_MaintMon.Text = "Maintenance Monitors";
+            this.msMain_VFD_MaintMon.Click += new System.EventHandler(this.msMain_VFD_MaintMon_Click);
+            // 
+            // msMain_Mtr
+            // 
+            this.msMain_Mtr.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMain_Mtr_Info});
+            this.msMain_Mtr.Name = "msMain_Mtr";
+            this.msMain_Mtr.Size = new System.Drawing.Size(52, 20);
+            this.msMain_Mtr.Text = "Motor";
+            this.msMain_Mtr.Click += new System.EventHandler(this.msMain_Mtr_Click);
+            // 
+            // msMain_Mtr_Info
+            // 
+            this.msMain_Mtr_Info.Name = "msMain_Mtr_Info";
+            this.msMain_Mtr_Info.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Mtr_Info.Text = "Motor Info";
+            this.msMain_Mtr_Info.Click += new System.EventHandler(this.msMain_Mtr_Info_Click);
+            // 
+            // msMain_Mach
+            // 
+            this.msMain_Mach.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMain_Mach_Info});
+            this.msMain_Mach.Name = "msMain_Mach";
+            this.msMain_Mach.Size = new System.Drawing.Size(65, 20);
+            this.msMain_Mach.Text = "Machine";
+            this.msMain_Mach.Click += new System.EventHandler(this.msMain_Mach_Click);
+            // 
+            // msMain_Mach_Info
+            // 
+            this.msMain_Mach_Info.Name = "msMain_Mach_Info";
+            this.msMain_Mach_Info.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Mach_Info.Text = "Machine Info";
+            this.msMain_Mach_Info.Click += new System.EventHandler(this.msMain_Mach_Info_Click);
             // 
             // tsComm
             // 
@@ -290,18 +330,13 @@
 
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem msMain_File;
-        private System.Windows.Forms.ToolStripMenuItem msMain_File_Prog;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem msMain_Exit;
-        private System.Windows.Forms.ToolStripMenuItem msMain_File_OpMon;
         private System.Windows.Forms.ToolStrip tsComm;
         private System.Windows.Forms.ToolStripLabel tsComm_lblPort;
         private System.Windows.Forms.ToolStripComboBox tsComm_cmbPort;
         private System.Windows.Forms.ToolStripTextBox tsComm_txtAddr;
         private System.Windows.Forms.ToolStripLabel tsComm_lblAddr;
         private System.IO.Ports.SerialPort spPort;
-        private System.Windows.Forms.ToolStripMenuItem msMain_File_MonMaint;
-        private System.Windows.Forms.ToolStripMenuItem msMain_File_FltTrc;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.CheckBox chkWinAuth;
         private System.Windows.Forms.Label label1;
@@ -311,6 +346,15 @@
         private System.Windows.Forms.TextBox txtUsr;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button btnDBConn;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD_Prog;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD_OpMon;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD_FltData;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD_MaintMon;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Mtr;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Mach;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Mach_Info;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Mtr_Info;
     }
 }
 

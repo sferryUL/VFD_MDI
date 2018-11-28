@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,7 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>V1000.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,48 +72,66 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFlt.cs">
+    <Compile Include="Machine\frmMachInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFlt.Designer.cs">
+    <Compile Include="Machine\frmMachInfo.Designer.cs">
+      <DependentUpon>frmMachInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motor\frmMtrInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motor\frmMtrInfo.Designer.cs">
+      <DependentUpon>frmMtrInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VFD Info\frmFlt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VFD Info\frmFlt.Designer.cs">
       <DependentUpon>frmFlt.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMonMaint.cs">
+    <Compile Include="VFD Info\frmMonMaint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMonMaint.Designer.cs">
+    <Compile Include="VFD Info\frmMonMaint.Designer.cs">
       <DependentUpon>frmMonMaint.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMonOp.cs">
+    <Compile Include="VFD Info\frmMonOp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMonOp.Designer.cs">
+    <Compile Include="VFD Info\frmMonOp.Designer.cs">
       <DependentUpon>frmMonOp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmProg.cs">
+    <Compile Include="VFD Info\frmProg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProg.designer.cs">
+    <Compile Include="VFD Info\frmProg.designer.cs">
       <DependentUpon>frmProg.cs</DependentUpon>
     </Compile>
     <Compile Include="GenFunc.cs" />
-    <Compile Include="ModbusRTU.cs" />
+    <Compile Include="Communication\ModbusRTU.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1000_ModbusRTU.cs" />
+    <Compile Include="Communication\V1000_ModbusRTU.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFlt.resx">
+    <EmbeddedResource Include="Machine\frmMachInfo.resx">
+      <DependentUpon>frmMachInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motor\frmMtrInfo.resx">
+      <DependentUpon>frmMtrInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VFD Info\frmFlt.resx">
       <DependentUpon>frmFlt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMonMaint.resx">
+    <EmbeddedResource Include="VFD Info\frmMonMaint.resx">
       <DependentUpon>frmMonMaint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMonOp.resx">
+    <EmbeddedResource Include="VFD Info\frmMonOp.resx">
       <DependentUpon>frmMonOp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProg.resx">
+    <EmbeddedResource Include="VFD Info\frmProg.resx">
       <DependentUpon>frmProg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -183,7 +202,7 @@
     <None Include="Resources\Drive_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="V1000.ico" />
+    <None Include="Resources\V1000.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

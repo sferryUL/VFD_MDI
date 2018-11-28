@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using V1000_Prog_SQL;
+using MDI_VFD.Motor;
+using MDI_VFD.Machine;
 using GenFunc;
 using ULdB;
 
@@ -16,10 +18,13 @@ namespace MDI_VFD
 {
     public partial class frmMain : Form
     {
+        #region Class_Globals
         frmMonOp VFDMonOp;
         frmProg VFDProg;
         frmMonMaint VFDMonMaint;
         frmFlt VFDFlt;
+        frmMtrInfo MtrInfo;
+        frmMachInfo MachInfo;
 
         byte SlaveAddr = 0x1F;
         bool CommPort = false;
@@ -28,7 +33,9 @@ namespace MDI_VFD
         const string UL_EEdB = "ElectricalApps";
 
         dBClient dBConn = new dBClient();
+        #endregion
 
+        #region Form_Functions
         public frmMain()
         {
             InitializeComponent();
@@ -47,45 +54,54 @@ namespace MDI_VFD
 
             if(dBConn.State == ConnectionState.Open)
             {
-                msMain_File_Prog_Click(sender, e);
+                //msMain_VFD_Prog_Click(sender, e);
+                msMain_Mach_Info_Click(sender, e);
             }
         }
 
-        private void msMain_Exit_Click(object sender, EventArgs e)
+        public void frmMain_ChildClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            switch(((Form)sender).Name)
+            {
+                case "frmProg":
+                    VFDProg.Dispose();
+                    VFDProg = null;
+                    break;
+                case "frmMonOp":
+                    VFDMonOp.Stop();
+                    VFDMonOp.Dispose();
+                    VFDMonOp = null;
+                    break;
+                case "frmFlt":
+                    VFDFlt.Dispose();
+                    VFDFlt = null;
+                    break;
+                case "frmMonMaint":
+                    VFDMonMaint.Dispose();
+                    VFDMonMaint = null;
+                    break;
+                case "frmMtrInfo":
+                    MtrInfo.Dispose();
+                    MtrInfo = null;
+                    break;
+                case "frmMachInfo":
+                    MachInfo.Dispose();
+                    MachInfo = null;
+                    break;
+            }
         }
 
-        private void msMain_File_Prog_Click(object sender, EventArgs e)
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(VFDProg == null)
-            {
-                VFDProg = new frmProg(dBConn, CommPort, spPort, SlaveAddr);
-                VFDProg.FormClosing += frmMain_ChildClosing;
-                VFDProg.MdiParent = this;
-                VFDProg.Show();
-            }
-            else
-            {
-                VFDProg.BringToFront();
-            }
-        }
+            if(dBConn.State == ConnectionState.Open)
+                dBConn.Close();
 
-        private void msMain_File_OpMon_Click(object sender, EventArgs e)
-        {
-            if(VFDMonOp == null)
-            {
-                VFDMonOp = new frmMonOp(dBConn, CommPort, spPort, SlaveAddr);
-                VFDMonOp.FormClosing += frmMain_ChildClosing;
-                VFDMonOp.MdiParent = this;
-                VFDMonOp.Show();
-            }
-            else
-            {
-                VFDMonOp.BringToFront();
-            }
+            if(spPort.IsOpen)
+                spPort.Close();
         }
+        #endregion
 
+        #region Comm
         private void LoadCommComboBoxes()
         {
             // Load available serial ports
@@ -116,15 +132,6 @@ namespace MDI_VFD
             spPort.PortName = tsComm_cmbPort.Text;
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if(dBConn.State == ConnectionState.Open)
-                dBConn.Close();
-
-            if(spPort.IsOpen)
-                spPort.Close();
-        }
-
         private void tsComm_txtAddr_KeyDown(object sender, KeyEventArgs e)
         {
             if((e.KeyValue == (int)Keys.Enter) || (e.KeyValue == (int)Keys.Tab))
@@ -144,61 +151,9 @@ namespace MDI_VFD
                 VFDMonOp.VFDAddr = SlaveAddr;
             }
         }
+        #endregion
 
-        public void frmMain_ChildClosing(object sender, FormClosingEventArgs e)
-        {
-            switch(((Form)sender).Name)
-            {
-                case "frmProg":
-                    VFDProg.Dispose();
-                    VFDProg = null;
-                    break;
-                case "frmMonOp":
-                    VFDMonOp.Stop();
-                    VFDMonOp.Dispose();
-                    VFDMonOp = null;
-                    break;
-                case "frmFlt":
-                    VFDFlt.Dispose();
-                    VFDFlt = null;
-                    break;
-                case "frmMonMaint":
-                    VFDMonMaint.Dispose();
-                    VFDMonMaint = null;
-                    break;
-            }
-        }
-
-        private void msMain_File_MonMaint_Click(object sender, EventArgs e)
-        {
-            if(VFDMonMaint == null)
-            {
-                VFDMonMaint = new frmMonMaint(dBConn, CommPort, spPort, SlaveAddr);
-                VFDMonMaint.MdiParent = this;
-                VFDMonMaint.FormClosing += frmMain_ChildClosing;
-                VFDMonMaint.Show();
-            }
-            else
-            {
-                VFDMonMaint.BringToFront();
-            }
-        }
-
-        private void msMain_File_FltTrc_Click(object sender, EventArgs e)
-        {
-            if(VFDFlt == null)
-            {
-                VFDFlt = new frmFlt(dBConn, CommPort, spPort, SlaveAddr);
-                VFDFlt.MdiParent = this;
-                VFDFlt.FormClosing += frmMain_ChildClosing;
-                VFDFlt.Show();
-            }
-            else
-            {
-                VFDFlt.BringToFront();
-            }
-        }
-
+        #region DB_Conn
         private void chkWinAuth_CheckedChanged(object sender, EventArgs e)
         {
             if(chkWinAuth.Checked)
@@ -244,23 +199,170 @@ namespace MDI_VFD
                 txtPass.Enabled = true;
             }
         }
+        #endregion
 
-        private void msMain_File_Click(object sender, EventArgs e)
+        #region File
+        private void msMain_Exit_Click(object sender, EventArgs e)
+        {
+            // Need to check to see if there are any active MDI Children. If
+            // they are they need to be closed, otherwise Application.Exit()
+            // will throw an exception.
+            int cnt = this.MdiChildren.Length;
+            for(int i=0;i<cnt;i++)
+            {
+                Form frm = new Form();
+                frm = this.ActiveMdiChild;
+                frm.Close();
+            }
+            
+            Application.Exit();
+        }
+        #endregion
+
+        #region VFD_Info
+
+        private void msMain_VFD_Click(object sender, EventArgs e)
         {
             if(dBConn.State == ConnectionState.Open)
             {
-                msMain_File_Prog.Enabled = true;
-                msMain_File_OpMon.Enabled = true;
-                msMain_File_MonMaint.Enabled = true;
-                msMain_File_FltTrc.Enabled = true;
+                msMain_VFD_Prog.Enabled = true;
+                msMain_VFD_OpMon.Enabled = true;
+                msMain_VFD_FltData.Enabled = true;
+                msMain_VFD_MaintMon.Enabled = true;
             }
             else
             {
-                msMain_File_Prog.Enabled = false;
-                msMain_File_OpMon.Enabled = false;
-                msMain_File_MonMaint.Enabled = false;
-                msMain_File_FltTrc.Enabled = false;
+                msMain_VFD_Prog.Enabled = false;
+                msMain_VFD_OpMon.Enabled = false;
+                msMain_VFD_FltData.Enabled = false;
+                msMain_VFD_MaintMon.Enabled = false;
             }
         }
+
+        private void msMain_VFD_Prog_Click(object sender, EventArgs e)
+        {
+            if(VFDProg == null)
+            {
+                VFDProg = new frmProg(dBConn, CommPort, spPort, SlaveAddr);
+                VFDProg.FormClosing += frmMain_ChildClosing;
+                VFDProg.MdiParent = this;
+                VFDProg.Show();
+            }
+            else
+            {
+                VFDProg.BringToFront();
+            }
+        }
+
+        private void msMain_VFD_OpMon_Click(object sender, EventArgs e)
+        {
+            if(VFDMonOp == null)
+            {
+                VFDMonOp = new frmMonOp(dBConn, CommPort, spPort, SlaveAddr);
+                VFDMonOp.FormClosing += frmMain_ChildClosing;
+                VFDMonOp.MdiParent = this;
+                VFDMonOp.Show();
+            }
+            else
+            {
+                VFDMonOp.BringToFront();
+            }
+        }
+
+        private void msMain_VFD_FltData_Click(object sender, EventArgs e)
+        {
+            if(VFDFlt == null)
+            {
+                VFDFlt = new frmFlt(dBConn, CommPort, spPort, SlaveAddr);
+                VFDFlt.MdiParent = this;
+                VFDFlt.FormClosing += frmMain_ChildClosing;
+                VFDFlt.Show();
+            }
+            else
+            {
+                VFDFlt.BringToFront();
+            }
+        }
+
+        private void msMain_VFD_MaintMon_Click(object sender, EventArgs e)
+        {
+            if(VFDMonMaint == null)
+            {
+                VFDMonMaint = new frmMonMaint(dBConn, CommPort, spPort, SlaveAddr);
+                VFDMonMaint.MdiParent = this;
+                VFDMonMaint.FormClosing += frmMain_ChildClosing;
+                VFDMonMaint.Show();
+            }
+            else
+            {
+                VFDMonMaint.BringToFront();
+            }
+        }
+
+        #endregion
+
+        #region Motor
+
+        private void msMain_Mtr_Click(object sender, EventArgs e)
+        {
+            if(dBConn.State == ConnectionState.Open)
+            {
+                msMain_Mtr_Info.Enabled = true;
+            }
+            else
+            {
+                msMain_Mtr_Info.Enabled = false;
+            }
+        }
+
+        private void msMain_Mtr_Info_Click(object sender, EventArgs e)
+        {
+            if(MtrInfo == null)
+            {
+                MtrInfo = new frmMtrInfo();
+                MtrInfo.MdiParent = this;
+                MtrInfo.FormClosing += frmMain_ChildClosing;
+                MtrInfo.Show();
+            }
+            else
+            {
+                MtrInfo.BringToFront();
+            }
+        }
+
+        #endregion
+
+        #region Machine
+
+        private void msMain_Mach_Click(object sender, EventArgs e)
+        {
+            if(dBConn.State == ConnectionState.Open)
+            {
+                msMain_Mach_Info.Enabled = true;
+            }
+            else
+            {
+                msMain_Mach_Info.Enabled = false;
+            }
+        }
+
+        private void msMain_Mach_Info_Click(object sender, EventArgs e)
+        {
+            if(MachInfo == null)
+            {
+                MachInfo = new frmMachInfo(dBConn);
+                MachInfo.FormClosing += frmMain_ChildClosing;
+                MachInfo.MdiParent = this;
+                MachInfo.Show();
+            }
+            else
+            {
+                MachInfo.BringToFront();
+            }
+        }
+
+        #endregion
+
+        
     }
 }
