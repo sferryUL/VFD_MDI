@@ -55,7 +55,8 @@ namespace MDI_VFD
             if(dBConn.State == ConnectionState.Open)
             {
                 //msMain_VFD_Prog_Click(sender, e);
-                msMain_Mach_Info_Click(sender, e);
+                //msMain_Mach_Info_Click(sender, e);
+                msMain_Mtr_Info_Click(sender, e);
             }
         }
 
@@ -319,7 +320,7 @@ namespace MDI_VFD
         {
             if(MtrInfo == null)
             {
-                MtrInfo = new frmMtrInfo();
+                MtrInfo = new frmMtrInfo(dBConn);
                 MtrInfo.MdiParent = this;
                 MtrInfo.FormClosing += frmMain_ChildClosing;
                 MtrInfo.Show();

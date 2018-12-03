@@ -65,6 +65,27 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.grpMtr50Hz = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtFLC_415_50 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtFLC_400_50 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtFLC_380_50 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtFLC_240_50 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtFLC_230_50 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtFLC_220_50 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFLC_200_50 = new System.Windows.Forms.TextBox();
             this.cmbMtr415_50 = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.cmbMtr400_50 = new System.Windows.Forms.ComboBox();
@@ -80,6 +101,30 @@
             this.cmbMtr200_50 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.txtFLC_575_60 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtFLC_460_60 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtFLC_380_60 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtFLC_240_60 = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtFLC_230_60 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.txtFLC_220_60 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtFLC_208_60 = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtFLC_200_60 = new System.Windows.Forms.TextBox();
             this.cmbMtr208_60 = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.cmbMtr575_60 = new System.Windows.Forms.ComboBox();
@@ -235,7 +280,7 @@
             // lblDrv1DefLV
             // 
             this.lblDrv1DefLV.AutoSize = true;
-            this.lblDrv1DefLV.Location = new System.Drawing.Point(555, 63);
+            this.lblDrv1DefLV.Location = new System.Drawing.Point(563, 63);
             this.lblDrv1DefLV.Name = "lblDrv1DefLV";
             this.lblDrv1DefLV.Size = new System.Drawing.Size(134, 13);
             this.lblDrv1DefLV.TabIndex = 14;
@@ -246,7 +291,7 @@
             // 
             this.cmbDrv1DefLV.Enabled = false;
             this.cmbDrv1DefLV.FormattingEnabled = true;
-            this.cmbDrv1DefLV.Location = new System.Drawing.Point(696, 60);
+            this.cmbDrv1DefLV.Location = new System.Drawing.Point(704, 60);
             this.cmbDrv1DefLV.Name = "cmbDrv1DefLV";
             this.cmbDrv1DefLV.Size = new System.Drawing.Size(100, 21);
             this.cmbDrv1DefLV.TabIndex = 15;
@@ -296,7 +341,7 @@
             // 
             this.cmbDrv2DefLV.Enabled = false;
             this.cmbDrv2DefLV.FormattingEnabled = true;
-            this.cmbDrv2DefLV.Location = new System.Drawing.Point(696, 85);
+            this.cmbDrv2DefLV.Location = new System.Drawing.Point(704, 85);
             this.cmbDrv2DefLV.Name = "cmbDrv2DefLV";
             this.cmbDrv2DefLV.Size = new System.Drawing.Size(100, 21);
             this.cmbDrv2DefLV.TabIndex = 19;
@@ -305,7 +350,7 @@
             // lblDrv2DefLV
             // 
             this.lblDrv2DefLV.AutoSize = true;
-            this.lblDrv2DefLV.Location = new System.Drawing.Point(555, 88);
+            this.lblDrv2DefLV.Location = new System.Drawing.Point(563, 88);
             this.lblDrv2DefLV.Name = "lblDrv2DefLV";
             this.lblDrv2DefLV.Size = new System.Drawing.Size(134, 13);
             this.lblDrv2DefLV.TabIndex = 18;
@@ -336,7 +381,7 @@
             // 
             this.cmbDrv3DefLV.Enabled = false;
             this.cmbDrv3DefLV.FormattingEnabled = true;
-            this.cmbDrv3DefLV.Location = new System.Drawing.Point(696, 111);
+            this.cmbDrv3DefLV.Location = new System.Drawing.Point(704, 111);
             this.cmbDrv3DefLV.Name = "cmbDrv3DefLV";
             this.cmbDrv3DefLV.Size = new System.Drawing.Size(100, 21);
             this.cmbDrv3DefLV.TabIndex = 23;
@@ -345,7 +390,7 @@
             // lblDrv3DefLV
             // 
             this.lblDrv3DefLV.AutoSize = true;
-            this.lblDrv3DefLV.Location = new System.Drawing.Point(555, 114);
+            this.lblDrv3DefLV.Location = new System.Drawing.Point(563, 114);
             this.lblDrv3DefLV.Name = "lblDrv3DefLV";
             this.lblDrv3DefLV.Size = new System.Drawing.Size(134, 13);
             this.lblDrv3DefLV.TabIndex = 22;
@@ -376,7 +421,7 @@
             // 
             this.cmbDrv4DefLV.Enabled = false;
             this.cmbDrv4DefLV.FormattingEnabled = true;
-            this.cmbDrv4DefLV.Location = new System.Drawing.Point(696, 137);
+            this.cmbDrv4DefLV.Location = new System.Drawing.Point(704, 137);
             this.cmbDrv4DefLV.Name = "cmbDrv4DefLV";
             this.cmbDrv4DefLV.Size = new System.Drawing.Size(100, 21);
             this.cmbDrv4DefLV.TabIndex = 27;
@@ -385,7 +430,7 @@
             // lblDrv4DefLV
             // 
             this.lblDrv4DefLV.AutoSize = true;
-            this.lblDrv4DefLV.Location = new System.Drawing.Point(555, 140);
+            this.lblDrv4DefLV.Location = new System.Drawing.Point(563, 140);
             this.lblDrv4DefLV.Name = "lblDrv4DefLV";
             this.lblDrv4DefLV.Size = new System.Drawing.Size(134, 13);
             this.lblDrv4DefLV.TabIndex = 26;
@@ -416,7 +461,7 @@
             // 
             this.cmbDrv5DefLV.Enabled = false;
             this.cmbDrv5DefLV.FormattingEnabled = true;
-            this.cmbDrv5DefLV.Location = new System.Drawing.Point(696, 163);
+            this.cmbDrv5DefLV.Location = new System.Drawing.Point(704, 163);
             this.cmbDrv5DefLV.Name = "cmbDrv5DefLV";
             this.cmbDrv5DefLV.Size = new System.Drawing.Size(100, 21);
             this.cmbDrv5DefLV.TabIndex = 31;
@@ -425,7 +470,7 @@
             // lblDrv5DefLV
             // 
             this.lblDrv5DefLV.AutoSize = true;
-            this.lblDrv5DefLV.Location = new System.Drawing.Point(555, 166);
+            this.lblDrv5DefLV.Location = new System.Drawing.Point(563, 166);
             this.lblDrv5DefLV.Name = "lblDrv5DefLV";
             this.lblDrv5DefLV.Size = new System.Drawing.Size(134, 13);
             this.lblDrv5DefLV.TabIndex = 30;
@@ -434,24 +479,45 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(646, 409);
+            this.button1.Location = new System.Drawing.Point(686, 438);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 23);
+            this.button1.Size = new System.Drawing.Size(119, 23);
             this.button1.TabIndex = 34;
             this.button1.Text = "Exit";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(646, 380);
+            this.button2.Location = new System.Drawing.Point(563, 438);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 23);
+            this.button2.Size = new System.Drawing.Size(115, 23);
             this.button2.TabIndex = 35;
             this.button2.Text = "Modify";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // grpMtr50Hz
             // 
+            this.grpMtr50Hz.Controls.Add(this.label15);
+            this.grpMtr50Hz.Controls.Add(this.label16);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_415_50);
+            this.grpMtr50Hz.Controls.Add(this.label13);
+            this.grpMtr50Hz.Controls.Add(this.label14);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_400_50);
+            this.grpMtr50Hz.Controls.Add(this.label11);
+            this.grpMtr50Hz.Controls.Add(this.label12);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_380_50);
+            this.grpMtr50Hz.Controls.Add(this.label9);
+            this.grpMtr50Hz.Controls.Add(this.label10);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_240_50);
+            this.grpMtr50Hz.Controls.Add(this.label7);
+            this.grpMtr50Hz.Controls.Add(this.label8);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_230_50);
+            this.grpMtr50Hz.Controls.Add(this.label5);
+            this.grpMtr50Hz.Controls.Add(this.label6);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_220_50);
+            this.grpMtr50Hz.Controls.Add(this.label4);
+            this.grpMtr50Hz.Controls.Add(this.label3);
+            this.grpMtr50Hz.Controls.Add(this.txtFLC_200_50);
             this.grpMtr50Hz.Controls.Add(this.cmbMtr415_50);
             this.grpMtr50Hz.Controls.Add(this.label24);
             this.grpMtr50Hz.Controls.Add(this.cmbMtr400_50);
@@ -468,10 +534,185 @@
             this.grpMtr50Hz.Controls.Add(this.label18);
             this.grpMtr50Hz.Location = new System.Drawing.Point(14, 190);
             this.grpMtr50Hz.Name = "grpMtr50Hz";
-            this.grpMtr50Hz.Size = new System.Drawing.Size(286, 242);
+            this.grpMtr50Hz.Size = new System.Drawing.Size(390, 242);
             this.grpMtr50Hz.TabIndex = 36;
             this.grpMtr50Hz.TabStop = false;
             this.grpMtr50Hz.Text = "50 Hz Supply Motors:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(371, 185);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 13);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "A";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(289, 185);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 13);
+            this.label16.TabIndex = 51;
+            this.label16.Text = "FLC:";
+            // 
+            // txtFLC_415_50
+            // 
+            this.txtFLC_415_50.Location = new System.Drawing.Point(324, 182);
+            this.txtFLC_415_50.Name = "txtFLC_415_50";
+            this.txtFLC_415_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_415_50.TabIndex = 50;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(371, 158);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(14, 13);
+            this.label13.TabIndex = 49;
+            this.label13.Text = "A";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(289, 158);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 13);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "FLC:";
+            // 
+            // txtFLC_400_50
+            // 
+            this.txtFLC_400_50.Location = new System.Drawing.Point(324, 155);
+            this.txtFLC_400_50.Name = "txtFLC_400_50";
+            this.txtFLC_400_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_400_50.TabIndex = 47;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(371, 130);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 13);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "A";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(289, 130);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 13);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "FLC:";
+            // 
+            // txtFLC_380_50
+            // 
+            this.txtFLC_380_50.Location = new System.Drawing.Point(324, 127);
+            this.txtFLC_380_50.Name = "txtFLC_380_50";
+            this.txtFLC_380_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_380_50.TabIndex = 44;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(371, 104);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(14, 13);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "A";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(289, 104);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 13);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "FLC:";
+            // 
+            // txtFLC_240_50
+            // 
+            this.txtFLC_240_50.Location = new System.Drawing.Point(324, 101);
+            this.txtFLC_240_50.Name = "txtFLC_240_50";
+            this.txtFLC_240_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_240_50.TabIndex = 41;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(371, 77);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "A";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(289, 77);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "FLC:";
+            // 
+            // txtFLC_230_50
+            // 
+            this.txtFLC_230_50.Location = new System.Drawing.Point(324, 74);
+            this.txtFLC_230_50.Name = "txtFLC_230_50";
+            this.txtFLC_230_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_230_50.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(371, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "A";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(289, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "FLC:";
+            // 
+            // txtFLC_220_50
+            // 
+            this.txtFLC_220_50.Location = new System.Drawing.Point(324, 47);
+            this.txtFLC_220_50.Name = "txtFLC_220_50";
+            this.txtFLC_220_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_220_50.TabIndex = 35;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(371, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(14, 13);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "A";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(289, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "FLC:";
+            // 
+            // txtFLC_200_50
+            // 
+            this.txtFLC_200_50.Location = new System.Drawing.Point(324, 19);
+            this.txtFLC_200_50.Name = "txtFLC_200_50";
+            this.txtFLC_200_50.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_200_50.TabIndex = 32;
             // 
             // cmbMtr415_50
             // 
@@ -601,6 +842,30 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label46);
+            this.groupBox1.Controls.Add(this.label47);
+            this.groupBox1.Controls.Add(this.txtFLC_575_60);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label33);
+            this.groupBox1.Controls.Add(this.txtFLC_460_60);
+            this.groupBox1.Controls.Add(this.label34);
+            this.groupBox1.Controls.Add(this.label35);
+            this.groupBox1.Controls.Add(this.txtFLC_380_60);
+            this.groupBox1.Controls.Add(this.label36);
+            this.groupBox1.Controls.Add(this.label37);
+            this.groupBox1.Controls.Add(this.txtFLC_240_60);
+            this.groupBox1.Controls.Add(this.label38);
+            this.groupBox1.Controls.Add(this.label39);
+            this.groupBox1.Controls.Add(this.txtFLC_230_60);
+            this.groupBox1.Controls.Add(this.label40);
+            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.txtFLC_220_60);
+            this.groupBox1.Controls.Add(this.label42);
+            this.groupBox1.Controls.Add(this.label43);
+            this.groupBox1.Controls.Add(this.txtFLC_208_60);
+            this.groupBox1.Controls.Add(this.label44);
+            this.groupBox1.Controls.Add(this.label45);
+            this.groupBox1.Controls.Add(this.txtFLC_200_60);
             this.groupBox1.Controls.Add(this.cmbMtr208_60);
             this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.cmbMtr575_60);
@@ -617,12 +882,212 @@
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.cmbMtr200_60);
             this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Location = new System.Drawing.Point(333, 190);
+            this.groupBox1.Location = new System.Drawing.Point(410, 190);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 242);
+            this.groupBox1.Size = new System.Drawing.Size(395, 242);
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "60 Hz Supply Motors:";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(373, 212);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(14, 13);
+            this.label46.TabIndex = 76;
+            this.label46.Text = "A";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(291, 212);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(29, 13);
+            this.label47.TabIndex = 75;
+            this.label47.Text = "FLC:";
+            // 
+            // txtFLC_575_60
+            // 
+            this.txtFLC_575_60.Location = new System.Drawing.Point(326, 209);
+            this.txtFLC_575_60.Name = "txtFLC_575_60";
+            this.txtFLC_575_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_575_60.TabIndex = 74;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(373, 186);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(14, 13);
+            this.label17.TabIndex = 73;
+            this.label17.Text = "A";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(291, 186);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(29, 13);
+            this.label33.TabIndex = 72;
+            this.label33.Text = "FLC:";
+            // 
+            // txtFLC_460_60
+            // 
+            this.txtFLC_460_60.Location = new System.Drawing.Point(326, 183);
+            this.txtFLC_460_60.Name = "txtFLC_460_60";
+            this.txtFLC_460_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_460_60.TabIndex = 71;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(373, 159);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(14, 13);
+            this.label34.TabIndex = 70;
+            this.label34.Text = "A";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(291, 159);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(29, 13);
+            this.label35.TabIndex = 69;
+            this.label35.Text = "FLC:";
+            // 
+            // txtFLC_380_60
+            // 
+            this.txtFLC_380_60.Location = new System.Drawing.Point(326, 156);
+            this.txtFLC_380_60.Name = "txtFLC_380_60";
+            this.txtFLC_380_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_380_60.TabIndex = 68;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(373, 131);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(14, 13);
+            this.label36.TabIndex = 67;
+            this.label36.Text = "A";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(291, 131);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(29, 13);
+            this.label37.TabIndex = 66;
+            this.label37.Text = "FLC:";
+            // 
+            // txtFLC_240_60
+            // 
+            this.txtFLC_240_60.Location = new System.Drawing.Point(326, 128);
+            this.txtFLC_240_60.Name = "txtFLC_240_60";
+            this.txtFLC_240_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_240_60.TabIndex = 65;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(373, 105);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(14, 13);
+            this.label38.TabIndex = 64;
+            this.label38.Text = "A";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(291, 105);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(29, 13);
+            this.label39.TabIndex = 63;
+            this.label39.Text = "FLC:";
+            // 
+            // txtFLC_230_60
+            // 
+            this.txtFLC_230_60.Location = new System.Drawing.Point(326, 102);
+            this.txtFLC_230_60.Name = "txtFLC_230_60";
+            this.txtFLC_230_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_230_60.TabIndex = 62;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(373, 78);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(14, 13);
+            this.label40.TabIndex = 61;
+            this.label40.Text = "A";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(291, 78);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(29, 13);
+            this.label41.TabIndex = 60;
+            this.label41.Text = "FLC:";
+            // 
+            // txtFLC_220_60
+            // 
+            this.txtFLC_220_60.Location = new System.Drawing.Point(326, 75);
+            this.txtFLC_220_60.Name = "txtFLC_220_60";
+            this.txtFLC_220_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_220_60.TabIndex = 59;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(373, 51);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(14, 13);
+            this.label42.TabIndex = 58;
+            this.label42.Text = "A";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(291, 51);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(29, 13);
+            this.label43.TabIndex = 57;
+            this.label43.Text = "FLC:";
+            // 
+            // txtFLC_208_60
+            // 
+            this.txtFLC_208_60.Location = new System.Drawing.Point(326, 48);
+            this.txtFLC_208_60.Name = "txtFLC_208_60";
+            this.txtFLC_208_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_208_60.TabIndex = 56;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(373, 23);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(14, 13);
+            this.label44.TabIndex = 55;
+            this.label44.Text = "A";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(291, 23);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(29, 13);
+            this.label45.TabIndex = 54;
+            this.label45.Text = "FLC:";
+            // 
+            // txtFLC_200_60
+            // 
+            this.txtFLC_200_60.Location = new System.Drawing.Point(326, 20);
+            this.txtFLC_200_60.Name = "txtFLC_200_60";
+            this.txtFLC_200_60.Size = new System.Drawing.Size(41, 20);
+            this.txtFLC_200_60.TabIndex = 53;
             // 
             // cmbMtr208_60
             // 
@@ -726,7 +1191,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(10, 103);
+            this.label29.Location = new System.Drawing.Point(7, 103);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(155, 13);
             this.label29.TabIndex = 22;
@@ -770,9 +1235,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(646, 351);
+            this.button3.Location = new System.Drawing.Point(441, 438);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 23);
+            this.button3.Size = new System.Drawing.Size(116, 23);
             this.button3.TabIndex = 38;
             this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
@@ -781,7 +1246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 444);
+            this.ClientSize = new System.Drawing.Size(814, 475);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpMtr50Hz);
@@ -904,5 +1369,50 @@
         private System.Windows.Forms.ComboBox cmbMtr208_60;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtFLC_200_50;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtFLC_415_50;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtFLC_400_50;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtFLC_380_50;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtFLC_240_50;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtFLC_230_50;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtFLC_220_50;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TextBox txtFLC_575_60;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox txtFLC_460_60;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtFLC_380_60;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox txtFLC_240_60;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox txtFLC_230_60;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox txtFLC_220_60;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox txtFLC_208_60;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox txtFLC_200_60;
     }
 }

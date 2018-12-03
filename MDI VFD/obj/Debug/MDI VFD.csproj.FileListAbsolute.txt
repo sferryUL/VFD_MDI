@@ -13,3 +13,21 @@ C:\Users\sferry\source\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csprojAssemblyReference
 C:\Users\sferry\source\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonMaint.resources
 C:\Users\sferry\source\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonOp.resources
 C:\Users\sferry\source\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmFlt.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\bin\Debug\VFD Info.exe.config
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\bin\Debug\VFD Info.exe
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\bin\Debug\VFD Info.pdb
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csprojAssemblyReference.cache
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csproj.ResolveComReference.cache
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMain.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Machine.frmMachInfo.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrInfo.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmFlt.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonMaint.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonOp.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\V1000_Prog_SQL.frmProg.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Properties.Resources.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csproj.GenerateResource.cache
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csproj.CoreCompileInputs.cache
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.exe
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.pdb
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrData.resources

@@ -59,6 +59,26 @@ namespace GenFunc
         
     }
 
+    public static class CmbFunc
+    {
+        public static int FindIdxSubStr(ref ComboBox p_Cmb, string p_Str)
+        {
+            int ret_val = -1;
+
+            for(int i=0;i<p_Cmb.Items.Count;i++)
+            {
+                if(p_Cmb.Items[i].ToString().Contains(p_Str))
+                {
+                    ret_val = i;
+                    break;
+                }
+            }
+
+            return ret_val;
+        }
+        
+    }
+
     public class PartInfo
     {
         public string PartNum = "";

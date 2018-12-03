@@ -158,16 +158,18 @@ namespace ULdB
             string sql = String.Format("SELECT {0} FROM {1}", p_Cols, p_Tbl);
 
             if(p_CondItem != "")
-                sql += String.Format(" WHERE {0} LIKE '%{1}%';", p_CondItem, p_Cond);
+                sql += String.Format(" WHERE {0} LIKE '%{1}%'", p_CondItem, p_Cond);
 
             if(p_OrderBy != "")
             {
                 sql += String.Format(" ORDER BY {0}", p_OrderBy);
                 if(p_Asc)
-                    sql += String.Format(" ASC;");
+                    sql += String.Format(" ASC");
                 else
-                    sql += String.Format(" DESC;");
+                    sql += String.Format(" DESC");
             }
+
+            sql += ";";
 
             return ExQuery(sql);
         }
@@ -235,6 +237,39 @@ namespace ULdB
             }
 
             return ExQuery(sql);
+        }
+
+        public int QueryStr1(string p_Tbl, string p_Cols, string p_CondItem = "", string p_CondVal = "", string p_CondCodes = "", string p_CondOps = "", string p_OrderBy = "", bool p_Asc = true)
+        {
+            int ret_val = -1;
+            List<string> conds = new List<string>();
+            List<string> cond_vals = new List<string>();
+            List<string> cond_codes = new List<string>();
+            List<string> cond_ops = new List<string>();
+
+            SplitItems(p_CondItem, ref conds);
+            SplitItems(p_CondVal, ref cond_vals);
+            SplitItems(p_CondCodes, ref cond_codes);
+            SplitItems(p_CondOps, ref cond_ops);
+
+            if((conds.Count != cond_vals.Count) || (conds.Count != cond_codes.Count) || (conds.Count != (cond_ops.Count+1)))
+            {
+                goto QueryStr1Return;
+            }
+
+            string where = "";
+            for(int i=0;i<conds.Count-1;i++)
+            {
+                where += conds[i] + ConvCondCode(cond_codes[i]) + cond_vals[i] + ConvOpCode(cond_ops[i]);
+            }
+            where += conds[conds.Count-1] + ConvCondCode(cond_codes[conds.Count - 1]) + cond_vals[conds.Count - 1];
+            //return Query(p_Tbl, p_Cols, p_CondItem, p_Cond, p_OrderBy, p_Asc);
+
+            //string sql = "";
+            //ret_val = ExQuery(sql);
+
+            QueryStr1Return:
+            return ret_val;
         }
 
         public int QuerySQL(string p_SQL)
@@ -358,6 +393,58 @@ namespace ULdB
             return ExQuery(sql);
         }
         #endregion
+
+        private int SplitItems(string p_Str, ref List<string> p_List)
+        {
+            while(p_Str.IndexOf(',') > 0)
+            {
+                p_List.Add(p_Str.Substring(0, p_Str.IndexOf(',')));
+                p_Str = p_Str.Substring(p_Str.IndexOf(',') + 1, p_Str.Length - p_Str.IndexOf(',') - 1);
+                p_Str = p_Str.TrimStart(' ');
+            }
+            p_List.Add(p_Str);
+
+            return p_List.Count;
+        }
+
+        private string ConvCondCode(string p_Code)
+        {
+            string ret_val = "";
+
+            switch(p_Code)
+            {
+                case "1":
+                    ret_val = " LIKE ";
+                    break;
+                case "0":
+                default:
+                    ret_val = " = ";
+                    break;
+            }
+
+            return ret_val;
+        }
+
+        private string ConvOpCode(string p_Code)
+        {
+            string ret_val = "";
+
+            switch(p_Code)
+            {
+                case "1":
+                    ret_val = " OR ";
+                    break;
+                case "2":
+                    ret_val = " NOT ";
+                    break;
+                case "0":
+                default:
+                    ret_val = " AND ";
+                    break;
+            }
+            
+            return ret_val;
+        }
     }
 }
 

@@ -15,16 +15,20 @@ namespace MDI_VFD.Machine
     public partial class frmMachInfo : Form
     {
         #region Class_Globals
+
         dBClient dBConn;
         const string TblMachData = "TMP_MACH_DATA";
         const string TblMachMtrData = "TMP_MACH_MTR_DATA";
+        const string TblMtrFLC = "TMP_MTR_FLC";
 
         List<MachData> GenData;
         List<DriveObjs> MachDrvObjs;
+        List<MtrObjs> MachMtrObjs;
 
         #endregion
 
         #region Form Functions
+
         public frmMachInfo(dBClient p_SqlClient)
         {
             dBConn = p_SqlClient;
@@ -34,7 +38,8 @@ namespace MDI_VFD.Machine
         private void frmMachInfo_Load(object sender, EventArgs e)
         {
             // Load all the drive info objects into the DriveObjs list for easier manipulation
-            LoadObjs(); 
+            LoadDrvObjs(); 
+            LoadMtrObjs();
 
             // Need to load the list of machines that are already stored in the database.
             GenData = new List<MachData>();
@@ -50,7 +55,7 @@ namespace MDI_VFD.Machine
             }
         }
 
-        public void LoadObjs()
+        void LoadDrvObjs()
         {
             MachDrvObjs = new List<DriveObjs>();
 
@@ -100,6 +105,124 @@ namespace MDI_VFD.Machine
             MachDrvObjs.Add(obj);
         }
 
+        void LoadMtrObjs()
+        {
+            MachMtrObjs = new List<MtrObjs>();
+            LoadMtrObjs50Hz();
+            LoadMtrObjs60Hz();
+        }
+
+        void LoadMtrObjs50Hz()
+        {
+            MtrObjs obj = new MtrObjs();
+            obj.Volt = 200;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr200_50;
+            obj.txtFLC = txtFLC_200_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 220;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr220_50;
+            obj.txtFLC = txtFLC_220_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 230;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr230_50;
+            obj.txtFLC = txtFLC_230_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 240;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr240_50;
+            obj.txtFLC = txtFLC_240_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 380;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr380_50;
+            obj.txtFLC = txtFLC_380_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 400;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr400_50;
+            obj.txtFLC = txtFLC_400_50;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 415;
+            obj.Freq = 50;
+            obj.cmbMtrNum = cmbMtr415_50;
+            obj.txtFLC = txtFLC_415_50;
+            MachMtrObjs.Add(obj);
+        }
+
+        void LoadMtrObjs60Hz() 
+        {
+            MtrObjs obj = new MtrObjs();
+            obj.Volt = 200;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr200_60;
+            obj.txtFLC = txtFLC_200_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 208;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr208_60;
+            obj.txtFLC = txtFLC_208_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 220;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr220_60;
+            obj.txtFLC = txtFLC_220_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 230;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr230_60;
+            obj.txtFLC = txtFLC_230_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 240;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr240_60;
+            obj.txtFLC = txtFLC_240_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 380;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr380_60;
+            obj.txtFLC = txtFLC_380_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 460;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr460_60;
+            obj.txtFLC = txtFLC_460_60;
+            MachMtrObjs.Add(obj);
+
+            obj = new MtrObjs();
+            obj.Volt = 575;
+            obj.Freq = 60;
+            obj.cmbMtrNum = cmbMtr575_60;
+            obj.txtFLC = txtFLC_575_60;
+            MachMtrObjs.Add(obj);
+        }
+
         #endregion
 
         private void cmbMach_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,6 +230,10 @@ namespace MDI_VFD.Machine
             // Make sure all the drive objects are hidden to start with
             for(int i=0;i<MachDrvObjs.Count;i++)
                 MachDrvObjs[i].Hide();
+
+            // Clear all the motr data
+            for(int i=0;i<MachMtrObjs.Count;i++)
+                MachMtrObjs[i].Clear();
 
             // Show only the drive objects based on the number of drives the machine has
             for(int i=0;i<GenData[cmbMach.SelectedIndex].DrvCnt;i++)
@@ -137,9 +264,35 @@ namespace MDI_VFD.Machine
             // Populate all the drive information for each drive
             PopulateDriveData(drv_list);
 
-            // Get the motor information for the selected machine from the database. 
+            // Get the default motor part numbers for the selected machine from the database. 
             dBConn.QueryStr(TblMachMtrData, "*", "MACH_CODE", GenData[cmbMach.SelectedIndex].MachCode);
+            dBConn.Table.Columns.Remove("MACH_CODE");
+            for(int i=0;i<MachMtrObjs.Count;i++)
+                MachMtrObjs[i].MtrNum = dBConn.Table.Rows[0][i].ToString();
 
+            // Get the list of unique motor part numbers to acquire the FLC values
+            List<string> mtr_list = new List<string>();
+            for(int i=0;i<MachMtrObjs.Count;i++)
+            {
+                if(MachMtrObjs[i].cmbMtrNum.Text != "")
+                {
+                    StrSearch srch = new StrSearch(MachMtrObjs[i].cmbMtrNum.Text);
+                    if(mtr_list.FindIndex(srch.Cmp) < 0)
+                        mtr_list.Add(MachMtrObjs[i].cmbMtrNum.Text);
+                }
+            }
+
+            // Query the database to get all the FLC data for each motor
+            for(int i=0;i<mtr_list.Count;i++)
+            {
+                dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", mtr_list[i]);
+                dBConn.Table.Columns.Remove("MTR_NUM");
+                for(int j=0;j<MachMtrObjs.Count;j++)
+                {
+                    if(!dBConn.Table.Rows[0][j].ToString().Equals("") && !MachMtrObjs[j].cmbMtrNum.Text.Equals(""))
+                        MachMtrObjs[j].FLC = Convert.ToSingle(dBConn.Table.Rows[0][j].ToString());
+                }
+            }
             return;
         }
 
@@ -152,6 +305,7 @@ namespace MDI_VFD.Machine
                 MachDrvObjs[i].CmbDrvDefLV.Text = p_List[i].DrvDefLV;
             }
         }
+
     }
 
     public class MachData
@@ -251,5 +405,79 @@ namespace MDI_VFD.Machine
             LblDrvDefLV.Visible = false;
             CmbDrvDefLV.Visible = false;
         }
+    }
+
+    public class MtrObjs
+    {
+        public int Volt;
+        public int Freq;
+        public ComboBox cmbMtrNum;
+        public TextBox txtFLC;
+
+        string _mtrnum;
+        float _flc;
+        
+        public MtrObjs()
+        {
+            Volt = 0;
+            Freq = 0;
+            _flc = 0;
+            _mtrnum = "";
+        }
+
+        public string MtrNum
+        {
+            get { return _mtrnum; }
+            set
+            {
+                _mtrnum = value;
+                if(cmbMtrNum != null)
+                    cmbMtrNum.Text = _mtrnum;
+            }
+        }
+
+        public float FLC
+        {
+            get { return _flc; }
+            set
+            {
+                _flc = value;
+                if(txtFLC != null)
+                {
+                    if(_flc == 0)
+                        txtFLC.Text = "";
+                    else
+                        txtFLC.Text = _flc.ToString();
+                }
+            }
+        }
+
+        public void Clear()
+        {
+            MtrNum = "";
+            FLC = 0;
+        }
+    }
+
+    public class MtrSearch
+    {
+        string num;
+
+        public MtrSearch(string p_Num) { num = p_Num; }
+
+        public bool MtrNum(MtrObjs e)
+        {
+            return e.cmbMtrNum.Text.Equals(num);
+        }
+        
+    }
+
+    public class StrSearch
+    {
+        string _s;
+
+        public StrSearch(String s) { _s = s; }
+
+        public bool Cmp(String e) { return e.Equals(_s); }
     }
 }
