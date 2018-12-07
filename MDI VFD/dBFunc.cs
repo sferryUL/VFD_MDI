@@ -70,15 +70,46 @@ namespace ULdB
             return ExCmd(sql);
         }
 
-        public bool UpdateStr(string p_Tbl, string p_Col, string p_Val, string p_CondItem, string p_Cond)
+        public bool UpdSglColStr(string p_Tbl, string p_Col, string p_Val, string p_CondItem, string p_Cond)
         {
             p_Cond = string.Format("'{0}'", p_Cond);
-            return Update(p_Tbl, p_Col, p_Val, p_CondItem, p_Cond);
+            return UpdSglCol(p_Tbl, p_Col, p_Val, p_CondItem, p_Cond);
         }
         
-        public bool Update(string p_Tbl, string p_Col, string p_Val, string p_CondItem, string p_Cond)
+        public bool UpdSglCol(string p_Tbl, string p_Col, string p_Val, string p_CondItem, string p_Cond)
         {
             string sql = string.Format("UPDATE {0} SET {1} = {2} WHERE {3} = {4};", p_Tbl, p_Col, p_Val, p_CondItem, p_Cond);
+            return ExCmd(sql);
+        }
+
+        public bool UpdateStr(string p_Table, List<string> p_Cols, List<string> p_Vals, string p_CondItem, string p_Cond, CondCode p_OpCode = CondCode.Equal)
+        {
+            p_Cond = String.Format("'{0}'", p_Cond);
+            return Update(p_Table, p_Cols, p_Vals, p_CondItem, p_Cond, p_OpCode);
+        }
+        public bool Update(string p_Table, List<string> p_Cols, List<string> p_Vals, string p_CondItem, string p_Cond, CondCode p_OpCode = CondCode.Equal)
+        {
+            // Need to make sure there are actually values present and that there are the
+            // same number of columns and values, otherwise an exception will be thrown.
+            if((p_Cols.Count != p_Vals.Count) || (p_Cols.Count == 0) || (p_Vals.Count == 0))
+                return false;
+
+            // Setup the initial start to the SQL Update string
+            string sql = String.Format("UPDATE {0} SET ", p_Table);
+
+            // Add in all the SQL update values to the string
+            for(int i=0;i<p_Cols.Count;i++)
+            {
+                sql += String.Format("{0} = {1}, ", p_Cols[i], p_Vals[i]);
+            }
+
+            // We end up with an extra comma followed by a space at the end of the update 
+            sql = sql.Substring(0, sql.Length - 2);
+
+            // Add in the column to match based on the condition and the 
+            // type of operation i.e. MTR_NUM = '13752';
+            sql += String.Format(" WHERE {0} {1} {2};", p_CondItem, ConvCondCode(p_OpCode),p_Cond);
+
             return ExCmd(sql);
         }
 
@@ -239,39 +270,6 @@ namespace ULdB
             return ExQuery(sql);
         }
 
-        public int QueryStr1(string p_Tbl, string p_Cols, string p_CondItem = "", string p_CondVal = "", string p_CondCodes = "", string p_CondOps = "", string p_OrderBy = "", bool p_Asc = true)
-        {
-            int ret_val = -1;
-            List<string> conds = new List<string>();
-            List<string> cond_vals = new List<string>();
-            List<string> cond_codes = new List<string>();
-            List<string> cond_ops = new List<string>();
-
-            SplitItems(p_CondItem, ref conds);
-            SplitItems(p_CondVal, ref cond_vals);
-            SplitItems(p_CondCodes, ref cond_codes);
-            SplitItems(p_CondOps, ref cond_ops);
-
-            if((conds.Count != cond_vals.Count) || (conds.Count != cond_codes.Count) || (conds.Count != (cond_ops.Count+1)))
-            {
-                goto QueryStr1Return;
-            }
-
-            string where = "";
-            for(int i=0;i<conds.Count-1;i++)
-            {
-                where += conds[i] + ConvCondCode(cond_codes[i]) + cond_vals[i] + ConvOpCode(cond_ops[i]);
-            }
-            where += conds[conds.Count-1] + ConvCondCode(cond_codes[conds.Count - 1]) + cond_vals[conds.Count - 1];
-            //return Query(p_Tbl, p_Cols, p_CondItem, p_Cond, p_OrderBy, p_Asc);
-
-            //string sql = "";
-            //ret_val = ExQuery(sql);
-
-            QueryStr1Return:
-            return ret_val;
-        }
-
         public int QuerySQL(string p_SQL)
         {
             return ExQuery(p_SQL);
@@ -394,6 +392,8 @@ namespace ULdB
         }
         #endregion
 
+        #region SQL String Manipulation Methods
+
         private int SplitItems(string p_Str, ref List<string> p_List)
         {
             while(p_Str.IndexOf(',') > 0)
@@ -407,18 +407,41 @@ namespace ULdB
             return p_List.Count;
         }
 
-        private string ConvCondCode(string p_Code)
+        private string ConvCondCode(CondCode p_Code)
         {
             string ret_val = "";
 
             switch(p_Code)
             {
-                case "1":
-                    ret_val = " LIKE ";
+                case CondCode.Equal:
+                    ret_val = "=";
                     break;
-                case "0":
+                case CondCode.NotEqual:
+                    ret_val = "<>";
+                    break;
+                case CondCode.Grtr:
+                    ret_val = ">";
+                    break;
+                case CondCode.Lsr:
+                    ret_val = "<";
+                    break;
+                case CondCode.GrtrEql:
+                    ret_val = ">=";
+                    break;
+                case CondCode.LsrEql:
+                    ret_val = "<=";
+                    break;
+                case CondCode.Btwn:
+                    ret_val = "";
+                    break;
+                case CondCode.Like:
+                    ret_val = "LIKE";
+                    break;
+                case CondCode.In:
+                    ret_val = "IN";
+                    break;
                 default:
-                    ret_val = " = ";
+                    
                     break;
             }
 
@@ -445,6 +468,71 @@ namespace ULdB
             
             return ret_val;
         }
+        #endregion
+
+        #region Table Information Methods
+
+        public int GetTblColInfo(string p_Tbl, ref List<dBColInfo> p_List)
+        {
+            int ret_val = -1;
+            
+            string sql = String.Format("SELECT COLUMN_NAME, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{0}'", p_Tbl);
+            if(QuerySQL(sql) >= 0)
+            {
+                foreach(DataRow dr in Table.Rows)
+                {
+                    string name = dr[0].ToString();
+                    if(name != "IDX")
+                    {
+                        dBColInfo inf = new dBColInfo();
+                        inf.Name = name;
+                        if(dr[1].ToString() == "NO")
+                            inf.Nullable = false;
+                        inf.DataType = dr[2].ToString();
+                        if(dr[3].ToString() != "")
+                            inf.CharLen = Convert.ToInt32(dr[3].ToString());
+                        p_List.Add(inf);
+                    }
+                }
+                ret_val = p_List.Count;
+            }
+
+            return ret_val;
+        }
+
+        #endregion
+
+    } // class dBClient
+
+    public enum CondCode { Equal, NotEqual, Grtr, Lsr, GrtrEql, LsrEql, Btwn, Like, In }
+
+    public class dBColInfo : ICloneable
+    {
+        public string   Name;
+        public bool     Nullable;
+        public string   DataType;
+        public int      CharLen;
+        
+        public dBColInfo()
+        {
+            Name = "";
+            Nullable = true;
+            DataType = "";
+            CharLen = -1;
+        }
+
+        public dBColInfo(string p_Name, bool p_Null, string p_Type, int p_Len)
+        {
+            Name = p_Name;
+            Nullable = p_Null;
+            DataType = p_Type;
+            CharLen = p_Len;
+        }
+
+        public object Clone()
+        {
+            return new dBColInfo(this.Name, this.Nullable, this.DataType, this.CharLen);
+        }
     }
-}
+} // namespace ULdB
 

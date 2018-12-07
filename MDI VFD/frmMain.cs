@@ -19,6 +19,8 @@ namespace MDI_VFD
     public partial class frmMain : Form
     {
         #region Class_Globals
+        const string BuildVersion = "0.9.0";
+
         frmMonOp VFDMonOp;
         frmProg VFDProg;
         frmMonMaint VFDMonMaint;
@@ -45,18 +47,19 @@ namespace MDI_VFD
         {
             LoadCommComboBoxes();
 
+            
             if(Environment.UserName == "sferry")
                 chkWinAuth.Checked = true;
             else
                 chkWinAuth.Checked = false;
-
+            
             btnDBConn_Click(sender, e);
 
             if(dBConn.State == ConnectionState.Open)
             {
-                //msMain_VFD_Prog_Click(sender, e);
+                msMain_VFD_Prog_Click(sender, e);
                 //msMain_Mach_Info_Click(sender, e);
-                msMain_Mtr_Info_Click(sender, e);
+                //msMain_Mtr_Info_Click(sender, e);
             }
         }
 
@@ -362,8 +365,14 @@ namespace MDI_VFD
             }
         }
 
+
+
         #endregion
 
-        
+        private void msMain_Help_About_Click(object sender, EventArgs e)
+        {
+            string msg = String.Format("Electrical Info Version: {0}", BuildVersion);
+            MsgBox.Info(msg, "Program Information");
+        }
     }
 }

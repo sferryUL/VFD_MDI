@@ -110,12 +110,18 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.grpEssInf = new System.Windows.Forms.GroupBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.cmbConst = new System.Windows.Forms.ComboBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.cmbFrame = new System.Windows.Forms.ComboBox();
+            this.cmbPoles = new System.Windows.Forms.ComboBox();
+            this.label53 = new System.Windows.Forms.Label();
             this.cmbHP = new System.Windows.Forms.ComboBox();
+            this.txtMtrNum = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.btnDescSrch = new System.Windows.Forms.Button();
             this.txtMtrDesc = new System.Windows.Forms.TextBox();
-            this.txtMtrNum = new System.Windows.Forms.TextBox();
             this.btnExitCan = new System.Windows.Forms.Button();
             this.txtPrntVend = new System.Windows.Forms.TextBox();
             this.btnViewVend = new System.Windows.Forms.Button();
@@ -127,6 +133,7 @@
             this.txtPrntUL = new System.Windows.Forms.TextBox();
             this.btnViewUL = new System.Windows.Forms.Button();
             this.btnModSave = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.grp50Hz.SuspendLayout();
             this.grpGenInf.SuspendLayout();
             this.grp60Hz.SuspendLayout();
@@ -166,7 +173,7 @@
             this.txtMfrNum.Location = new System.Drawing.Point(147, 45);
             this.txtMfrNum.Name = "txtMfrNum";
             this.txtMfrNum.Size = new System.Drawing.Size(312, 20);
-            this.txtMfrNum.TabIndex = 6;
+            this.txtMfrNum.TabIndex = 1;
             // 
             // grp50Hz
             // 
@@ -199,11 +206,10 @@
             this.grp50Hz.Controls.Add(this.txtPF_50);
             this.grp50Hz.Controls.Add(this.label11);
             this.grp50Hz.Controls.Add(this.label4);
-            this.grp50Hz.Enabled = false;
-            this.grp50Hz.Location = new System.Drawing.Point(12, 342);
+            this.grp50Hz.Location = new System.Drawing.Point(12, 416);
             this.grp50Hz.Name = "grp50Hz";
             this.grp50Hz.Size = new System.Drawing.Size(220, 287);
-            this.grp50Hz.TabIndex = 7;
+            this.grp50Hz.TabIndex = 103;
             this.grp50Hz.TabStop = false;
             this.grp50Hz.Text = "50 Hz Parameters";
             // 
@@ -219,9 +225,11 @@
             // txtFLC_415_50
             // 
             this.txtFLC_415_50.Location = new System.Drawing.Point(126, 251);
+            this.txtFLC_415_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_415_50.Name = "txtFLC_415_50";
             this.txtFLC_415_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_415_50.TabIndex = 28;
+            this.txtFLC_415_50.TabIndex = 26;
+            this.txtFLC_415_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label30
             // 
@@ -244,9 +252,11 @@
             // txtFLC_400_50
             // 
             this.txtFLC_400_50.Location = new System.Drawing.Point(126, 225);
+            this.txtFLC_400_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_400_50.Name = "txtFLC_400_50";
             this.txtFLC_400_50.Size = new System.Drawing.Size(41, 20);
             this.txtFLC_400_50.TabIndex = 25;
+            this.txtFLC_400_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label28
             // 
@@ -269,9 +279,11 @@
             // txtFLC_380_50
             // 
             this.txtFLC_380_50.Location = new System.Drawing.Point(126, 199);
+            this.txtFLC_380_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_380_50.Name = "txtFLC_380_50";
             this.txtFLC_380_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_380_50.TabIndex = 22;
+            this.txtFLC_380_50.TabIndex = 24;
+            this.txtFLC_380_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label26
             // 
@@ -294,9 +306,11 @@
             // txtFLC_240_50
             // 
             this.txtFLC_240_50.Location = new System.Drawing.Point(126, 173);
+            this.txtFLC_240_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_240_50.Name = "txtFLC_240_50";
             this.txtFLC_240_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_240_50.TabIndex = 19;
+            this.txtFLC_240_50.TabIndex = 23;
+            this.txtFLC_240_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label24
             // 
@@ -319,9 +333,11 @@
             // txtFLC_230_50
             // 
             this.txtFLC_230_50.Location = new System.Drawing.Point(126, 147);
+            this.txtFLC_230_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_230_50.Name = "txtFLC_230_50";
             this.txtFLC_230_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_230_50.TabIndex = 16;
+            this.txtFLC_230_50.TabIndex = 22;
+            this.txtFLC_230_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label22
             // 
@@ -344,9 +360,11 @@
             // txtFLC_220_50
             // 
             this.txtFLC_220_50.Location = new System.Drawing.Point(126, 121);
+            this.txtFLC_220_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_220_50.Name = "txtFLC_220_50";
             this.txtFLC_220_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_220_50.TabIndex = 13;
+            this.txtFLC_220_50.TabIndex = 21;
+            this.txtFLC_220_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label20
             // 
@@ -369,9 +387,11 @@
             // txtFLC_208_50
             // 
             this.txtFLC_208_50.Location = new System.Drawing.Point(126, 95);
+            this.txtFLC_208_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_208_50.Name = "txtFLC_208_50";
             this.txtFLC_208_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_208_50.TabIndex = 10;
+            this.txtFLC_208_50.TabIndex = 20;
+            this.txtFLC_208_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label18
             // 
@@ -403,9 +423,11 @@
             // txtFLC_200_50
             // 
             this.txtFLC_200_50.Location = new System.Drawing.Point(126, 69);
+            this.txtFLC_200_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_200_50.Name = "txtFLC_200_50";
             this.txtFLC_200_50.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_200_50.TabIndex = 5;
+            this.txtFLC_200_50.TabIndex = 19;
+            this.txtFLC_200_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
@@ -419,16 +441,20 @@
             // txtEff_50
             // 
             this.txtEff_50.Location = new System.Drawing.Point(126, 45);
+            this.txtEff_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtEff_50.Name = "txtEff_50";
             this.txtEff_50.Size = new System.Drawing.Size(41, 20);
-            this.txtEff_50.TabIndex = 3;
+            this.txtEff_50.TabIndex = 18;
+            this.txtEff_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPF_50
             // 
             this.txtPF_50.Location = new System.Drawing.Point(126, 19);
+            this.txtPF_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtPF_50.Name = "txtPF_50";
             this.txtPF_50.Size = new System.Drawing.Size(41, 20);
-            this.txtPF_50.TabIndex = 2;
+            this.txtPF_50.TabIndex = 17;
+            this.txtPF_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -451,7 +477,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(324, 22);
+            this.label5.Location = new System.Drawing.Point(9, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 8;
@@ -487,7 +513,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(220, 22);
+            this.label9.Location = new System.Drawing.Point(240, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
             this.label9.TabIndex = 16;
@@ -498,7 +524,7 @@
             this.txtBrgDE.Location = new System.Drawing.Point(188, 96);
             this.txtBrgDE.Name = "txtBrgDE";
             this.txtBrgDE.Size = new System.Drawing.Size(89, 20);
-            this.txtBrgDE.TabIndex = 21;
+            this.txtBrgDE.TabIndex = 6;
             // 
             // label12
             // 
@@ -514,7 +540,7 @@
             this.txtBrgODE.Location = new System.Drawing.Point(370, 96);
             this.txtBrgODE.Name = "txtBrgODE";
             this.txtBrgODE.Size = new System.Drawing.Size(89, 20);
-            this.txtBrgODE.TabIndex = 23;
+            this.txtBrgODE.TabIndex = 7;
             // 
             // label13
             // 
@@ -544,11 +570,10 @@
             this.grpGenInf.Controls.Add(this.label10);
             this.grpGenInf.Controls.Add(this.label8);
             this.grpGenInf.Controls.Add(this.label7);
-            this.grpGenInf.Enabled = false;
-            this.grpGenInf.Location = new System.Drawing.Point(12, 208);
+            this.grpGenInf.Location = new System.Drawing.Point(12, 282);
             this.grpGenInf.Name = "grpGenInf";
             this.grpGenInf.Size = new System.Drawing.Size(465, 128);
-            this.grpGenInf.TabIndex = 24;
+            this.grpGenInf.TabIndex = 102;
             this.grpGenInf.TabStop = false;
             this.grpGenInf.Text = "General Information";
             // 
@@ -564,7 +589,7 @@
             this.cmbIns.Location = new System.Drawing.Point(239, 70);
             this.cmbIns.Name = "cmbIns";
             this.cmbIns.Size = new System.Drawing.Size(83, 21);
-            this.cmbIns.TabIndex = 28;
+            this.cmbIns.TabIndex = 3;
             // 
             // cmbKVA
             // 
@@ -589,7 +614,7 @@
             this.cmbKVA.Location = new System.Drawing.Point(409, 70);
             this.cmbKVA.Name = "cmbKVA";
             this.cmbKVA.Size = new System.Drawing.Size(50, 21);
-            this.cmbKVA.TabIndex = 27;
+            this.cmbKVA.TabIndex = 4;
             // 
             // cmbDsn
             // 
@@ -603,7 +628,7 @@
             this.cmbDsn.Location = new System.Drawing.Point(54, 97);
             this.cmbDsn.Name = "cmbDsn";
             this.cmbDsn.Size = new System.Drawing.Size(50, 21);
-            this.cmbDsn.TabIndex = 26;
+            this.cmbDsn.TabIndex = 5;
             // 
             // cmbMfr
             // 
@@ -611,7 +636,7 @@
             this.cmbMfr.Location = new System.Drawing.Point(147, 20);
             this.cmbMfr.Name = "cmbMfr";
             this.cmbMfr.Size = new System.Drawing.Size(130, 21);
-            this.cmbMfr.TabIndex = 25;
+            this.cmbMfr.TabIndex = 0;
             // 
             // label50
             // 
@@ -628,7 +653,7 @@
             this.txtPwr.Name = "txtPwr";
             this.txtPwr.ReadOnly = true;
             this.txtPwr.Size = new System.Drawing.Size(50, 20);
-            this.txtPwr.TabIndex = 19;
+            this.txtPwr.TabIndex = 2;
             // 
             // label10
             // 
@@ -670,11 +695,10 @@
             this.grp60Hz.Controls.Add(this.txtPF_60);
             this.grp60Hz.Controls.Add(this.label48);
             this.grp60Hz.Controls.Add(this.label49);
-            this.grp60Hz.Enabled = false;
-            this.grp60Hz.Location = new System.Drawing.Point(257, 342);
+            this.grp60Hz.Location = new System.Drawing.Point(257, 416);
             this.grp60Hz.Name = "grp60Hz";
             this.grp60Hz.Size = new System.Drawing.Size(220, 287);
-            this.grp60Hz.TabIndex = 25;
+            this.grp60Hz.TabIndex = 104;
             this.grp60Hz.TabStop = false;
             this.grp60Hz.Text = "60 Hz Parameters";
             // 
@@ -690,9 +714,11 @@
             // txtFLC_575_60
             // 
             this.txtFLC_575_60.Location = new System.Drawing.Point(126, 251);
+            this.txtFLC_575_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_575_60.Name = "txtFLC_575_60";
             this.txtFLC_575_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_575_60.TabIndex = 28;
+            this.txtFLC_575_60.TabIndex = 36;
+            this.txtFLC_575_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label32
             // 
@@ -715,9 +741,11 @@
             // txtFLC_460_60
             // 
             this.txtFLC_460_60.Location = new System.Drawing.Point(126, 225);
+            this.txtFLC_460_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_460_60.Name = "txtFLC_460_60";
             this.txtFLC_460_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_460_60.TabIndex = 25;
+            this.txtFLC_460_60.TabIndex = 35;
+            this.txtFLC_460_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label34
             // 
@@ -740,9 +768,11 @@
             // txtFLC_380_60
             // 
             this.txtFLC_380_60.Location = new System.Drawing.Point(126, 199);
+            this.txtFLC_380_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_380_60.Name = "txtFLC_380_60";
             this.txtFLC_380_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_380_60.TabIndex = 22;
+            this.txtFLC_380_60.TabIndex = 34;
+            this.txtFLC_380_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label36
             // 
@@ -765,9 +795,11 @@
             // txtFLC_240_60
             // 
             this.txtFLC_240_60.Location = new System.Drawing.Point(126, 173);
+            this.txtFLC_240_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_240_60.Name = "txtFLC_240_60";
             this.txtFLC_240_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_240_60.TabIndex = 19;
+            this.txtFLC_240_60.TabIndex = 33;
+            this.txtFLC_240_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label66
             // 
@@ -790,9 +822,11 @@
             // txtFLC_230_60
             // 
             this.txtFLC_230_60.Location = new System.Drawing.Point(126, 147);
+            this.txtFLC_230_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_230_60.Name = "txtFLC_230_60";
             this.txtFLC_230_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_230_60.TabIndex = 16;
+            this.txtFLC_230_60.TabIndex = 32;
+            this.txtFLC_230_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label40
             // 
@@ -815,9 +849,11 @@
             // txtFLC_220_60
             // 
             this.txtFLC_220_60.Location = new System.Drawing.Point(126, 121);
+            this.txtFLC_220_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_220_60.Name = "txtFLC_220_60";
             this.txtFLC_220_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_220_60.TabIndex = 13;
+            this.txtFLC_220_60.TabIndex = 31;
+            this.txtFLC_220_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label42
             // 
@@ -840,9 +876,11 @@
             // txtFLC_208_60
             // 
             this.txtFLC_208_60.Location = new System.Drawing.Point(126, 95);
+            this.txtFLC_208_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_208_60.Name = "txtFLC_208_60";
             this.txtFLC_208_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_208_60.TabIndex = 10;
+            this.txtFLC_208_60.TabIndex = 30;
+            this.txtFLC_208_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label44
             // 
@@ -874,9 +912,11 @@
             // txtFLC_200_60
             // 
             this.txtFLC_200_60.Location = new System.Drawing.Point(126, 69);
+            this.txtFLC_200_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtFLC_200_60.Name = "txtFLC_200_60";
             this.txtFLC_200_60.Size = new System.Drawing.Size(41, 20);
-            this.txtFLC_200_60.TabIndex = 5;
+            this.txtFLC_200_60.TabIndex = 29;
+            this.txtFLC_200_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label47
             // 
@@ -890,16 +930,20 @@
             // txtEff_60
             // 
             this.txtEff_60.Location = new System.Drawing.Point(126, 45);
+            this.txtEff_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtEff_60.Name = "txtEff_60";
             this.txtEff_60.Size = new System.Drawing.Size(41, 20);
-            this.txtEff_60.TabIndex = 3;
+            this.txtEff_60.TabIndex = 28;
+            this.txtEff_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPF_60
             // 
             this.txtPF_60.Location = new System.Drawing.Point(126, 19);
+            this.txtPF_60.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtPF_60.Name = "txtPF_60";
             this.txtPF_60.Size = new System.Drawing.Size(41, 20);
-            this.txtPF_60.TabIndex = 2;
+            this.txtPF_60.TabIndex = 27;
+            this.txtPF_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label48
             // 
@@ -921,43 +965,118 @@
             // 
             // grpEssInf
             // 
+            this.grpEssInf.Controls.Add(this.cmbType);
+            this.grpEssInf.Controls.Add(this.label55);
+            this.grpEssInf.Controls.Add(this.cmbConst);
+            this.grpEssInf.Controls.Add(this.label54);
             this.grpEssInf.Controls.Add(this.cmbFrame);
+            this.grpEssInf.Controls.Add(this.cmbPoles);
+            this.grpEssInf.Controls.Add(this.label53);
             this.grpEssInf.Controls.Add(this.cmbHP);
-            this.grpEssInf.Controls.Add(this.label52);
-            this.grpEssInf.Controls.Add(this.btnDescSrch);
-            this.grpEssInf.Controls.Add(this.txtMtrDesc);
+            this.grpEssInf.Controls.Add(this.label5);
             this.grpEssInf.Controls.Add(this.txtMtrNum);
             this.grpEssInf.Controls.Add(this.label9);
-            this.grpEssInf.Controls.Add(this.label5);
             this.grpEssInf.Controls.Add(this.label1);
-            this.grpEssInf.Enabled = false;
             this.grpEssInf.Location = new System.Drawing.Point(12, 12);
             this.grpEssInf.Name = "grpEssInf";
             this.grpEssInf.Size = new System.Drawing.Size(465, 76);
-            this.grpEssInf.TabIndex = 26;
+            this.grpEssInf.TabIndex = 100;
             this.grpEssInf.TabStop = false;
             this.grpEssInf.Text = "Essential Information";
+            // 
+            // cmbType
+            // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Items.AddRange(new object[] {
+            "TEFC",
+            "TENV",
+            "HAZLOC",
+            "ODP",
+            "1PH"});
+            this.cmbType.Location = new System.Drawing.Point(390, 45);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(69, 21);
+            this.cmbType.TabIndex = 5;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(350, 49);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(34, 13);
+            this.label55.TabIndex = 111;
+            this.label55.Text = "Type:";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbConst
+            // 
+            this.cmbConst.FormattingEnabled = true;
+            this.cmbConst.Location = new System.Drawing.Point(213, 46);
+            this.cmbConst.Name = "cmbConst";
+            this.cmbConst.Size = new System.Drawing.Size(109, 21);
+            this.cmbConst.TabIndex = 4;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(138, 49);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(69, 13);
+            this.label54.TabIndex = 109;
+            this.label54.Text = "Construction:";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cmbFrame
             // 
             this.cmbFrame.FormattingEnabled = true;
-            this.cmbFrame.Location = new System.Drawing.Point(369, 18);
+            this.cmbFrame.Location = new System.Drawing.Point(54, 45);
             this.cmbFrame.Name = "cmbFrame";
-            this.cmbFrame.Size = new System.Drawing.Size(90, 21);
-            this.cmbFrame.TabIndex = 34;
+            this.cmbFrame.Size = new System.Drawing.Size(74, 21);
+            this.cmbFrame.TabIndex = 3;
+            // 
+            // cmbPoles
+            // 
+            this.cmbPoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPoles.FormattingEnabled = true;
+            this.cmbPoles.Items.AddRange(new object[] {
+            "2",
+            "4",
+            "6",
+            "8"});
+            this.cmbPoles.Location = new System.Drawing.Point(408, 19);
+            this.cmbPoles.Name = "cmbPoles";
+            this.cmbPoles.Size = new System.Drawing.Size(51, 21);
+            this.cmbPoles.TabIndex = 2;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(366, 24);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(36, 13);
+            this.label53.TabIndex = 107;
+            this.label53.Text = "Poles:";
             // 
             // cmbHP
             // 
             this.cmbHP.FormattingEnabled = true;
-            this.cmbHP.Location = new System.Drawing.Point(251, 18);
+            this.cmbHP.Location = new System.Drawing.Point(271, 19);
             this.cmbHP.Name = "cmbHP";
             this.cmbHP.Size = new System.Drawing.Size(51, 21);
-            this.cmbHP.TabIndex = 35;
+            this.cmbHP.TabIndex = 1;
+            // 
+            // txtMtrNum
+            // 
+            this.txtMtrNum.Location = new System.Drawing.Point(113, 19);
+            this.txtMtrNum.Name = "txtMtrNum";
+            this.txtMtrNum.Size = new System.Drawing.Size(100, 20);
+            this.txtMtrNum.TabIndex = 0;
             // 
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(5, 48);
+            this.label52.Location = new System.Drawing.Point(6, 37);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(102, 13);
             this.label52.TabIndex = 19;
@@ -965,91 +1084,92 @@
             // 
             // btnDescSrch
             // 
-            this.btnDescSrch.Location = new System.Drawing.Point(402, 43);
+            this.btnDescSrch.Location = new System.Drawing.Point(350, 51);
             this.btnDescSrch.Name = "btnDescSrch";
-            this.btnDescSrch.Size = new System.Drawing.Size(57, 23);
-            this.btnDescSrch.TabIndex = 34;
+            this.btnDescSrch.Size = new System.Drawing.Size(55, 23);
+            this.btnDescSrch.TabIndex = 1;
             this.btnDescSrch.Text = "Lookup";
             this.btnDescSrch.UseVisualStyleBackColor = true;
+            this.btnDescSrch.Click += new System.EventHandler(this.btnDescSrch_Click);
             // 
             // txtMtrDesc
             // 
-            this.txtMtrDesc.Location = new System.Drawing.Point(113, 45);
+            this.txtMtrDesc.Location = new System.Drawing.Point(6, 53);
             this.txtMtrDesc.Name = "txtMtrDesc";
-            this.txtMtrDesc.Size = new System.Drawing.Size(283, 20);
-            this.txtMtrDesc.TabIndex = 19;
-            // 
-            // txtMtrNum
-            // 
-            this.txtMtrNum.Location = new System.Drawing.Point(113, 19);
-            this.txtMtrNum.Name = "txtMtrNum";
-            this.txtMtrNum.Size = new System.Drawing.Size(100, 20);
-            this.txtMtrNum.TabIndex = 18;
+            this.txtMtrDesc.Size = new System.Drawing.Size(338, 20);
+            this.txtMtrDesc.TabIndex = 0;
             // 
             // btnExitCan
             // 
-            this.btnExitCan.Location = new System.Drawing.Point(402, 635);
+            this.btnExitCan.Location = new System.Drawing.Point(402, 709);
             this.btnExitCan.Name = "btnExitCan";
             this.btnExitCan.Size = new System.Drawing.Size(75, 23);
-            this.btnExitCan.TabIndex = 27;
+            this.btnExitCan.TabIndex = 38;
             this.btnExitCan.Text = "Exit";
             this.btnExitCan.UseVisualStyleBackColor = true;
             this.btnExitCan.Click += new System.EventHandler(this.btnExitCan_Click);
             // 
             // txtPrntVend
             // 
-            this.txtPrntVend.Location = new System.Drawing.Point(6, 78);
+            this.txtPrntVend.Location = new System.Drawing.Point(6, 147);
             this.txtPrntVend.Name = "txtPrntVend";
-            this.txtPrntVend.Size = new System.Drawing.Size(344, 20);
-            this.txtPrntVend.TabIndex = 26;
+            this.txtPrntVend.Size = new System.Drawing.Size(338, 20);
+            this.txtPrntVend.TabIndex = 4;
+            this.txtPrntVend.TabStop = false;
             // 
             // btnViewVend
             // 
-            this.btnViewVend.Location = new System.Drawing.Point(429, 169);
+            this.btnViewVend.Location = new System.Drawing.Point(429, 238);
             this.btnViewVend.Name = "btnViewVend";
             this.btnViewVend.Size = new System.Drawing.Size(46, 23);
-            this.btnViewVend.TabIndex = 27;
+            this.btnViewVend.TabIndex = 8;
+            this.btnViewVend.TabStop = false;
             this.btnViewVend.Text = "View";
             this.btnViewVend.UseVisualStyleBackColor = true;
+            this.btnViewVend.Click += new System.EventHandler(this.btnViewVend_Click);
             // 
             // grpPrnts
             // 
             this.grpPrnts.Controls.Add(this.btnBrwsUL);
             this.grpPrnts.Controls.Add(this.btnBrwsVend);
+            this.grpPrnts.Controls.Add(this.btnDescSrch);
+            this.grpPrnts.Controls.Add(this.label52);
             this.grpPrnts.Controls.Add(this.label51);
             this.grpPrnts.Controls.Add(this.label38);
+            this.grpPrnts.Controls.Add(this.txtMtrDesc);
             this.grpPrnts.Controls.Add(this.txtPrntUL);
             this.grpPrnts.Controls.Add(this.txtPrntVend);
-            this.grpPrnts.Enabled = false;
             this.grpPrnts.Location = new System.Drawing.Point(12, 94);
             this.grpPrnts.Name = "grpPrnts";
-            this.grpPrnts.Size = new System.Drawing.Size(411, 108);
-            this.grpPrnts.TabIndex = 30;
+            this.grpPrnts.Size = new System.Drawing.Size(411, 182);
+            this.grpPrnts.TabIndex = 101;
             this.grpPrnts.TabStop = false;
-            this.grpPrnts.Text = "Motor Prints:";
+            this.grpPrnts.Text = "Urschel Information";
             // 
             // btnBrwsUL
             // 
-            this.btnBrwsUL.Location = new System.Drawing.Point(356, 29);
+            this.btnBrwsUL.Location = new System.Drawing.Point(350, 98);
             this.btnBrwsUL.Name = "btnBrwsUL";
-            this.btnBrwsUL.Size = new System.Drawing.Size(50, 23);
-            this.btnBrwsUL.TabIndex = 33;
+            this.btnBrwsUL.Size = new System.Drawing.Size(55, 23);
+            this.btnBrwsUL.TabIndex = 3;
             this.btnBrwsUL.Text = "Browse";
             this.btnBrwsUL.UseVisualStyleBackColor = true;
+            this.btnBrwsUL.Click += new System.EventHandler(this.btnBrws_Click);
             // 
             // btnBrwsVend
             // 
-            this.btnBrwsVend.Location = new System.Drawing.Point(356, 76);
+            this.btnBrwsVend.Location = new System.Drawing.Point(350, 145);
             this.btnBrwsVend.Name = "btnBrwsVend";
-            this.btnBrwsVend.Size = new System.Drawing.Size(50, 23);
-            this.btnBrwsVend.TabIndex = 32;
+            this.btnBrwsVend.Size = new System.Drawing.Size(55, 23);
+            this.btnBrwsVend.TabIndex = 5;
             this.btnBrwsVend.Text = "Browse";
             this.btnBrwsVend.UseVisualStyleBackColor = true;
+            this.btnBrwsVend.Click += new System.EventHandler(this.btnBrws_Click);
             // 
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(7, 62);
+            this.label51.Location = new System.Drawing.Point(7, 131);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(68, 13);
             this.label51.TabIndex = 31;
@@ -1058,7 +1178,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(6, 16);
+            this.label38.Location = new System.Drawing.Point(6, 85);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(70, 13);
             this.label38.TabIndex = 30;
@@ -1066,35 +1186,50 @@
             // 
             // txtPrntUL
             // 
-            this.txtPrntUL.Location = new System.Drawing.Point(6, 32);
+            this.txtPrntUL.Location = new System.Drawing.Point(6, 101);
             this.txtPrntUL.Name = "txtPrntUL";
-            this.txtPrntUL.Size = new System.Drawing.Size(344, 20);
-            this.txtPrntUL.TabIndex = 28;
+            this.txtPrntUL.Size = new System.Drawing.Size(338, 20);
+            this.txtPrntUL.TabIndex = 2;
+            this.txtPrntUL.TabStop = false;
             // 
             // btnViewUL
             // 
-            this.btnViewUL.Location = new System.Drawing.Point(429, 123);
+            this.btnViewUL.Location = new System.Drawing.Point(429, 192);
             this.btnViewUL.Name = "btnViewUL";
             this.btnViewUL.Size = new System.Drawing.Size(46, 23);
-            this.btnViewUL.TabIndex = 29;
+            this.btnViewUL.TabIndex = 6;
+            this.btnViewUL.TabStop = false;
             this.btnViewUL.Text = "View";
             this.btnViewUL.UseVisualStyleBackColor = true;
+            this.btnViewUL.Click += new System.EventHandler(this.btnViewUL_Click);
             // 
             // btnModSave
             // 
-            this.btnModSave.Location = new System.Drawing.Point(321, 635);
+            this.btnModSave.Location = new System.Drawing.Point(321, 709);
             this.btnModSave.Name = "btnModSave";
             this.btnModSave.Size = new System.Drawing.Size(75, 23);
-            this.btnModSave.TabIndex = 31;
+            this.btnModSave.TabIndex = 37;
             this.btnModSave.Text = "Modify";
             this.btnModSave.UseVisualStyleBackColor = true;
             this.btnModSave.Click += new System.EventHandler(this.btnModSave_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(240, 709);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 105;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmMtrData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 667);
+            this.ClientSize = new System.Drawing.Size(488, 738);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnModSave);
             this.Controls.Add(this.grpPrnts);
             this.Controls.Add(this.btnExitCan);
@@ -1225,5 +1360,12 @@
         private System.Windows.Forms.ComboBox cmbFrame;
         private System.Windows.Forms.ComboBox cmbHP;
         private System.Windows.Forms.ComboBox cmbIns;
+        private System.Windows.Forms.ComboBox cmbPoles;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.ComboBox cmbConst;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

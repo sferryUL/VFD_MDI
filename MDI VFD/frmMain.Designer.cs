@@ -42,6 +42,8 @@
             this.msMain_Mtr_Info = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_Mach = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_Mach_Info = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Help = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_Help_About = new System.Windows.Forms.ToolStripMenuItem();
             this.tsComm = new System.Windows.Forms.ToolStrip();
             this.tsComm_lblPort = new System.Windows.Forms.ToolStripLabel();
             this.tsComm_cmbPort = new System.Windows.Forms.ToolStripComboBox();
@@ -68,7 +70,8 @@
             this.msMain_File,
             this.msMain_VFD,
             this.msMain_Mtr,
-            this.msMain_Mach});
+            this.msMain_Mach,
+            this.msMain_Help});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(957, 24);
@@ -142,7 +145,7 @@
             // msMain_Mtr_Info
             // 
             this.msMain_Mtr_Info.Name = "msMain_Mtr_Info";
-            this.msMain_Mtr_Info.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Mtr_Info.Size = new System.Drawing.Size(131, 22);
             this.msMain_Mtr_Info.Text = "Motor Info";
             this.msMain_Mtr_Info.Click += new System.EventHandler(this.msMain_Mtr_Info_Click);
             // 
@@ -161,6 +164,21 @@
             this.msMain_Mach_Info.Size = new System.Drawing.Size(180, 22);
             this.msMain_Mach_Info.Text = "Machine Info";
             this.msMain_Mach_Info.Click += new System.EventHandler(this.msMain_Mach_Info_Click);
+            // 
+            // msMain_Help
+            // 
+            this.msMain_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMain_Help_About});
+            this.msMain_Help.Name = "msMain_Help";
+            this.msMain_Help.Size = new System.Drawing.Size(44, 20);
+            this.msMain_Help.Text = "Help";
+            // 
+            // msMain_Help_About
+            // 
+            this.msMain_Help_About.Name = "msMain_Help_About";
+            this.msMain_Help_About.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Help_About.Text = "About";
+            this.msMain_Help_About.Click += new System.EventHandler(this.msMain_Help_About_Click);
             // 
             // tsComm
             // 
@@ -355,6 +373,8 @@
         private System.Windows.Forms.ToolStripMenuItem msMain_Mach;
         private System.Windows.Forms.ToolStripMenuItem msMain_Mach_Info;
         private System.Windows.Forms.ToolStripMenuItem msMain_Mtr_Info;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Help;
+        private System.Windows.Forms.ToolStripMenuItem msMain_Help_About;
     }
 }
 

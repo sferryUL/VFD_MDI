@@ -123,12 +123,6 @@ namespace V1000_Prog_SQL
                 cmbMachChrtNum.DropDownStyle = ComboBoxStyle.DropDown;
             else
                 cmbMachChrtNum.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            // Same goes for motor data saving
-            if((btnMtrStore.Visible == true) && (btnMtrDel.Visible == true))
-                cmbMtrPartNum.DropDownStyle = ComboBoxStyle.DropDown;
-            else
-                cmbMtrPartNum.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void frmProg_FormClosed(object sender, FormClosedEventArgs e)
@@ -1090,7 +1084,7 @@ namespace V1000_Prog_SQL
             // update the database
             for(int i = 0; i < Param_Vrfy.Count; i++)
             {
-                if(!dBConn.UpdateStr(Tbl_Drv_V1000_Param, def_col, Param_Vrfy[i].ParamVal.ToString(), "PARAM_NUM", Param_Vrfy[i].ParamNum))
+                if(!dBConn.UpdSglColStr(Tbl_Drv_V1000_Param, def_col, Param_Vrfy[i].ParamVal.ToString(), "PARAM_NUM", Param_Vrfy[i].ParamNum))
                 {
                     MsgBox.dBErr("Database update error!");
                     break;
@@ -1766,7 +1760,7 @@ namespace V1000_Prog_SQL
             // Add all the row entries for the parameter chart
             for(int i=0;i<Param_Chng.Count;i++)
             {
-                if(!dBConn.UpdateStr(Tbl_Chrt_V1000, new_chrt_col, Param_Chng[i].ParamVal.ToString(), "PARAM_NUM", Param_Chng[i].ParamNum))
+                if(!dBConn.UpdSglColStr(Tbl_Chrt_V1000, new_chrt_col, Param_Chng[i].ParamVal.ToString(), "PARAM_NUM", Param_Chng[i].ParamNum))
                     break;
             }
            
@@ -1776,7 +1770,7 @@ namespace V1000_Prog_SQL
             dBConn.Insert(Tbl_Chrt_Lst, InsCols, InsVals);
 
             // Update the chart count in the machine info data table
-            dBConn.UpdateStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
+            dBConn.UpdSglColStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
 
             // Update the machine chart information area
             UpdMachChrtInf(mach_code);
@@ -1826,7 +1820,7 @@ namespace V1000_Prog_SQL
             {
                 dBConn.QueryStr(Tbl_Mach, "CHRT_CNT", "MACH_CODE", mach_code);
                 int chrt_cnt = Convert.ToInt32(dBConn.Table.Rows[0][0].ToString()) - 1;
-                dBConn.UpdateStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
+                dBConn.UpdSglColStr(Tbl_Mach, "CHRT_CNT", chrt_cnt.ToString(), "MACH_CODE", mach_code);
                 UpdMachChrtInf(mach_code);
                 
             }
@@ -2130,7 +2124,7 @@ namespace V1000_Prog_SQL
             if(cmbMtrNum.SelectedIndex < 0)
                 return;
 
-            txtFLC.Text = GetMtrFLC(cmbMtrNum.Text, cmbMtrVolt.Text, cmbMtrFreq.Text);
+            txtFLC.Text = GetMtrFLC(PartFunc.Cnv2ULFrmt(cmbMtrNum.Text), cmbMtrVolt.Text, cmbMtrFreq.Text);
         }
 
         private void MtrFreqBase_SelectedIndexChanged(object sender, EventArgs e)
@@ -2155,7 +2149,7 @@ namespace V1000_Prog_SQL
             if(cmbMtrNum.SelectedIndex < 0)
                 return;
 
-            txtFLC.Text = GetMtrFLC(cmbMtrNum.Text, cmbMtrVolt.Text, cmbMtrFreq.Text);
+            txtFLC.Text = GetMtrFLC(PartFunc.Cnv2ULFrmt(cmbMtrNum.Text), cmbMtrVolt.Text, cmbMtrFreq.Text);
         }
 
         private void MtrPartNum_SelectedIndexChanged(object sender, EventArgs e)
@@ -2178,7 +2172,7 @@ namespace V1000_Prog_SQL
                 txtFLC = txtMtr2FLC;
             }
 
-            txtFLC.Text = GetMtrFLC(cmbMtrNum.Text, cmbMtrVolt.Text, cmbMtrFreq.Text);
+            txtFLC.Text = GetMtrFLC(PartFunc.Cnv2ULFrmt(cmbMtrNum.Text), cmbMtrVolt.Text, cmbMtrFreq.Text);
 
             if((grpMtr2Set.Visible == true) && (cmbMtrPartNum.SelectedIndex >= 0) && cmbMtrNum.Name.Equals("cmbMtrPartNum"))
                 cmbMtr2PartNum.SelectedIndex = cmbMtrPartNum.SelectedIndex;
@@ -2205,7 +2199,7 @@ namespace V1000_Prog_SQL
             }
 
             if(e.KeyValue == (int)Keys.Enter)
-                txtFLC.Text = GetMtrFLC(cmbMtrNum.Text, cmbMtrVolt.Text, cmbMtrFreq.Text);
+                txtFLC.Text = GetMtrFLC(PartFunc.Cnv2ULFrmt(cmbMtrNum.Text), cmbMtrVolt.Text, cmbMtrFreq.Text);
         }
 
         private void btnSetMotorVals(object sender, EventArgs e)
@@ -2248,111 +2242,6 @@ namespace V1000_Prog_SQL
             {
                 MessageBox.Show("Parameter Location Error!!");
             }
-        }
-
-        
-
-        private void btnMtrStore_Click(object sender, EventArgs e)
-        {
-            if((cmbMachSupplyVolt.SelectedIndex == -1) || (cmbMachSupplyFreq.SelectedIndex == -1))
-            {
-                MsgBox.Err("Storing motor values requires a setting for supply voltage and supply frequency!");
-                return;
-            }
-
-            if(cmbMtrPartNum.Text == "")
-            {
-                MsgBox.Err("Storing motor values requires an Urschel assigned motor part number!");
-                return;
-            }
-
-            if(txtMtrFLC.Text == "")
-            {
-                MsgBox.Err("Storing motor values requires a full load current entry!");
-                return;
-            }
-
-            // Check and see if motor exists, if not, verify user is wanting to add the motor
-            string mtr_num = cmbMtrPartNum.Text;
-            if(dBConn.QueryStr(Tbl_Mtr, "IDX", "MTR_NUM", mtr_num) < 1)
-            {
-                if(MsgBox.YN("Motor part number " + mtr_num + " does not exist in the database, would you like to add?", "Motor Does Not Exist") == DialogResult.Yes)
-                    dBConn.Insert(Tbl_Mtr, "MTR_NUM", string.Format("'{0}'", mtr_num));
-                else
-                    goto MtrStoreReturn;
-            }
-
-            string col_name = BuildMtrColName(cmbMtrVoltMax.Text, cmbMtrFreqBase.Text);
-            dBConn.QueryStr(Tbl_Mtr, col_name, "MTR_NUM", mtr_num);
-            string flc = dBConn.Table.Rows[0][0].ToString();
-            if(flc.Equals("") == false)
-            {
-                string txt = "A FLC value already exists for motor part number " + mtr_num +
-                             " at a voltage of " + cmbMachSupplyVolt.Text + "AC @ " + cmbMachSupplyFreq.Text +
-                             " Hz.\nDo you wish to overwrite this value?";
-                if(MsgBox.YN(txt, "FLC Overwrite") == DialogResult.No)
-                    goto MtrStoreReturn;
-            }
-
-            flc = txtMtrFLC.Text;
-            dBConn.UpdateStr(Tbl_Mtr, col_name, flc, "MTR_NUM", mtr_num);
-
-            MsgBox.Info("Motor FLC data successfully stored.");
-
-            MtrStoreReturn:
-            return;
-        }
-
-        private void btnMtrDel_Click(object sender, EventArgs e)
-        {
-            if(Environment.UserName != "sferry")
-            {
-                MsgBox.dBErr("You do not have permission to delete records from the database!");
-                goto MtrDelReturn;
-            }
-
-            if(cmbMtrPartNum.Text == "")
-            {
-                MsgBox.Err("A motor part number is required to delete any record information!");
-                goto MtrDelReturn;
-            }
-
-            string mtr_num = cmbMtrPartNum.Text;
-
-            if(dBConn.QueryStr(Tbl_Mtr, "IDX", "MTR_NUM", mtr_num) < 1)
-            {
-                MsgBox.Err("Motor part number " + mtr_num + " does not exist in the database!");
-                goto MtrDelReturn;
-            }
-
-            string flc = txtMtrFLC.Text;
-
-            if(MsgBox.YN("Would you like to erase the entire motor information from the database?", "Motor Erase Option") == DialogResult.Yes)
-            {
-
-                if(dBConn.DeleteStr(Tbl_Mtr, "MTR_NUM", mtr_num))
-                {
-                    MsgBox.Info("Motor part successfully deleted");
-                    cmbMtrPartNum.Text = "";
-                    txtMtrFLC.Text = "";
-                    LoadMtrPartNums();
-                }
-                else
-                    MsgBox.dBErr("Error deleting motor part number " + mtr_num + " from the database!");
-            }
-            /*
-            if(MsgBox.YN("Would you like to erase the FLC value of " + flc + "for motor part number " + mtr_num + "?") == DialogResult.Yes)
-            {
-                string col_name = BuildMtrColName(cmbMtrVoltMax.Text, cmbMtrFreqBase.Text);
-                if(dB.Update(ref dBConn, "MTR_DATA", col_name, "NULL", "MTR_NUM", dB.StringConv(mtr_num)))
-                    MsgBox.Info("FLC value for motor part number " + mtr_num + " was successfully cleared.");
-                else
-                    MsgBox.dBErr("Error updating FLC for motor part number " + mtr_num + "!");
-            }
-            */
-
-            MtrDelReturn:
-            return;
         }
 
         private void chkMtr2_CheckedChanged(object sender, EventArgs e)
@@ -2451,8 +2340,9 @@ namespace V1000_Prog_SQL
             dBConn.Query(Tbl_Mtr, "MTR_NUM", p_OrderBy:"MTR_NUM");
             foreach(DataRow dr in dBConn.Table.Rows)
             {
-                cmbMtrPartNum.Items.Add((string)dr["MTR_NUM"]);
-                cmbMtr2PartNum.Items.Add((string)dr["MTR_NUM"]);
+                string num = PartFunc.CnvFromULFrmt(dr["MTR_NUM"].ToString());
+                cmbMtrPartNum.Items.Add(num);
+                cmbMtr2PartNum.Items.Add(num);
             }
         }
 

@@ -65,18 +65,138 @@ namespace GenFunc
         {
             int ret_val = -1;
 
-            for(int i=0;i<p_Cmb.Items.Count;i++)
+            if(p_Str != "")
             {
-                if(p_Cmb.Items[i].ToString().Contains(p_Str))
+                for(int i=0;i<p_Cmb.Items.Count;i++)
                 {
-                    ret_val = i;
-                    break;
+                    string str_cmp = p_Cmb.Items[i].ToString();
+                    if(str_cmp.Contains(p_Str))
+                    {
+                        ret_val = i;
+                        break;
+                    }
                 }
             }
 
             return ret_val;
         }
         
+    }
+
+    public static class PartFunc
+    {
+        public static string Cnv2ULFrmt(string p_Num)
+        {
+            string ret_val = "";
+            
+            if(p_Num.Length == 6) // 5-digit part with leading 0, CP Part, or Raw Material
+            {
+                if(StrFunc.IsNumeric(p_Num))
+                    ret_val = p_Num;
+            }
+            else if (p_Num.Length == 5) // 5-digit part with no leading 0
+            {
+                if(StrFunc.IsNumeric(p_Num))
+                    ret_val = "0" + p_Num;
+            }
+            else if ((p_Num.ToUpper()).StartsWith("CP")) // CP text formatted part
+            {
+                p_Num = p_Num.Substring(2, p_Num.Length - 2);
+                while(p_Num.IndexOf('-') >= 0)
+                {
+                    p_Num = p_Num.Remove(p_Num.IndexOf('-'), 1);
+                }
+                if(StrFunc.IsNumeric(p_Num) && (p_Num.Length == 6))
+                {
+                    ret_val = p_Num;
+                }
+            }
+            else if((p_Num.ToUpper()).StartsWith("PROJECT")) // Project text formatted part
+            {
+                // Remove "Project" text
+                int subtract = ("Project").Length;
+                p_Num = p_Num.Substring(subtract, p_Num.Length - subtract);
+                p_Num = p_Num.TrimStart();
+                while(p_Num.IndexOf('-') >= 0)
+                    p_Num = p_Num.Remove(p_Num.IndexOf('-'), 1);
+                if(p_Num.Length == 7)
+                {
+                    if(StrFunc.IsNumeric(p_Num))
+                        ret_val = String.Format("{0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(4, 3));
+                }
+            }
+            else if((p_Num.ToUpper()).StartsWith("PROJ")) // Project text formatted part
+            {
+                // Remove "Project" text
+                int subtract = ("Proj").Length;
+                p_Num = p_Num.Substring(subtract, p_Num.Length - subtract);
+                p_Num = p_Num.TrimStart();
+                while(p_Num.IndexOf('-') >= 0)
+                    p_Num = p_Num.Remove(p_Num.IndexOf('-'), 1);
+                if(p_Num.Length == 7)
+                {
+                    if(StrFunc.IsNumeric(p_Num))
+                        ret_val = String.Format("{0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(4, 3));
+                }
+            }
+            else if(p_Num.Length == 7) // Project part with no "-"
+            {
+                // Project numbers are unofficial in regards to the Urschel Parts
+                // management program. Project parts are 7 digits but we typically
+                // format them as 8-digits with a dash. i.e. 1927-005
+                if(StrFunc.IsNumeric(p_Num))
+                    ret_val = String.Format("{0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(4, 3));
+            }
+            else if(p_Num.Length == 8) // Project part with "-"
+            {
+                if(StrFunc.IsNumeric(p_Num.Substring(0,4))) // First for characters should be numbers
+                {
+                    if(p_Num.IndexOf('-') == 4) // a "-" should separate the first 4 digits from the last 3 digits
+                    {
+                        if(StrFunc.IsNumeric(p_Num.Substring(5, 3))) // The last 3 digits should be numbers as well
+                            ret_val = p_Num;       
+                    }
+                }
+            }
+            
+            return ret_val;
+        }
+
+        public static string CnvFromULFrmt(string p_Num)
+        {
+            string ret_val = "";
+
+            if(p_Num.Length == 6) // CP Part or Raw Material
+            {
+                if(p_Num[0] == '0') // formatted with leading 0
+                {
+                    ret_val = p_Num.Substring(1, 5);
+                }
+                else if((p_Num[0] >= '1' && (p_Num[0] <= '4')) || (p_Num[0] == '8')) // CP part number
+                {
+                    ret_val = String.Format("CP{0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(4, 2));
+                }
+                else
+                    ret_val = p_Num;
+            }
+            else if(p_Num.Length == 5) // 5-digit part input as 5-digits
+            {
+                ret_val = p_Num;
+            }
+            else if(p_Num.Length == 8) // Project Part
+            {
+                if(StrFunc.IsNumeric(p_Num.Substring(0, 4))) // First for characters should be numbers
+                {
+                    if(p_Num.IndexOf('-') == 4) // a "-" should separate the first 4 digits from the last 3 digits
+                    {
+                        if(StrFunc.IsNumeric(p_Num.Substring(5, 3))) // The last 3 digits should be numbers as well
+                            ret_val = String.Format("Project {0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(5, 3));
+                    }
+                }
+            }
+
+            return ret_val;
+        }
     }
 
     public class PartInfo
@@ -148,5 +268,21 @@ namespace GenFunc
             return RetVal;
         }
 
+        
+
+    } // class NumFunc
+
+    public static class StrFunc
+    {
+        public static bool IsNumeric(string p_Str)
+        {
+            bool ret_val = true;
+
+            foreach(Char c in p_Str.ToCharArray())
+            {
+                ret_val = ret_val && Char.IsNumber(c);
+            }
+            return ret_val;
+        }
     }
 }
