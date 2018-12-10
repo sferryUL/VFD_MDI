@@ -77,7 +77,7 @@ namespace MDI_VFD.Motor
                 DataTable tbl = new DataTable();
                 tbl = dBConn.Table.Copy();
                 FillEssInf(ref tbl);
-                FillPrints(ref tbl);
+                FillUrschInf(ref tbl);
                 FillGenInf(ref tbl);
 
                 dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
@@ -94,7 +94,6 @@ namespace MDI_VFD.Motor
             SetDataMode();
             FillCBItems();
         }
-
         #endregion
 
         #region Database Information Acquisition Methods
@@ -185,6 +184,23 @@ namespace MDI_VFD.Motor
                 OldVals.Add(Vals.ValList[i].Ctrl.Text);
         }
 
+        private int ObjEntryChng(ref List<int> p_ChngIdx)
+        {
+            int chng_cnt = 0;
+
+            p_ChngIdx.Clear();
+            for(int i = 0; i < Vals.Count; i++)
+            {
+                if(Vals.ValList[i].Ctrl.Text != OldVals[i])
+                {
+                    p_ChngIdx.Add(i);
+                    chng_cnt++;
+                }
+            }
+
+            return chng_cnt;
+        }
+
         private bool ObjEntryChng()
         {
             bool ret_val = false;
@@ -239,6 +255,9 @@ namespace MDI_VFD.Motor
 
             for(int i = 0; i < Vals.Count; i++)
                 Vals.ValList[i].Ctrl.Enabled = CtrlEn;
+            btnBrwsUL.Enabled = CtrlEn;
+            btnBrwsVend.Enabled = CtrlEn;
+
             txtMtrNum.Enabled = MtrNumEn;
         }
         #endregion
@@ -248,10 +267,13 @@ namespace MDI_VFD.Motor
         {
             cmbHP.Text = p_Tbl.Rows[0]["MTR_HP"].ToString();
             cmbFrame.Text = p_Tbl.Rows[0]["MTR_FRM"].ToString();
+            cmbConst.Text = p_Tbl.Rows[0]["MTR_CONST"].ToString();
+            cmbType.SelectedIndex = cmbType.Items.IndexOf(p_Tbl.Rows[0]["MTR_TYPE"].ToString());
         }
 
-        private void FillPrints(ref DataTable p_Tbl)
+        private void FillUrschInf(ref DataTable p_Tbl)
         {
+            txtMtrDesc.Text = p_Tbl.Rows[0]["MTR_DESC"].ToString();
             txtPrntUL.Text = p_Tbl.Rows[0]["MTR_PRNT_UL"].ToString();
             txtPrntVend.Text = p_Tbl.Rows[0]["MTR_PRNT_VEND"].ToString();
         }
@@ -281,6 +303,14 @@ namespace MDI_VFD.Motor
             txtBrgODE.Text = p_Tbl.Rows[0]["MTR_BRG_DE"].ToString();
         }
 
+        private void cmbHP_TextChanged(object sender, EventArgs e)
+        {
+            if((cmbHP.Text != "") && (StrFunc.IsNumeric(cmbHP.Text)))
+            {
+                txtPwr.Text = (Convert.ToSingle(cmbHP.Text) * 0.75).ToString();
+            }
+        }
+
         private void FillFLCData(ref DataTable p_Tbl)
         {
             // Get the starting index for FLC in the Motor Value Collection
@@ -292,6 +322,7 @@ namespace MDI_VFD.Motor
             }
             return;
         }
+        
         #endregion
         
         #region Datasheet Methods
@@ -421,10 +452,8 @@ namespace MDI_VFD.Motor
                 goto dB_MtrInsert_Return;
             }
             
-            txtMtrNum.Text = part_num;
-
             // Make sure motor does not already exist
-            if(dBConn.QueryStr(TblMtr, "IDX", "MTR_NUM", PartFunc.CnvFromULFrmt(txtMtrNum.Text)) > 0)
+            if(dBConn.QueryStr(TblMtr, "IDX", "MTR_NUM", part_num) > 0)
             {
                 string msg = "This motor already exists in the database, do you wish to overwrite the existing data?";
                 if(MsgBox.YN(msg, "Overwrite Confirmation") == DialogResult.No)
@@ -457,17 +486,19 @@ namespace MDI_VFD.Motor
 
         private void dB_MtrUpdate()
         {
-            if(ObjEntryChng())
+            List<int> chg_idx = new List<int>();
+
+            if(ObjEntryChng(ref chg_idx) > 0)
             {
                 // Force the Motor Value Collection to populate its values as strings using '' 
                 // or specific numbers to send to the database during inserts or updates.
                 Vals.SetValues();
                 List<string> UpdCols = new List<string>();
                 List<string> UpdVals = new List<string>();
-                int UpdCnt = Vals.GetdBUpdateStrings(ref UpdCols, ref UpdVals);
+                int UpdCnt = Vals.GetdBUpdateStrings(ref chg_idx, ref UpdCols, ref UpdVals);
                 if(UpdCnt > 0)
                 {
-                    if(dBConn.UpdateStr(TblMtr, UpdCols, UpdVals, "MTR_NUM", txtMtrNum.Text))
+                    if(dBConn.UpdateStr(TblMtr, UpdCols, UpdVals, "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text)))
                         MsgBox.Info("Motor information successfully updated.");
                 }
             }
@@ -489,6 +520,8 @@ namespace MDI_VFD.Motor
         #region Form Exit Methods
         private void btnExitCan_Click(object sender, EventArgs e)
         {
+            List<int> chng_idx = new List<int>();
+
             string cap = "New Motor Specification";
             switch(Mode)
             {
@@ -522,7 +555,6 @@ namespace MDI_VFD.Motor
             }
         }
         #endregion
-        
     }
 
     public class MtrVal
@@ -604,16 +636,18 @@ namespace MDI_VFD.Motor
                         case "nvarchar":
                         case "varchar":
                         case "char":
-                            ValList[i].Value = String.Format("'{0}'", ValList[i].Ctrl.Text);
+                            string tmp_val = ValList[i].Ctrl.Text;
+                            if(ValList[i].ColInf.Name == "MTR_NUM")
+                                tmp_val = PartFunc.Cnv2ULFrmt(tmp_val);
+                            if(ValList[i].ColInf.Name == "MTR_INS")
+                                tmp_val = ValList[i].Ctrl.Text.Substring(0, 1);
+
+                            ValList[i].Value = String.Format("'{0}'", tmp_val);
                             break;
                         default:
                             ValList[i].Value = ValList[i].Ctrl.Text;
                             break;
                     }
-
-                    if((ValList[i].ColInf.Name == "MTR_INS"))
-                        ValList[i].Value = ValList[i].Value.Substring(0, 2) + "'";
-
                 }
             }
         }
@@ -643,19 +677,19 @@ namespace MDI_VFD.Motor
             return cnt;
         }
 
-        public int GetdBUpdateStrings(ref List<string> p_Cols, ref List<string> p_Vals)
+        public int GetdBUpdateStrings(ref List<int> p_Idx, ref List<string> p_Cols, ref List<string> p_Vals)
         {
             int cnt = 0;
 
             p_Cols.Clear();
             p_Vals.Clear();
 
-            for(int i=0;i<ValList.Count;i++)
+            for(int i=0;i<p_Idx.Count;i++)
             {
-                if(ValList[i].Value != null)
+                if(ValList[p_Idx[i]].Value != null)
                 {
-                    p_Cols.Add(ValList[i].ColInf.Name);
-                    p_Vals.Add(ValList[i].Value);
+                    p_Cols.Add(ValList[p_Idx[i]].ColInf.Name);
+                    p_Vals.Add(ValList[p_Idx[i]].Value);
                     cnt++;
                 }
             }

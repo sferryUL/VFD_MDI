@@ -1065,6 +1065,7 @@
             this.cmbHP.Name = "cmbHP";
             this.cmbHP.Size = new System.Drawing.Size(51, 21);
             this.cmbHP.TabIndex = 1;
+            this.cmbHP.TextChanged += new System.EventHandler(this.cmbHP_TextChanged);
             // 
             // txtMtrNum
             // 
