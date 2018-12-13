@@ -64,8 +64,7 @@ namespace MDI_VFD.Motor
             dBConn.GetTblColInfo(TblMtr, ref inf);
             for(int i=0;i<inf.Count;i++)
             {
-                MtrVal tmp = new MtrVal();
-                tmp.ColInf = (dBColInfo)inf[i].Clone();
+                MtrVal tmp = new MtrVal { ColInf = (dBColInfo)inf[i].Clone() };
                 Vals.Add(tmp);
             }
             LoadObjs();
