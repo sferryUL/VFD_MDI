@@ -1,6 +1,6 @@
 ﻿namespace MDI_VFD.Motor
 {
-    partial class frmMtrInfo
+    partial class frmMtrList
     {
         /// <summary>
         /// Required designer variable.
@@ -62,7 +62,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.btnExitSel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSrchRes)).BeginInit();
             this.ctxtSrchRes.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -351,33 +351,33 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Horsepower:";
             // 
-            // btnExit
+            // btnExitSel
             // 
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(458, 346);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 10;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExitSel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExitSel.Location = new System.Drawing.Point(458, 346);
+            this.btnExitSel.Name = "btnExitSel";
+            this.btnExitSel.Size = new System.Drawing.Size(75, 23);
+            this.btnExitSel.TabIndex = 10;
+            this.btnExitSel.Text = "Exit";
+            this.btnExitSel.UseVisualStyleBackColor = true;
+            this.btnExitSel.Click += new System.EventHandler(this.btnExitSel_Click);
             // 
-            // frmMtrInfo
+            // frmMtrList
             // 
-            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(544, 381);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnExitSel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvSrchRes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmMtrInfo";
+            this.Name = "frmMtrList";
             this.Text = "Motor Search";
             this.Load += new System.EventHandler(this.frmMtrInfo_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMtrList_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSrchRes)).EndInit();
             this.ctxtSrchRes.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -404,7 +404,7 @@
         private System.Windows.Forms.ComboBox cmbMtrHP;
         private System.Windows.Forms.ComboBox cmbMtrNum;
         private System.Windows.Forms.ComboBox cmbSrchCode;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnExitSel;
         private System.Windows.Forms.ContextMenuStrip ctxtSrchRes;
         private System.Windows.Forms.ToolStripMenuItem ctxtSrchRes_Details;
         private System.Windows.Forms.ToolStripMenuItem ctxtSrchRes_Mod;

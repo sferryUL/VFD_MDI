@@ -34,25 +34,25 @@
             this.lblMtr1HP = new System.Windows.Forms.Label();
             this.nudDrvCnt = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnMtr1Sel = new System.Windows.Forms.Button();
+            this.btnMtrSel1 = new System.Windows.Forms.Button();
             this.grpMtr = new System.Windows.Forms.GroupBox();
             this.txtMtr5Name = new System.Windows.Forms.TextBox();
-            this.btnMtr5Sel = new System.Windows.Forms.Button();
+            this.btnMtrSel5 = new System.Windows.Forms.Button();
             this.lblMtr5Name = new System.Windows.Forms.Label();
             this.lblMtr5HP = new System.Windows.Forms.Label();
             this.cmbMtr5HP = new System.Windows.Forms.ComboBox();
             this.txtMtr4Name = new System.Windows.Forms.TextBox();
-            this.btnMtr4Sel = new System.Windows.Forms.Button();
+            this.btnMtrSel4 = new System.Windows.Forms.Button();
             this.lblMtr4Name = new System.Windows.Forms.Label();
             this.lblMtr4HP = new System.Windows.Forms.Label();
             this.cmbMtr4HP = new System.Windows.Forms.ComboBox();
             this.txtMtr3Name = new System.Windows.Forms.TextBox();
-            this.btnMtr3Sel = new System.Windows.Forms.Button();
+            this.btnMtrSel3 = new System.Windows.Forms.Button();
             this.lblMtr3Name = new System.Windows.Forms.Label();
             this.lblMtr3HP = new System.Windows.Forms.Label();
             this.cmbMtr3HP = new System.Windows.Forms.ComboBox();
             this.txtMtr2Name = new System.Windows.Forms.TextBox();
-            this.btnMtr2Sel = new System.Windows.Forms.Button();
+            this.btnMtrSel2 = new System.Windows.Forms.Button();
             this.lblMtr2Name = new System.Windows.Forms.Label();
             this.lblMtr2HP = new System.Windows.Forms.Label();
             this.cmbMtr2HP = new System.Windows.Forms.ComboBox();
@@ -164,7 +164,7 @@
             this.txtMtr1Name.Location = new System.Drawing.Point(89, 18);
             this.txtMtr1Name.Name = "txtMtr1Name";
             this.txtMtr1Name.Size = new System.Drawing.Size(201, 20);
-            this.txtMtr1Name.TabIndex = 7;
+            this.txtMtr1Name.TabIndex = 0;
             // 
             // cmbMtr1HP
             // 
@@ -172,7 +172,7 @@
             this.cmbMtr1HP.Location = new System.Drawing.Point(359, 20);
             this.cmbMtr1HP.Name = "cmbMtr1HP";
             this.cmbMtr1HP.Size = new System.Drawing.Size(59, 21);
-            this.cmbMtr1HP.TabIndex = 8;
+            this.cmbMtr1HP.TabIndex = 1;
             // 
             // lblMtr1HP
             // 
@@ -193,7 +193,7 @@
             0});
             this.nudDrvCnt.Name = "nudDrvCnt";
             this.nudDrvCnt.Size = new System.Drawing.Size(35, 20);
-            this.nudDrvCnt.TabIndex = 4;
+            this.nudDrvCnt.TabIndex = 1;
             this.nudDrvCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudDrvCnt.ValueChanged += new System.EventHandler(this.nudDrvCnt_ValueChanged);
             // 
@@ -206,46 +206,47 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Variable Frequency Drive Count:";
             // 
-            // btnMtr1Sel
+            // btnMtrSel1
             // 
-            this.btnMtr1Sel.Location = new System.Drawing.Point(424, 17);
-            this.btnMtr1Sel.Name = "btnMtr1Sel";
-            this.btnMtr1Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnMtr1Sel.TabIndex = 11;
-            this.btnMtr1Sel.Text = "Motor Selection";
-            this.btnMtr1Sel.UseVisualStyleBackColor = true;
+            this.btnMtrSel1.Location = new System.Drawing.Point(424, 17);
+            this.btnMtrSel1.Name = "btnMtrSel1";
+            this.btnMtrSel1.Size = new System.Drawing.Size(100, 23);
+            this.btnMtrSel1.TabIndex = 2;
+            this.btnMtrSel1.Text = "Motor Selection";
+            this.btnMtrSel1.UseVisualStyleBackColor = true;
+            this.btnMtrSel1.Click += new System.EventHandler(this.btnMtrSel_Click);
             // 
             // grpMtr
             // 
             this.grpMtr.Controls.Add(this.txtMtr5Name);
-            this.grpMtr.Controls.Add(this.btnMtr5Sel);
+            this.grpMtr.Controls.Add(this.btnMtrSel5);
             this.grpMtr.Controls.Add(this.lblMtr5Name);
             this.grpMtr.Controls.Add(this.lblMtr5HP);
             this.grpMtr.Controls.Add(this.cmbMtr5HP);
             this.grpMtr.Controls.Add(this.txtMtr4Name);
-            this.grpMtr.Controls.Add(this.btnMtr4Sel);
+            this.grpMtr.Controls.Add(this.btnMtrSel4);
             this.grpMtr.Controls.Add(this.lblMtr4Name);
             this.grpMtr.Controls.Add(this.lblMtr4HP);
             this.grpMtr.Controls.Add(this.cmbMtr4HP);
             this.grpMtr.Controls.Add(this.txtMtr3Name);
-            this.grpMtr.Controls.Add(this.btnMtr3Sel);
+            this.grpMtr.Controls.Add(this.btnMtrSel3);
             this.grpMtr.Controls.Add(this.lblMtr3Name);
             this.grpMtr.Controls.Add(this.lblMtr3HP);
             this.grpMtr.Controls.Add(this.cmbMtr3HP);
             this.grpMtr.Controls.Add(this.txtMtr2Name);
-            this.grpMtr.Controls.Add(this.btnMtr2Sel);
+            this.grpMtr.Controls.Add(this.btnMtrSel2);
             this.grpMtr.Controls.Add(this.lblMtr2Name);
             this.grpMtr.Controls.Add(this.lblMtr2HP);
             this.grpMtr.Controls.Add(this.cmbMtr2HP);
             this.grpMtr.Controls.Add(this.txtMtr1Name);
-            this.grpMtr.Controls.Add(this.btnMtr1Sel);
+            this.grpMtr.Controls.Add(this.btnMtrSel1);
             this.grpMtr.Controls.Add(this.lblMtr1Name);
             this.grpMtr.Controls.Add(this.lblMtr1HP);
             this.grpMtr.Controls.Add(this.cmbMtr1HP);
             this.grpMtr.Location = new System.Drawing.Point(12, 89);
             this.grpMtr.Name = "grpMtr";
             this.grpMtr.Size = new System.Drawing.Size(530, 160);
-            this.grpMtr.TabIndex = 12;
+            this.grpMtr.TabIndex = 1;
             this.grpMtr.TabStop = false;
             this.grpMtr.Text = "Motor Information";
             // 
@@ -254,16 +255,17 @@
             this.txtMtr5Name.Location = new System.Drawing.Point(89, 126);
             this.txtMtr5Name.Name = "txtMtr5Name";
             this.txtMtr5Name.Size = new System.Drawing.Size(201, 20);
-            this.txtMtr5Name.TabIndex = 28;
+            this.txtMtr5Name.TabIndex = 12;
             // 
-            // btnMtr5Sel
+            // btnMtrSel5
             // 
-            this.btnMtr5Sel.Location = new System.Drawing.Point(424, 126);
-            this.btnMtr5Sel.Name = "btnMtr5Sel";
-            this.btnMtr5Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnMtr5Sel.TabIndex = 31;
-            this.btnMtr5Sel.Text = "Motor Selection";
-            this.btnMtr5Sel.UseVisualStyleBackColor = true;
+            this.btnMtrSel5.Location = new System.Drawing.Point(424, 126);
+            this.btnMtrSel5.Name = "btnMtrSel5";
+            this.btnMtrSel5.Size = new System.Drawing.Size(100, 23);
+            this.btnMtrSel5.TabIndex = 14;
+            this.btnMtrSel5.Text = "Motor Selection";
+            this.btnMtrSel5.UseVisualStyleBackColor = true;
+            this.btnMtrSel5.Click += new System.EventHandler(this.btnMtrSel_Click);
             // 
             // lblMtr5Name
             // 
@@ -289,23 +291,24 @@
             this.cmbMtr5HP.Location = new System.Drawing.Point(359, 128);
             this.cmbMtr5HP.Name = "cmbMtr5HP";
             this.cmbMtr5HP.Size = new System.Drawing.Size(59, 21);
-            this.cmbMtr5HP.TabIndex = 29;
+            this.cmbMtr5HP.TabIndex = 13;
             // 
             // txtMtr4Name
             // 
             this.txtMtr4Name.Location = new System.Drawing.Point(89, 99);
             this.txtMtr4Name.Name = "txtMtr4Name";
             this.txtMtr4Name.Size = new System.Drawing.Size(201, 20);
-            this.txtMtr4Name.TabIndex = 23;
+            this.txtMtr4Name.TabIndex = 9;
             // 
-            // btnMtr4Sel
+            // btnMtrSel4
             // 
-            this.btnMtr4Sel.Location = new System.Drawing.Point(424, 98);
-            this.btnMtr4Sel.Name = "btnMtr4Sel";
-            this.btnMtr4Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnMtr4Sel.TabIndex = 26;
-            this.btnMtr4Sel.Text = "Motor Selection";
-            this.btnMtr4Sel.UseVisualStyleBackColor = true;
+            this.btnMtrSel4.Location = new System.Drawing.Point(424, 98);
+            this.btnMtrSel4.Name = "btnMtrSel4";
+            this.btnMtrSel4.Size = new System.Drawing.Size(100, 23);
+            this.btnMtrSel4.TabIndex = 11;
+            this.btnMtrSel4.Text = "Motor Selection";
+            this.btnMtrSel4.UseVisualStyleBackColor = true;
+            this.btnMtrSel4.Click += new System.EventHandler(this.btnMtrSel_Click);
             // 
             // lblMtr4Name
             // 
@@ -331,23 +334,24 @@
             this.cmbMtr4HP.Location = new System.Drawing.Point(359, 101);
             this.cmbMtr4HP.Name = "cmbMtr4HP";
             this.cmbMtr4HP.Size = new System.Drawing.Size(59, 21);
-            this.cmbMtr4HP.TabIndex = 24;
+            this.cmbMtr4HP.TabIndex = 10;
             // 
             // txtMtr3Name
             // 
             this.txtMtr3Name.Location = new System.Drawing.Point(89, 72);
             this.txtMtr3Name.Name = "txtMtr3Name";
             this.txtMtr3Name.Size = new System.Drawing.Size(201, 20);
-            this.txtMtr3Name.TabIndex = 18;
+            this.txtMtr3Name.TabIndex = 6;
             // 
-            // btnMtr3Sel
+            // btnMtrSel3
             // 
-            this.btnMtr3Sel.Location = new System.Drawing.Point(424, 71);
-            this.btnMtr3Sel.Name = "btnMtr3Sel";
-            this.btnMtr3Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnMtr3Sel.TabIndex = 21;
-            this.btnMtr3Sel.Text = "Motor Selection";
-            this.btnMtr3Sel.UseVisualStyleBackColor = true;
+            this.btnMtrSel3.Location = new System.Drawing.Point(424, 71);
+            this.btnMtrSel3.Name = "btnMtrSel3";
+            this.btnMtrSel3.Size = new System.Drawing.Size(100, 23);
+            this.btnMtrSel3.TabIndex = 8;
+            this.btnMtrSel3.Text = "Motor Selection";
+            this.btnMtrSel3.UseVisualStyleBackColor = true;
+            this.btnMtrSel3.Click += new System.EventHandler(this.btnMtrSel_Click);
             // 
             // lblMtr3Name
             // 
@@ -373,23 +377,24 @@
             this.cmbMtr3HP.Location = new System.Drawing.Point(359, 74);
             this.cmbMtr3HP.Name = "cmbMtr3HP";
             this.cmbMtr3HP.Size = new System.Drawing.Size(59, 21);
-            this.cmbMtr3HP.TabIndex = 19;
+            this.cmbMtr3HP.TabIndex = 7;
             // 
             // txtMtr2Name
             // 
             this.txtMtr2Name.Location = new System.Drawing.Point(89, 45);
             this.txtMtr2Name.Name = "txtMtr2Name";
             this.txtMtr2Name.Size = new System.Drawing.Size(201, 20);
-            this.txtMtr2Name.TabIndex = 13;
+            this.txtMtr2Name.TabIndex = 3;
             // 
-            // btnMtr2Sel
+            // btnMtrSel2
             // 
-            this.btnMtr2Sel.Location = new System.Drawing.Point(424, 44);
-            this.btnMtr2Sel.Name = "btnMtr2Sel";
-            this.btnMtr2Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnMtr2Sel.TabIndex = 16;
-            this.btnMtr2Sel.Text = "Motor Selection";
-            this.btnMtr2Sel.UseVisualStyleBackColor = true;
+            this.btnMtrSel2.Location = new System.Drawing.Point(424, 44);
+            this.btnMtrSel2.Name = "btnMtrSel2";
+            this.btnMtrSel2.Size = new System.Drawing.Size(100, 23);
+            this.btnMtrSel2.TabIndex = 5;
+            this.btnMtrSel2.Text = "Motor Selection";
+            this.btnMtrSel2.UseVisualStyleBackColor = true;
+            this.btnMtrSel2.Click += new System.EventHandler(this.btnMtrSel_Click);
             // 
             // lblMtr2Name
             // 
@@ -415,7 +420,7 @@
             this.cmbMtr2HP.Location = new System.Drawing.Point(359, 47);
             this.cmbMtr2HP.Name = "cmbMtr2HP";
             this.cmbMtr2HP.Size = new System.Drawing.Size(59, 21);
-            this.cmbMtr2HP.TabIndex = 14;
+            this.cmbMtr2HP.TabIndex = 4;
             // 
             // label30
             // 
@@ -431,7 +436,7 @@
             this.txtDrv1Name.Location = new System.Drawing.Point(89, 20);
             this.txtDrv1Name.Name = "txtDrv1Name";
             this.txtDrv1Name.Size = new System.Drawing.Size(125, 20);
-            this.txtDrv1Name.TabIndex = 11;
+            this.txtDrv1Name.TabIndex = 0;
             // 
             // label31
             // 
@@ -447,7 +452,7 @@
             this.txtDrv1DefHV.Location = new System.Drawing.Point(359, 19);
             this.txtDrv1DefHV.Name = "txtDrv1DefHV";
             this.txtDrv1DefHV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv1DefHV.TabIndex = 18;
+            this.txtDrv1DefHV.TabIndex = 2;
             // 
             // label32
             // 
@@ -463,14 +468,14 @@
             this.txtDrv1DefLV.Location = new System.Drawing.Point(555, 19);
             this.txtDrv1DefLV.Name = "txtDrv1DefLV";
             this.txtDrv1DefLV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv1DefLV.TabIndex = 20;
+            this.txtDrv1DefLV.TabIndex = 3;
             // 
             // btnDrv1Sel
             // 
             this.btnDrv1Sel.Location = new System.Drawing.Point(505, 45);
             this.btnDrv1Sel.Name = "btnDrv1Sel";
             this.btnDrv1Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnDrv1Sel.TabIndex = 21;
+            this.btnDrv1Sel.TabIndex = 1;
             this.btnDrv1Sel.Text = "Drive Selection";
             this.btnDrv1Sel.UseVisualStyleBackColor = true;
             // 
@@ -492,7 +497,7 @@
             this.grpDrv1.Location = new System.Drawing.Point(12, 255);
             this.grpDrv1.Name = "grpDrv1";
             this.grpDrv1.Size = new System.Drawing.Size(613, 79);
-            this.grpDrv1.TabIndex = 14;
+            this.grpDrv1.TabIndex = 3;
             this.grpDrv1.TabStop = false;
             this.grpDrv1.Text = "Variable Speed Drive 1 Information";
             // 
@@ -511,7 +516,7 @@
             this.chkDrv1Mtr5.Location = new System.Drawing.Point(433, 47);
             this.chkDrv1Mtr5.Name = "chkDrv1Mtr5";
             this.chkDrv1Mtr5.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv1Mtr5.TabIndex = 29;
+            this.chkDrv1Mtr5.TabIndex = 8;
             this.chkDrv1Mtr5.Text = "Motor 5";
             this.chkDrv1Mtr5.UseVisualStyleBackColor = true;
             // 
@@ -521,7 +526,7 @@
             this.chkDrv1Mtr4.Location = new System.Drawing.Point(353, 47);
             this.chkDrv1Mtr4.Name = "chkDrv1Mtr4";
             this.chkDrv1Mtr4.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv1Mtr4.TabIndex = 28;
+            this.chkDrv1Mtr4.TabIndex = 7;
             this.chkDrv1Mtr4.Text = "Motor 4";
             this.chkDrv1Mtr4.UseVisualStyleBackColor = true;
             // 
@@ -531,7 +536,7 @@
             this.chkDrv1Mtr3.Location = new System.Drawing.Point(273, 47);
             this.chkDrv1Mtr3.Name = "chkDrv1Mtr3";
             this.chkDrv1Mtr3.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv1Mtr3.TabIndex = 27;
+            this.chkDrv1Mtr3.TabIndex = 6;
             this.chkDrv1Mtr3.Text = "Motor 3";
             this.chkDrv1Mtr3.UseVisualStyleBackColor = true;
             // 
@@ -541,7 +546,7 @@
             this.chkDrv1Mtr2.Location = new System.Drawing.Point(193, 47);
             this.chkDrv1Mtr2.Name = "chkDrv1Mtr2";
             this.chkDrv1Mtr2.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv1Mtr2.TabIndex = 26;
+            this.chkDrv1Mtr2.TabIndex = 5;
             this.chkDrv1Mtr2.Text = "Motor 2";
             this.chkDrv1Mtr2.UseVisualStyleBackColor = true;
             // 
@@ -551,21 +556,23 @@
             this.chkDrv1Mtr1.Location = new System.Drawing.Point(113, 47);
             this.chkDrv1Mtr1.Name = "chkDrv1Mtr1";
             this.chkDrv1Mtr1.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv1Mtr1.TabIndex = 25;
+            this.chkDrv1Mtr1.TabIndex = 4;
             this.chkDrv1Mtr1.Text = "Motor 1";
             this.chkDrv1Mtr1.UseVisualStyleBackColor = true;
             // 
             // chkVFDMach
             // 
+            this.chkVFDMach.AutoCheck = false;
             this.chkVFDMach.AutoSize = true;
             this.chkVFDMach.Location = new System.Drawing.Point(6, 19);
             this.chkVFDMach.Name = "chkVFDMach";
             this.chkVFDMach.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkVFDMach.Size = new System.Drawing.Size(192, 17);
-            this.chkVFDMach.TabIndex = 19;
+            this.chkVFDMach.TabIndex = 0;
             this.chkVFDMach.Text = ":Variable Frequency Drive Machine";
             this.chkVFDMach.UseVisualStyleBackColor = true;
             this.chkVFDMach.CheckedChanged += new System.EventHandler(this.chkVFDMach_CheckedChanged);
+            this.chkVFDMach.Click += new System.EventHandler(this.chkVFDMach_Click);
             // 
             // grpGenInf
             // 
@@ -578,7 +585,7 @@
             this.grpGenInf.Location = new System.Drawing.Point(12, 12);
             this.grpGenInf.Name = "grpGenInf";
             this.grpGenInf.Size = new System.Drawing.Size(298, 71);
-            this.grpGenInf.TabIndex = 23;
+            this.grpGenInf.TabIndex = 0;
             this.grpGenInf.TabStop = false;
             this.grpGenInf.Text = "General Information";
             // 
@@ -606,7 +613,7 @@
             0});
             this.nudMtrCnt.Name = "nudMtrCnt";
             this.nudMtrCnt.Size = new System.Drawing.Size(46, 20);
-            this.nudMtrCnt.TabIndex = 27;
+            this.nudMtrCnt.TabIndex = 2;
             this.nudMtrCnt.Value = new decimal(new int[] {
             1,
             0,
@@ -619,7 +626,7 @@
             this.txtMachDesc.Location = new System.Drawing.Point(119, 44);
             this.txtMachDesc.Name = "txtMachDesc";
             this.txtMachDesc.Size = new System.Drawing.Size(171, 20);
-            this.txtMachDesc.TabIndex = 26;
+            this.txtMachDesc.TabIndex = 1;
             // 
             // label2
             // 
@@ -635,7 +642,7 @@
             this.txtMachCode.Location = new System.Drawing.Point(95, 18);
             this.txtMachCode.Name = "txtMachCode";
             this.txtMachCode.Size = new System.Drawing.Size(51, 20);
-            this.txtMachCode.TabIndex = 24;
+            this.txtMachCode.TabIndex = 0;
             // 
             // label1
             // 
@@ -651,17 +658,18 @@
             this.btnDel.Location = new System.Drawing.Point(550, 70);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
-            this.btnDel.TabIndex = 31;
+            this.btnDel.TabIndex = 10;
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Visible = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnExitCan
             // 
             this.btnExitCan.Location = new System.Drawing.Point(550, 12);
             this.btnExitCan.Name = "btnExitCan";
             this.btnExitCan.Size = new System.Drawing.Size(75, 23);
-            this.btnExitCan.TabIndex = 30;
+            this.btnExitCan.TabIndex = 8;
             this.btnExitCan.Text = "Exit";
             this.btnExitCan.UseVisualStyleBackColor = true;
             this.btnExitCan.Click += new System.EventHandler(this.btnExitCan_Click);
@@ -671,9 +679,10 @@
             this.btnModSave.Location = new System.Drawing.Point(550, 41);
             this.btnModSave.Name = "btnModSave";
             this.btnModSave.Size = new System.Drawing.Size(75, 23);
-            this.btnModSave.TabIndex = 29;
+            this.btnModSave.TabIndex = 9;
             this.btnModSave.Text = "Modify";
             this.btnModSave.UseVisualStyleBackColor = true;
+            this.btnModSave.Visible = false;
             this.btnModSave.Click += new System.EventHandler(this.btnModSave_Click);
             // 
             // grpVFDOpts
@@ -684,7 +693,7 @@
             this.grpVFDOpts.Location = new System.Drawing.Point(316, 12);
             this.grpVFDOpts.Name = "grpVFDOpts";
             this.grpVFDOpts.Size = new System.Drawing.Size(226, 71);
-            this.grpVFDOpts.TabIndex = 24;
+            this.grpVFDOpts.TabIndex = 2;
             this.grpVFDOpts.TabStop = false;
             this.grpVFDOpts.Text = "VFD Options";
             // 
@@ -706,7 +715,7 @@
             this.grpDrv3.Location = new System.Drawing.Point(12, 423);
             this.grpDrv3.Name = "grpDrv3";
             this.grpDrv3.Size = new System.Drawing.Size(613, 77);
-            this.grpDrv3.TabIndex = 33;
+            this.grpDrv3.TabIndex = 5;
             this.grpDrv3.TabStop = false;
             this.grpDrv3.Text = "Variable Speed Drive 1 Information";
             // 
@@ -725,7 +734,7 @@
             this.chkDrv3Mtr5.Location = new System.Drawing.Point(433, 47);
             this.chkDrv3Mtr5.Name = "chkDrv3Mtr5";
             this.chkDrv3Mtr5.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv3Mtr5.TabIndex = 29;
+            this.chkDrv3Mtr5.TabIndex = 8;
             this.chkDrv3Mtr5.Text = "Motor 5";
             this.chkDrv3Mtr5.UseVisualStyleBackColor = true;
             // 
@@ -735,7 +744,7 @@
             this.chkDrv3Mtr4.Location = new System.Drawing.Point(353, 47);
             this.chkDrv3Mtr4.Name = "chkDrv3Mtr4";
             this.chkDrv3Mtr4.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv3Mtr4.TabIndex = 28;
+            this.chkDrv3Mtr4.TabIndex = 7;
             this.chkDrv3Mtr4.Text = "Motor 4";
             this.chkDrv3Mtr4.UseVisualStyleBackColor = true;
             // 
@@ -745,7 +754,7 @@
             this.chkDrv3Mtr3.Location = new System.Drawing.Point(273, 47);
             this.chkDrv3Mtr3.Name = "chkDrv3Mtr3";
             this.chkDrv3Mtr3.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv3Mtr3.TabIndex = 27;
+            this.chkDrv3Mtr3.TabIndex = 6;
             this.chkDrv3Mtr3.Text = "Motor 3";
             this.chkDrv3Mtr3.UseVisualStyleBackColor = true;
             // 
@@ -755,7 +764,7 @@
             this.chkDrv3Mtr2.Location = new System.Drawing.Point(193, 47);
             this.chkDrv3Mtr2.Name = "chkDrv3Mtr2";
             this.chkDrv3Mtr2.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv3Mtr2.TabIndex = 26;
+            this.chkDrv3Mtr2.TabIndex = 5;
             this.chkDrv3Mtr2.Text = "Motor 2";
             this.chkDrv3Mtr2.UseVisualStyleBackColor = true;
             // 
@@ -764,7 +773,7 @@
             this.btnDrv3Sel.Location = new System.Drawing.Point(505, 45);
             this.btnDrv3Sel.Name = "btnDrv3Sel";
             this.btnDrv3Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnDrv3Sel.TabIndex = 21;
+            this.btnDrv3Sel.TabIndex = 1;
             this.btnDrv3Sel.Text = "Drive Selection";
             this.btnDrv3Sel.UseVisualStyleBackColor = true;
             // 
@@ -774,7 +783,7 @@
             this.chkDrv3Mtr1.Location = new System.Drawing.Point(113, 47);
             this.chkDrv3Mtr1.Name = "chkDrv3Mtr1";
             this.chkDrv3Mtr1.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv3Mtr1.TabIndex = 25;
+            this.chkDrv3Mtr1.TabIndex = 4;
             this.chkDrv3Mtr1.Text = "Motor 1";
             this.chkDrv3Mtr1.UseVisualStyleBackColor = true;
             // 
@@ -783,7 +792,7 @@
             this.txtDrv3DefLV.Location = new System.Drawing.Point(555, 19);
             this.txtDrv3DefLV.Name = "txtDrv3DefLV";
             this.txtDrv3DefLV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv3DefLV.TabIndex = 20;
+            this.txtDrv3DefLV.TabIndex = 3;
             // 
             // label11
             // 
@@ -799,7 +808,7 @@
             this.txtDrv3DefHV.Location = new System.Drawing.Point(359, 19);
             this.txtDrv3DefHV.Name = "txtDrv3DefHV";
             this.txtDrv3DefHV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv3DefHV.TabIndex = 18;
+            this.txtDrv3DefHV.TabIndex = 2;
             // 
             // label12
             // 
@@ -815,7 +824,7 @@
             this.txtDrv3Name.Location = new System.Drawing.Point(89, 20);
             this.txtDrv3Name.Name = "txtDrv3Name";
             this.txtDrv3Name.Size = new System.Drawing.Size(125, 20);
-            this.txtDrv3Name.TabIndex = 11;
+            this.txtDrv3Name.TabIndex = 0;
             // 
             // label13
             // 
@@ -844,7 +853,7 @@
             this.grpDrv4.Location = new System.Drawing.Point(12, 506);
             this.grpDrv4.Name = "grpDrv4";
             this.grpDrv4.Size = new System.Drawing.Size(613, 77);
-            this.grpDrv4.TabIndex = 34;
+            this.grpDrv4.TabIndex = 6;
             this.grpDrv4.TabStop = false;
             this.grpDrv4.Text = "Variable Speed Drive 1 Information";
             // 
@@ -863,7 +872,7 @@
             this.chkDrv4Mtr5.Location = new System.Drawing.Point(433, 47);
             this.chkDrv4Mtr5.Name = "chkDrv4Mtr5";
             this.chkDrv4Mtr5.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv4Mtr5.TabIndex = 29;
+            this.chkDrv4Mtr5.TabIndex = 8;
             this.chkDrv4Mtr5.Text = "Motor 5";
             this.chkDrv4Mtr5.UseVisualStyleBackColor = true;
             // 
@@ -873,7 +882,7 @@
             this.chkDrv4Mtr4.Location = new System.Drawing.Point(353, 47);
             this.chkDrv4Mtr4.Name = "chkDrv4Mtr4";
             this.chkDrv4Mtr4.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv4Mtr4.TabIndex = 28;
+            this.chkDrv4Mtr4.TabIndex = 7;
             this.chkDrv4Mtr4.Text = "Motor 4";
             this.chkDrv4Mtr4.UseVisualStyleBackColor = true;
             // 
@@ -883,7 +892,7 @@
             this.chkDrv4Mtr3.Location = new System.Drawing.Point(273, 47);
             this.chkDrv4Mtr3.Name = "chkDrv4Mtr3";
             this.chkDrv4Mtr3.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv4Mtr3.TabIndex = 27;
+            this.chkDrv4Mtr3.TabIndex = 6;
             this.chkDrv4Mtr3.Text = "Motor 3";
             this.chkDrv4Mtr3.UseVisualStyleBackColor = true;
             // 
@@ -893,7 +902,7 @@
             this.chkDrv4Mtr2.Location = new System.Drawing.Point(193, 47);
             this.chkDrv4Mtr2.Name = "chkDrv4Mtr2";
             this.chkDrv4Mtr2.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv4Mtr2.TabIndex = 26;
+            this.chkDrv4Mtr2.TabIndex = 5;
             this.chkDrv4Mtr2.Text = "Motor 2";
             this.chkDrv4Mtr2.UseVisualStyleBackColor = true;
             // 
@@ -902,7 +911,7 @@
             this.btnDrv4Sel.Location = new System.Drawing.Point(505, 45);
             this.btnDrv4Sel.Name = "btnDrv4Sel";
             this.btnDrv4Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnDrv4Sel.TabIndex = 21;
+            this.btnDrv4Sel.TabIndex = 1;
             this.btnDrv4Sel.Text = "Drive Selection";
             this.btnDrv4Sel.UseVisualStyleBackColor = true;
             // 
@@ -912,7 +921,7 @@
             this.chkDrv4Mtr1.Location = new System.Drawing.Point(113, 47);
             this.chkDrv4Mtr1.Name = "chkDrv4Mtr1";
             this.chkDrv4Mtr1.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv4Mtr1.TabIndex = 25;
+            this.chkDrv4Mtr1.TabIndex = 4;
             this.chkDrv4Mtr1.Text = "Motor 1";
             this.chkDrv4Mtr1.UseVisualStyleBackColor = true;
             // 
@@ -921,7 +930,7 @@
             this.txtDrv4DefLV.Location = new System.Drawing.Point(555, 19);
             this.txtDrv4DefLV.Name = "txtDrv4DefLV";
             this.txtDrv4DefLV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv4DefLV.TabIndex = 20;
+            this.txtDrv4DefLV.TabIndex = 3;
             // 
             // label15
             // 
@@ -937,7 +946,7 @@
             this.txtDrv4DefHV.Location = new System.Drawing.Point(359, 19);
             this.txtDrv4DefHV.Name = "txtDrv4DefHV";
             this.txtDrv4DefHV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv4DefHV.TabIndex = 18;
+            this.txtDrv4DefHV.TabIndex = 2;
             // 
             // label16
             // 
@@ -953,7 +962,7 @@
             this.txtDrv4Name.Location = new System.Drawing.Point(89, 20);
             this.txtDrv4Name.Name = "txtDrv4Name";
             this.txtDrv4Name.Size = new System.Drawing.Size(125, 20);
-            this.txtDrv4Name.TabIndex = 11;
+            this.txtDrv4Name.TabIndex = 0;
             // 
             // label17
             // 
@@ -982,7 +991,7 @@
             this.grpDrv5.Location = new System.Drawing.Point(12, 589);
             this.grpDrv5.Name = "grpDrv5";
             this.grpDrv5.Size = new System.Drawing.Size(613, 77);
-            this.grpDrv5.TabIndex = 35;
+            this.grpDrv5.TabIndex = 7;
             this.grpDrv5.TabStop = false;
             this.grpDrv5.Text = "Variable Speed Drive 1 Information";
             // 
@@ -1001,7 +1010,7 @@
             this.chkDrv5Mtr5.Location = new System.Drawing.Point(433, 47);
             this.chkDrv5Mtr5.Name = "chkDrv5Mtr5";
             this.chkDrv5Mtr5.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv5Mtr5.TabIndex = 29;
+            this.chkDrv5Mtr5.TabIndex = 8;
             this.chkDrv5Mtr5.Text = "Motor 5";
             this.chkDrv5Mtr5.UseVisualStyleBackColor = true;
             // 
@@ -1011,7 +1020,7 @@
             this.chkDrv5Mtr4.Location = new System.Drawing.Point(353, 47);
             this.chkDrv5Mtr4.Name = "chkDrv5Mtr4";
             this.chkDrv5Mtr4.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv5Mtr4.TabIndex = 28;
+            this.chkDrv5Mtr4.TabIndex = 7;
             this.chkDrv5Mtr4.Text = "Motor 4";
             this.chkDrv5Mtr4.UseVisualStyleBackColor = true;
             // 
@@ -1021,7 +1030,7 @@
             this.chkDrv5Mtr3.Location = new System.Drawing.Point(273, 47);
             this.chkDrv5Mtr3.Name = "chkDrv5Mtr3";
             this.chkDrv5Mtr3.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv5Mtr3.TabIndex = 27;
+            this.chkDrv5Mtr3.TabIndex = 6;
             this.chkDrv5Mtr3.Text = "Motor 3";
             this.chkDrv5Mtr3.UseVisualStyleBackColor = true;
             // 
@@ -1031,7 +1040,7 @@
             this.chkDrv5Mtr2.Location = new System.Drawing.Point(193, 47);
             this.chkDrv5Mtr2.Name = "chkDrv5Mtr2";
             this.chkDrv5Mtr2.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv5Mtr2.TabIndex = 26;
+            this.chkDrv5Mtr2.TabIndex = 5;
             this.chkDrv5Mtr2.Text = "Motor 2";
             this.chkDrv5Mtr2.UseVisualStyleBackColor = true;
             // 
@@ -1040,7 +1049,7 @@
             this.btnDrv5Sel.Location = new System.Drawing.Point(505, 45);
             this.btnDrv5Sel.Name = "btnDrv5Sel";
             this.btnDrv5Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnDrv5Sel.TabIndex = 21;
+            this.btnDrv5Sel.TabIndex = 1;
             this.btnDrv5Sel.Text = "Drive Selection";
             this.btnDrv5Sel.UseVisualStyleBackColor = true;
             // 
@@ -1050,7 +1059,7 @@
             this.chkDrv5Mtr1.Location = new System.Drawing.Point(113, 47);
             this.chkDrv5Mtr1.Name = "chkDrv5Mtr1";
             this.chkDrv5Mtr1.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv5Mtr1.TabIndex = 25;
+            this.chkDrv5Mtr1.TabIndex = 4;
             this.chkDrv5Mtr1.Text = "Motor 1";
             this.chkDrv5Mtr1.UseVisualStyleBackColor = true;
             // 
@@ -1059,7 +1068,7 @@
             this.txtDrv5DefLV.Location = new System.Drawing.Point(555, 19);
             this.txtDrv5DefLV.Name = "txtDrv5DefLV";
             this.txtDrv5DefLV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv5DefLV.TabIndex = 20;
+            this.txtDrv5DefLV.TabIndex = 3;
             // 
             // label19
             // 
@@ -1075,7 +1084,7 @@
             this.txtDrv5DefHV.Location = new System.Drawing.Point(359, 19);
             this.txtDrv5DefHV.Name = "txtDrv5DefHV";
             this.txtDrv5DefHV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv5DefHV.TabIndex = 18;
+            this.txtDrv5DefHV.TabIndex = 2;
             // 
             // label20
             // 
@@ -1091,7 +1100,7 @@
             this.txtDrv5Name.Location = new System.Drawing.Point(89, 20);
             this.txtDrv5Name.Name = "txtDrv5Name";
             this.txtDrv5Name.Size = new System.Drawing.Size(125, 20);
-            this.txtDrv5Name.TabIndex = 11;
+            this.txtDrv5Name.TabIndex = 0;
             // 
             // label21
             // 
@@ -1120,7 +1129,7 @@
             this.grpDrv2.Location = new System.Drawing.Point(12, 340);
             this.grpDrv2.Name = "grpDrv2";
             this.grpDrv2.Size = new System.Drawing.Size(613, 79);
-            this.grpDrv2.TabIndex = 36;
+            this.grpDrv2.TabIndex = 4;
             this.grpDrv2.TabStop = false;
             this.grpDrv2.Text = "Variable Speed Drive 1 Information";
             // 
@@ -1139,7 +1148,7 @@
             this.chkDrv2Mtr5.Location = new System.Drawing.Point(433, 47);
             this.chkDrv2Mtr5.Name = "chkDrv2Mtr5";
             this.chkDrv2Mtr5.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv2Mtr5.TabIndex = 29;
+            this.chkDrv2Mtr5.TabIndex = 8;
             this.chkDrv2Mtr5.Text = "Motor 5";
             this.chkDrv2Mtr5.UseVisualStyleBackColor = true;
             // 
@@ -1149,7 +1158,7 @@
             this.chkDrv2Mtr4.Location = new System.Drawing.Point(353, 47);
             this.chkDrv2Mtr4.Name = "chkDrv2Mtr4";
             this.chkDrv2Mtr4.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv2Mtr4.TabIndex = 28;
+            this.chkDrv2Mtr4.TabIndex = 7;
             this.chkDrv2Mtr4.Text = "Motor 4";
             this.chkDrv2Mtr4.UseVisualStyleBackColor = true;
             // 
@@ -1159,7 +1168,7 @@
             this.chkDrv2Mtr3.Location = new System.Drawing.Point(273, 47);
             this.chkDrv2Mtr3.Name = "chkDrv2Mtr3";
             this.chkDrv2Mtr3.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv2Mtr3.TabIndex = 27;
+            this.chkDrv2Mtr3.TabIndex = 6;
             this.chkDrv2Mtr3.Text = "Motor 3";
             this.chkDrv2Mtr3.UseVisualStyleBackColor = true;
             // 
@@ -1169,7 +1178,7 @@
             this.chkDrv2Mtr2.Location = new System.Drawing.Point(193, 47);
             this.chkDrv2Mtr2.Name = "chkDrv2Mtr2";
             this.chkDrv2Mtr2.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv2Mtr2.TabIndex = 26;
+            this.chkDrv2Mtr2.TabIndex = 5;
             this.chkDrv2Mtr2.Text = "Motor 2";
             this.chkDrv2Mtr2.UseVisualStyleBackColor = true;
             // 
@@ -1178,7 +1187,7 @@
             this.btnDrv2Sel.Location = new System.Drawing.Point(505, 45);
             this.btnDrv2Sel.Name = "btnDrv2Sel";
             this.btnDrv2Sel.Size = new System.Drawing.Size(100, 23);
-            this.btnDrv2Sel.TabIndex = 21;
+            this.btnDrv2Sel.TabIndex = 1;
             this.btnDrv2Sel.Text = "Drive Selection";
             this.btnDrv2Sel.UseVisualStyleBackColor = true;
             // 
@@ -1188,7 +1197,7 @@
             this.chkDrv2Mtr1.Location = new System.Drawing.Point(113, 47);
             this.chkDrv2Mtr1.Name = "chkDrv2Mtr1";
             this.chkDrv2Mtr1.Size = new System.Drawing.Size(62, 17);
-            this.chkDrv2Mtr1.TabIndex = 25;
+            this.chkDrv2Mtr1.TabIndex = 4;
             this.chkDrv2Mtr1.Text = "Motor 1";
             this.chkDrv2Mtr1.UseVisualStyleBackColor = true;
             // 
@@ -1197,7 +1206,7 @@
             this.txtDrv2DefLV.Location = new System.Drawing.Point(555, 19);
             this.txtDrv2DefLV.Name = "txtDrv2DefLV";
             this.txtDrv2DefLV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv2DefLV.TabIndex = 20;
+            this.txtDrv2DefLV.TabIndex = 3;
             // 
             // label6
             // 
@@ -1213,7 +1222,7 @@
             this.txtDrv2DefHV.Location = new System.Drawing.Point(359, 19);
             this.txtDrv2DefHV.Name = "txtDrv2DefHV";
             this.txtDrv2DefHV.Size = new System.Drawing.Size(50, 20);
-            this.txtDrv2DefHV.TabIndex = 18;
+            this.txtDrv2DefHV.TabIndex = 2;
             // 
             // label8
             // 
@@ -1229,7 +1238,7 @@
             this.txtDrv2Name.Location = new System.Drawing.Point(89, 20);
             this.txtDrv2Name.Name = "txtDrv2Name";
             this.txtDrv2Name.Size = new System.Drawing.Size(125, 20);
-            this.txtDrv2Name.TabIndex = 11;
+            this.txtDrv2Name.TabIndex = 0;
             // 
             // label9
             // 
@@ -1294,25 +1303,25 @@
         private System.Windows.Forms.Label lblMtr1HP;
         private System.Windows.Forms.NumericUpDown nudDrvCnt;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnMtr1Sel;
+        private System.Windows.Forms.Button btnMtrSel1;
         private System.Windows.Forms.GroupBox grpMtr;
         private System.Windows.Forms.TextBox txtMtr5Name;
-        private System.Windows.Forms.Button btnMtr5Sel;
+        private System.Windows.Forms.Button btnMtrSel5;
         private System.Windows.Forms.Label lblMtr5Name;
         private System.Windows.Forms.Label lblMtr5HP;
         private System.Windows.Forms.ComboBox cmbMtr5HP;
         private System.Windows.Forms.TextBox txtMtr4Name;
-        private System.Windows.Forms.Button btnMtr4Sel;
+        private System.Windows.Forms.Button btnMtrSel4;
         private System.Windows.Forms.Label lblMtr4Name;
         private System.Windows.Forms.Label lblMtr4HP;
         private System.Windows.Forms.ComboBox cmbMtr4HP;
         private System.Windows.Forms.TextBox txtMtr3Name;
-        private System.Windows.Forms.Button btnMtr3Sel;
+        private System.Windows.Forms.Button btnMtrSel3;
         private System.Windows.Forms.Label lblMtr3Name;
         private System.Windows.Forms.Label lblMtr3HP;
         private System.Windows.Forms.ComboBox cmbMtr3HP;
         private System.Windows.Forms.TextBox txtMtr2Name;
-        private System.Windows.Forms.Button btnMtr2Sel;
+        private System.Windows.Forms.Button btnMtrSel2;
         private System.Windows.Forms.Label lblMtr2Name;
         private System.Windows.Forms.Label lblMtr2HP;
         private System.Windows.Forms.ComboBox cmbMtr2HP;

@@ -34,6 +34,9 @@ namespace MDI_VFD.Motor
         MtrValCollection Vals = new MtrValCollection();
         List<string> OldVals = new List<string>();
 
+        // Machine Motor Default Selection Detail View globals
+        bool MachMtrDetail = false;
+
         #endregion
 
         #region Class Contructors
@@ -55,6 +58,20 @@ namespace MDI_VFD.Motor
             StartMode = Mode;
             txtMtrNum.Text = p_MtrNum;
         }
+
+        // This constructor is only used for 
+        public frmMtrData(dBClient p_SqlClient, bool p_MachMtrDetail, string p_MtrNum)
+        {
+            InitializeComponent();
+
+            dBConn = p_SqlClient;
+            Mode = ModeView;
+            StartMode = Mode;
+            MachMtrDetail = p_MachMtrDetail;
+
+            txtMtrNum.Text = p_MtrNum;
+
+        }
         #endregion
 
         #region Form Load Functions
@@ -73,18 +90,21 @@ namespace MDI_VFD.Motor
             if(txtMtrNum.Text != "")
             {
                 dBConn.QueryStr(TblMtr, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
-                DataTable tbl = new DataTable();
-                tbl = dBConn.Table.Copy();
-                FillEssInf(ref tbl);
-                FillUrschInf(ref tbl);
-                FillGenInf(ref tbl);
+                if(dBConn.Table.Rows.Count > 0)
+                {
+                    DataTable tbl = new DataTable();
+                    tbl = dBConn.Table.Copy();
+                    FillEssInf(ref tbl);
+                    FillUrschInf(ref tbl);
+                    FillGenInf(ref tbl);
 
-                dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
-                tbl = new DataTable();
-                tbl = dBConn.Table.Copy();
-                tbl.Columns.Remove("MTR_NUM");
-                FillFLCData(ref tbl);
-                btnExitCan.Select();
+                    dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
+                    tbl = new DataTable();
+                    tbl = dBConn.Table.Copy();
+                    tbl.Columns.Remove("MTR_NUM");
+                    FillFLCData(ref tbl);
+                    btnExitCan.Select();
+                }
             }
             else
                 txtMtrNum.Select();
@@ -92,6 +112,13 @@ namespace MDI_VFD.Motor
             ObjStoreOld();
             SetDataMode();
             FillCBItems();
+
+            if(MachMtrDetail)
+            {
+                btnDelete.Visible = false;
+                btnModSave.Visible = false;
+            }
+
         }
         #endregion
 
@@ -256,12 +283,14 @@ namespace MDI_VFD.Motor
                 Vals.ValList[i].Ctrl.Enabled = CtrlEn;
             btnBrwsUL.Enabled = CtrlEn;
             btnBrwsVend.Enabled = CtrlEn;
+            btnDescSrch.Enabled = CtrlEn;
 
             txtMtrNum.Enabled = MtrNumEn;
         }
         #endregion
 
         #region Exising Motor Data Form Fill Methods 
+
         private void FillEssInf(ref DataTable p_Tbl)
         {
             cmbHP.Text = p_Tbl.Rows[0]["MTR_HP"].ToString();
@@ -554,6 +583,7 @@ namespace MDI_VFD.Motor
             }
         }
         #endregion
+
     }
 
     public class MtrVal

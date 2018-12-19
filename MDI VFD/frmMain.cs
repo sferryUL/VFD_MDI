@@ -25,7 +25,7 @@ namespace MDI_VFD
         frmProg VFDProg;
         frmMonMaint VFDMonMaint;
         frmFlt VFDFlt;
-        frmMtrInfo MtrInfo;
+        frmMtrList MtrInfo;
         frmMachList MachList;
 
         byte SlaveAddr = 0x1F;
@@ -88,7 +88,7 @@ namespace MDI_VFD
                     MtrInfo.Dispose();
                     MtrInfo = null;
                     break;
-                case "frmMachInfo":
+                case "frmMachList":
                     MachList.Dispose();
                     MachList = null;
                     break;
@@ -323,7 +323,7 @@ namespace MDI_VFD
         {
             if(MtrInfo == null)
             {
-                MtrInfo = new frmMtrInfo(dBConn);
+                MtrInfo = new frmMtrList(dBConn);
                 MtrInfo.MdiParent = this;
                 MtrInfo.FormClosing += frmMain_ChildClosing;
                 MtrInfo.Show();

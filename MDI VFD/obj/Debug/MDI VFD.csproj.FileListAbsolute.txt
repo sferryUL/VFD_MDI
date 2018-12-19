@@ -22,7 +22,6 @@ C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Machine.frmMachDa
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Machine.frmMachList.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Machine.frmMachMtrDefs.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrData.resources
-C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrInfo.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmFlt.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonMaint.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.frmMonOp.resources
@@ -33,3 +32,4 @@ C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csproj.CoreCompil
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.exe
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.pdb
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csprojAssemblyReference.cache
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrList.resources

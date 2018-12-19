@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 using GenFunc;
+using System.Windows.Forms;
 
 namespace ULdB
 {
@@ -476,6 +477,8 @@ namespace ULdB
         {
             int ret_val = -1;
             
+            p_List.Clear();
+
             string sql = String.Format("SELECT COLUMN_NAME, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{0}'", p_Tbl);
             if(QuerySQL(sql) >= 0)
             {
@@ -534,5 +537,169 @@ namespace ULdB
             return new dBColInfo(this.Name, this.Nullable, this.DataType, this.CharLen);
         }
     }
+    
+    public class dBColCtrlData
+    {
+        public dBColInfo ColInf;
+        public Control Ctrl;
+        public string Value;
+
+        public dBColCtrlData() { }
+
+        public dBColCtrlData(dBColInfo p_ColInf, Control p_Ctrl, string p_Val)
+        {
+            ColInf = (dBColInfo)p_ColInf.Clone();
+            Ctrl = p_Ctrl;
+            Value = p_Val;
+        }
+
+        public dBColCtrlData Copy()
+        {
+            return new dBColCtrlData(ColInf, Ctrl, Value);
+        }
+
+    }
+
+    public class dBRowCtrlData : InternalDataCollectionBase
+    {
+        // Class Variables
+        public List<dBColCtrlData> ColData;
+
+        /*********** Class Constructors ***********/
+        public dBRowCtrlData() { ColData = new List<dBColCtrlData>(); }
+
+        /*********** Class Fields ***********/
+        // Indexers
+        // Indexer gets and sets the list ColData values as dBColCtrlData objects
+        public dBColCtrlData this[int index]
+        {
+            get => ColData[index];
+            set => ColData[index] = value;
+        }
+
+        // Assigns the actual control object to the dBColCtrlData object
+        public Control this[string index]
+        {
+            get
+            {
+                int idx = FindIndex(index);
+                return ColData[idx].Ctrl;
+            }
+            set
+            {
+                int idx = FindIndex(index);
+                ColData[idx].Ctrl = value;
+            }
+        }
+
+        // Collection Methods
+        public void Add(dBColCtrlData p_Val) { ColData.Add(p_Val); }
+        public void Clear() { ColData.Clear(); }
+        public override int Count { get => ColData.Count(); }
+
+        public void Trim(int p_StrtIdx)
+        {
+            int rng = ColData.Count - p_StrtIdx;
+            if(rng > 0)
+                ColData.RemoveRange(p_StrtIdx, rng);
+        }
+
+        // Search Methods
+        public int FindIndex(string p_Name)
+        {
+            int ret_val = -1;
+
+            for(int i = 0; i < ColData.Count; i++)
+            {
+                if(ColData[i].ColInf.Name.Equals(p_Name))
+                {
+                    ret_val = i;
+                    break;
+                }
+            }
+            return ret_val;
+        }
+
+        // Database assistance methods
+        public void SetValues()
+        {
+            for(int i = 0; i < ColData.Count; i++)
+            {
+                if(ColData[i].Ctrl.Text != "")
+                {
+                    switch(ColData[i].ColInf.DataType)
+                    {
+                        case "nchar":
+                        case "nvarchar":
+                        case "varchar":
+                        case "char":
+                            ColData[i].Value = String.Format("'{0}'", ColData[i].Ctrl.Text);
+                            break;
+                        default:
+                            ColData[i].Value = ColData[i].Ctrl.Text;
+                            break;
+                    }
+                }
+                else
+                    ColData[i].Value = "NULL";
+            }
+        }
+
+        public int GetdBInsStrs(ref string p_Cols, ref string p_Vals)
+        {
+            int cnt = 0;
+
+            p_Cols = ""; p_Vals = "";
+
+            for(int i = 0; i < ColData.Count; i++)
+            {
+                if(ColData[i].Value != null)
+                {
+                    p_Cols += String.Format("{0}, ", ColData[i].ColInf.Name);
+                    p_Vals += String.Format("{0}, ", ColData[i].Value);
+                    cnt++;
+                }
+            }
+
+            if(cnt > 0)
+            {
+                p_Cols = p_Cols.Substring(0, p_Cols.Length - 2);
+                p_Vals = p_Vals.Substring(0, p_Vals.Length - 2);
+            }
+
+            return cnt;
+        }
+
+        /// <summary>
+        /// Extracts column and update values from the dBColCtrlData list for the class instantiation.
+        /// </summary>
+        /// <param name="p_Idx">List of integer index values to extract from the overall dBColCtrlData list</param>
+        /// <param name="p_Cols">String List object to store the column names to be updated</param>
+        /// <param name="p_Vals">String List object to store the update values matched with column names</param>
+        /// <returns>
+        /// integer value of the number of column and value pairs added to the Column and Value string lists
+        /// </returns>
+        public int GetdBUpdStrs(ref List<int> p_Idx, ref List<string> p_Cols, ref List<string> p_Vals)
+        {
+            int cnt = 0;
+
+            p_Cols.Clear();
+            p_Vals.Clear();
+
+            for(int i = 0; i < p_Idx.Count; i++)
+            {
+                if(ColData[p_Idx[i]].Value != null)
+                {
+                    p_Cols.Add(ColData[p_Idx[i]].ColInf.Name);
+                    p_Vals.Add(ColData[p_Idx[i]].Value);
+                    cnt++;
+                }
+            }
+
+            return cnt;
+        }
+    }
+
+    
 } // namespace ULdB
 

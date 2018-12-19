@@ -39,8 +39,8 @@
             this.cmMachList_MtrCnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmMachList_DrvCnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmMachList_ChrtCnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMachList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMachList.Location = new System.Drawing.Point(12, 12);
+            this.dgvMachList.MultiSelect = false;
             this.dgvMachList.Name = "dgvMachList";
             this.dgvMachList.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -85,6 +86,7 @@
             this.dgvMachList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvMachList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvMachList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMachList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMachList.Size = new System.Drawing.Size(581, 317);
             this.dgvMachList.TabIndex = 0;
@@ -138,32 +140,33 @@
             this.cmMachList_ChrtCnt.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cmMachList_ChrtCnt.Width = 90;
             // 
-            // button1
+            // btnInsert
             // 
-            this.button1.Location = new System.Drawing.Point(437, 335);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Insert";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnInsert.Location = new System.Drawing.Point(437, 335);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(75, 23);
+            this.btnInsert.TabIndex = 1;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // button2
+            // btnExit
             // 
-            this.button2.Location = new System.Drawing.Point(518, 335);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnExit.Location = new System.Drawing.Point(518, 335);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmMachList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 366);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.dgvMachList);
             this.Name = "frmMachList";
             this.Text = "Urschel Machine Listing";
@@ -176,8 +179,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvMachList;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmMachList_MachModel;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmMachList_ModDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmMachList_MtrCnt;

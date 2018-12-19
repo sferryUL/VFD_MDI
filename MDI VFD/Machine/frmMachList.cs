@@ -37,10 +37,7 @@ namespace MDI_VFD.Machine
 
         private void frmMachList_Load(object sender, EventArgs e)
         {
-            dBConn.Query(TblMachList, "MACH_CODE, MACH_DESC, MTR_CNT, DRV_CNT, CHRT_CNT");
-            DataTable tbl_list = dBConn.Table.Copy();
-            dgvMachList.DataSource = tbl_list;
-            dgvMachList.ClearSelection();
+            GetMachList(0, -1);
         }
 
         #endregion
@@ -87,16 +84,61 @@ namespace MDI_VFD.Machine
             if(row >= 0)
             {
                 string mach_code = dgvMachList.Rows[e.RowIndex].Cells[0].Value.ToString();
-                frmMachData mach_data = new frmMachData(dBConn, mach_code, 0);
-                mach_data.ShowDialog();
-
+                OpenMachDetails(mach_code);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnInsert_Click(object sender, EventArgs e)
         {
-            frmMachData mach_data = new frmMachData(dBConn);
-            mach_data.ShowDialog();
+            OpenMachDetails();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OpenMachDetails()
+        {
+            OpenMachDetails("");
+        }
+
+        private void OpenMachDetails(string p_MachCode)
+        {
+            frmMachData mach_data;
+            if(p_MachCode != "")
+                mach_data = new frmMachData(dBConn, p_MachCode, 0);
+            else
+                mach_data = new frmMachData(dBConn);
+
+            int scroll_idx = dgvMachList.FirstDisplayedScrollingRowIndex;
+            int sel_idx = - 1;
+            if(dgvMachList.SelectedRows.Count > 0)
+                sel_idx = dgvMachList.SelectedRows[0].Index;
+            
+            mach_data.ShowDialog();
+            
+            // Refresh the machine list view to show any changes
+            GetMachList(scroll_idx, sel_idx);
+        }
+
+        private void GetMachList(int p_ScrollIdx, int p_SelIdx)
+        {
+            
+            dBConn.Query(TblMachList, "MACH_CODE, MACH_DESC, MTR_CNT, DRV_CNT, CHRT_CNT");
+            DataTable tbl_list = dBConn.Table.Copy();
+            dgvMachList.DataSource = tbl_list;
+            dgvMachList.ClearSelection();
+
+
+            //dgvMachList.FirstDisplayedScrollingRowIndex = p_ScrollIdx;
+
+            //if((p_SelIdx >= 0) && (p_SelIdx <= dgvMachList.Rows.Count))
+            //    dgvMachList.Rows[p_SelIdx].Selected = true;
+            //else
+            //    dgvMachList.ClearSelection();
+        }
+
+        
     }
 }

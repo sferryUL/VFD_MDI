@@ -29,13 +29,21 @@
         private void InitializeComponent()
         {
             this.grp60Hz = new System.Windows.Forms.GroupBox();
+            this.btnMtr_575_60 = new System.Windows.Forms.Button();
             this.txtFLC_575_60 = new System.Windows.Forms.TextBox();
+            this.btnMtr_460_60 = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
+            this.btnMtr_380_60 = new System.Windows.Forms.Button();
             this.txtFLC_460_60 = new System.Windows.Forms.TextBox();
+            this.btnMtr_240_60 = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
+            this.btnMtr_230_60 = new System.Windows.Forms.Button();
             this.txtFLC_380_60 = new System.Windows.Forms.TextBox();
+            this.btnMtr_220_60 = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
+            this.btnMtr_208_60 = new System.Windows.Forms.Button();
             this.txtFLC_240_60 = new System.Windows.Forms.TextBox();
+            this.btnMtr_200_60 = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
             this.txtFLC_230_60 = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
@@ -46,6 +54,14 @@
             this.txtFLC_200_60 = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.grp50Hz = new System.Windows.Forms.GroupBox();
+            this.btnMtr_415_50 = new System.Windows.Forms.Button();
+            this.btnMtr_400_50 = new System.Windows.Forms.Button();
+            this.btnMtr_380_50 = new System.Windows.Forms.Button();
+            this.btnMtr_240_50 = new System.Windows.Forms.Button();
+            this.btnMtr_230_50 = new System.Windows.Forms.Button();
+            this.btnMtr_220_50 = new System.Windows.Forms.Button();
+            this.btnMtr_208_50 = new System.Windows.Forms.Button();
+            this.btnMtr_200_50 = new System.Windows.Forms.Button();
             this.txtFLC_415_50 = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtFLC_400_50 = new System.Windows.Forms.TextBox();
@@ -58,53 +74,39 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtFLC_220_50 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtFLC_200_50 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.txtFLC_208_50 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtFLC_200_50 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMachCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMtrName = new System.Windows.Forms.TextBox();
+            this.lblMtr1HP = new System.Windows.Forms.Label();
+            this.txtMtrHP = new System.Windows.Forms.TextBox();
+            this.btnLookup = new System.Windows.Forms.Button();
             this.grp60Hz.SuspendLayout();
             this.grp50Hz.SuspendLayout();
             this.SuspendLayout();
             // 
             // grp60Hz
             // 
-            this.grp60Hz.Controls.Add(this.button9);
+            this.grp60Hz.Controls.Add(this.btnMtr_575_60);
             this.grp60Hz.Controls.Add(this.txtFLC_575_60);
-            this.grp60Hz.Controls.Add(this.button10);
+            this.grp60Hz.Controls.Add(this.btnMtr_460_60);
             this.grp60Hz.Controls.Add(this.label32);
-            this.grp60Hz.Controls.Add(this.button11);
+            this.grp60Hz.Controls.Add(this.btnMtr_380_60);
             this.grp60Hz.Controls.Add(this.txtFLC_460_60);
-            this.grp60Hz.Controls.Add(this.button12);
+            this.grp60Hz.Controls.Add(this.btnMtr_240_60);
             this.grp60Hz.Controls.Add(this.label34);
-            this.grp60Hz.Controls.Add(this.button13);
+            this.grp60Hz.Controls.Add(this.btnMtr_230_60);
             this.grp60Hz.Controls.Add(this.txtFLC_380_60);
-            this.grp60Hz.Controls.Add(this.button14);
+            this.grp60Hz.Controls.Add(this.btnMtr_220_60);
             this.grp60Hz.Controls.Add(this.label36);
-            this.grp60Hz.Controls.Add(this.button15);
+            this.grp60Hz.Controls.Add(this.btnMtr_208_60);
             this.grp60Hz.Controls.Add(this.txtFLC_240_60);
-            this.grp60Hz.Controls.Add(this.button16);
+            this.grp60Hz.Controls.Add(this.btnMtr_200_60);
             this.grp60Hz.Controls.Add(this.label66);
             this.grp60Hz.Controls.Add(this.txtFLC_230_60);
             this.grp60Hz.Controls.Add(this.label40);
@@ -114,12 +116,22 @@
             this.grp60Hz.Controls.Add(this.label44);
             this.grp60Hz.Controls.Add(this.txtFLC_200_60);
             this.grp60Hz.Controls.Add(this.label47);
-            this.grp60Hz.Location = new System.Drawing.Point(259, 32);
+            this.grp60Hz.Location = new System.Drawing.Point(282, 32);
             this.grp60Hz.Name = "grp60Hz";
             this.grp60Hz.Size = new System.Drawing.Size(235, 235);
             this.grp60Hz.TabIndex = 106;
             this.grp60Hz.TabStop = false;
             this.grp60Hz.Text = "60 Hz Motors";
+            // 
+            // btnMtr_575_60
+            // 
+            this.btnMtr_575_60.Location = new System.Drawing.Point(174, 201);
+            this.btnMtr_575_60.Name = "btnMtr_575_60";
+            this.btnMtr_575_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_575_60.TabIndex = 114;
+            this.btnMtr_575_60.Text = "Details";
+            this.btnMtr_575_60.UseVisualStyleBackColor = true;
+            this.btnMtr_575_60.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // txtFLC_575_60
             // 
@@ -130,6 +142,16 @@
             this.txtFLC_575_60.TabIndex = 36;
             this.txtFLC_575_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnMtr_460_60
+            // 
+            this.btnMtr_460_60.Location = new System.Drawing.Point(174, 175);
+            this.btnMtr_460_60.Name = "btnMtr_460_60";
+            this.btnMtr_460_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_460_60.TabIndex = 113;
+            this.btnMtr_460_60.Text = "Details";
+            this.btnMtr_460_60.UseVisualStyleBackColor = true;
+            this.btnMtr_460_60.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
@@ -138,6 +160,16 @@
             this.label32.Size = new System.Drawing.Size(91, 13);
             this.label32.TabIndex = 27;
             this.label32.Text = "575 VAC / 60 Hz:";
+            // 
+            // btnMtr_380_60
+            // 
+            this.btnMtr_380_60.Location = new System.Drawing.Point(174, 149);
+            this.btnMtr_380_60.Name = "btnMtr_380_60";
+            this.btnMtr_380_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_380_60.TabIndex = 112;
+            this.btnMtr_380_60.Text = "Details";
+            this.btnMtr_380_60.UseVisualStyleBackColor = true;
+            this.btnMtr_380_60.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // txtFLC_460_60
             // 
@@ -148,6 +180,16 @@
             this.txtFLC_460_60.TabIndex = 35;
             this.txtFLC_460_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnMtr_240_60
+            // 
+            this.btnMtr_240_60.Location = new System.Drawing.Point(174, 123);
+            this.btnMtr_240_60.Name = "btnMtr_240_60";
+            this.btnMtr_240_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_240_60.TabIndex = 111;
+            this.btnMtr_240_60.Text = "Details";
+            this.btnMtr_240_60.UseVisualStyleBackColor = true;
+            this.btnMtr_240_60.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
             // label34
             // 
             this.label34.AutoSize = true;
@@ -156,6 +198,16 @@
             this.label34.Size = new System.Drawing.Size(91, 13);
             this.label34.TabIndex = 24;
             this.label34.Text = "460 VAC / 60 Hz:";
+            // 
+            // btnMtr_230_60
+            // 
+            this.btnMtr_230_60.Location = new System.Drawing.Point(174, 97);
+            this.btnMtr_230_60.Name = "btnMtr_230_60";
+            this.btnMtr_230_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_230_60.TabIndex = 110;
+            this.btnMtr_230_60.Text = "Details";
+            this.btnMtr_230_60.UseVisualStyleBackColor = true;
+            this.btnMtr_230_60.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // txtFLC_380_60
             // 
@@ -166,6 +218,16 @@
             this.txtFLC_380_60.TabIndex = 34;
             this.txtFLC_380_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnMtr_220_60
+            // 
+            this.btnMtr_220_60.Location = new System.Drawing.Point(174, 71);
+            this.btnMtr_220_60.Name = "btnMtr_220_60";
+            this.btnMtr_220_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_220_60.TabIndex = 109;
+            this.btnMtr_220_60.Text = "Details";
+            this.btnMtr_220_60.UseVisualStyleBackColor = true;
+            this.btnMtr_220_60.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
             // label36
             // 
             this.label36.AutoSize = true;
@@ -175,6 +237,16 @@
             this.label36.TabIndex = 21;
             this.label36.Text = "380 VAC / 60 Hz:";
             // 
+            // btnMtr_208_60
+            // 
+            this.btnMtr_208_60.Location = new System.Drawing.Point(174, 45);
+            this.btnMtr_208_60.Name = "btnMtr_208_60";
+            this.btnMtr_208_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_208_60.TabIndex = 108;
+            this.btnMtr_208_60.Text = "Details";
+            this.btnMtr_208_60.UseVisualStyleBackColor = true;
+            this.btnMtr_208_60.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
             // txtFLC_240_60
             // 
             this.txtFLC_240_60.Location = new System.Drawing.Point(105, 125);
@@ -183,6 +255,16 @@
             this.txtFLC_240_60.Size = new System.Drawing.Size(66, 20);
             this.txtFLC_240_60.TabIndex = 33;
             this.txtFLC_240_60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnMtr_200_60
+            // 
+            this.btnMtr_200_60.Location = new System.Drawing.Point(174, 19);
+            this.btnMtr_200_60.Name = "btnMtr_200_60";
+            this.btnMtr_200_60.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_200_60.TabIndex = 107;
+            this.btnMtr_200_60.Text = "Details";
+            this.btnMtr_200_60.UseVisualStyleBackColor = true;
+            this.btnMtr_200_60.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // label66
             // 
@@ -267,14 +349,14 @@
             // 
             // grp50Hz
             // 
-            this.grp50Hz.Controls.Add(this.button7);
-            this.grp50Hz.Controls.Add(this.button8);
-            this.grp50Hz.Controls.Add(this.button4);
-            this.grp50Hz.Controls.Add(this.button5);
-            this.grp50Hz.Controls.Add(this.button6);
-            this.grp50Hz.Controls.Add(this.button3);
-            this.grp50Hz.Controls.Add(this.button2);
-            this.grp50Hz.Controls.Add(this.button1);
+            this.grp50Hz.Controls.Add(this.btnMtr_415_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_400_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_380_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_240_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_230_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_220_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_208_50);
+            this.grp50Hz.Controls.Add(this.btnMtr_200_50);
             this.grp50Hz.Controls.Add(this.txtFLC_415_50);
             this.grp50Hz.Controls.Add(this.label30);
             this.grp50Hz.Controls.Add(this.txtFLC_400_50);
@@ -297,6 +379,86 @@
             this.grp50Hz.TabIndex = 105;
             this.grp50Hz.TabStop = false;
             this.grp50Hz.Text = "50 Hz Motors";
+            // 
+            // btnMtr_415_50
+            // 
+            this.btnMtr_415_50.Location = new System.Drawing.Point(174, 201);
+            this.btnMtr_415_50.Name = "btnMtr_415_50";
+            this.btnMtr_415_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_415_50.TabIndex = 35;
+            this.btnMtr_415_50.Text = "Details";
+            this.btnMtr_415_50.UseVisualStyleBackColor = true;
+            this.btnMtr_415_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_400_50
+            // 
+            this.btnMtr_400_50.Location = new System.Drawing.Point(174, 175);
+            this.btnMtr_400_50.Name = "btnMtr_400_50";
+            this.btnMtr_400_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_400_50.TabIndex = 34;
+            this.btnMtr_400_50.Text = "Details";
+            this.btnMtr_400_50.UseVisualStyleBackColor = true;
+            this.btnMtr_400_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_380_50
+            // 
+            this.btnMtr_380_50.Location = new System.Drawing.Point(174, 149);
+            this.btnMtr_380_50.Name = "btnMtr_380_50";
+            this.btnMtr_380_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_380_50.TabIndex = 33;
+            this.btnMtr_380_50.Text = "Details";
+            this.btnMtr_380_50.UseVisualStyleBackColor = true;
+            this.btnMtr_380_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_240_50
+            // 
+            this.btnMtr_240_50.Location = new System.Drawing.Point(174, 123);
+            this.btnMtr_240_50.Name = "btnMtr_240_50";
+            this.btnMtr_240_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_240_50.TabIndex = 32;
+            this.btnMtr_240_50.Text = "Details";
+            this.btnMtr_240_50.UseVisualStyleBackColor = true;
+            this.btnMtr_240_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_230_50
+            // 
+            this.btnMtr_230_50.Location = new System.Drawing.Point(174, 97);
+            this.btnMtr_230_50.Name = "btnMtr_230_50";
+            this.btnMtr_230_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_230_50.TabIndex = 31;
+            this.btnMtr_230_50.Text = "Details";
+            this.btnMtr_230_50.UseVisualStyleBackColor = true;
+            this.btnMtr_230_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_220_50
+            // 
+            this.btnMtr_220_50.Location = new System.Drawing.Point(174, 71);
+            this.btnMtr_220_50.Name = "btnMtr_220_50";
+            this.btnMtr_220_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_220_50.TabIndex = 30;
+            this.btnMtr_220_50.Text = "Details";
+            this.btnMtr_220_50.UseVisualStyleBackColor = true;
+            this.btnMtr_220_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_208_50
+            // 
+            this.btnMtr_208_50.Location = new System.Drawing.Point(174, 45);
+            this.btnMtr_208_50.Name = "btnMtr_208_50";
+            this.btnMtr_208_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_208_50.TabIndex = 29;
+            this.btnMtr_208_50.Text = "Details";
+            this.btnMtr_208_50.UseVisualStyleBackColor = true;
+            this.btnMtr_208_50.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnMtr_200_50
+            // 
+            this.btnMtr_200_50.Location = new System.Drawing.Point(174, 19);
+            this.btnMtr_200_50.Name = "btnMtr_200_50";
+            this.btnMtr_200_50.Size = new System.Drawing.Size(55, 23);
+            this.btnMtr_200_50.TabIndex = 28;
+            this.btnMtr_200_50.Text = "Details";
+            this.btnMtr_200_50.UseVisualStyleBackColor = true;
+            this.btnMtr_200_50.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // txtFLC_415_50
             // 
@@ -406,186 +568,6 @@
             this.label20.TabIndex = 12;
             this.label20.Text = "220 VAC / 50 Hz:";
             // 
-            // txtFLC_200_50
-            // 
-            this.txtFLC_200_50.Location = new System.Drawing.Point(104, 21);
-            this.txtFLC_200_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.txtFLC_200_50.Name = "txtFLC_200_50";
-            this.txtFLC_200_50.Size = new System.Drawing.Size(66, 20);
-            this.txtFLC_200_50.TabIndex = 19;
-            this.txtFLC_200_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "200 VAC / 50 Hz:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(174, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Lookup";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(174, 71);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 23);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Lookup";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(174, 149);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(55, 23);
-            this.button4.TabIndex = 33;
-            this.button4.Text = "Lookup";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(174, 123);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(55, 23);
-            this.button5.TabIndex = 32;
-            this.button5.Text = "Lookup";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(174, 97);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(55, 23);
-            this.button6.TabIndex = 31;
-            this.button6.Text = "Lookup";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(174, 201);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(55, 23);
-            this.button7.TabIndex = 35;
-            this.button7.Text = "Lookup";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(174, 175);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(55, 23);
-            this.button8.TabIndex = 34;
-            this.button8.Text = "Lookup";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(174, 201);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(55, 23);
-            this.button9.TabIndex = 114;
-            this.button9.Text = "Lookup";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(174, 175);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(55, 23);
-            this.button10.TabIndex = 113;
-            this.button10.Text = "Lookup";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(174, 149);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(55, 23);
-            this.button11.TabIndex = 112;
-            this.button11.Text = "Lookup";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(174, 123);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(55, 23);
-            this.button12.TabIndex = 111;
-            this.button12.Text = "Lookup";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(174, 97);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(55, 23);
-            this.button13.TabIndex = 110;
-            this.button13.Text = "Lookup";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(174, 71);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(55, 23);
-            this.button14.TabIndex = 109;
-            this.button14.Text = "Lookup";
-            this.button14.UseVisualStyleBackColor = true;
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(174, 45);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(55, 23);
-            this.button15.TabIndex = 108;
-            this.button15.Text = "Lookup";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(174, 19);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(55, 23);
-            this.button16.TabIndex = 107;
-            this.button16.Text = "Lookup";
-            this.button16.UseVisualStyleBackColor = true;
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(338, 273);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
-            this.button17.TabIndex = 107;
-            this.button17.Text = "Modify";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(419, 273);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 23);
-            this.button18.TabIndex = 108;
-            this.button18.Text = "Exit";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(174, 45);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 23);
-            this.button2.TabIndex = 29;
-            this.button2.Text = "Lookup";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // txtFLC_208_50
             // 
             this.txtFLC_208_50.Location = new System.Drawing.Point(104, 47);
@@ -604,6 +586,34 @@
             this.label18.TabIndex = 9;
             this.label18.Text = "208 VAC / 50 Hz:";
             // 
+            // txtFLC_200_50
+            // 
+            this.txtFLC_200_50.Location = new System.Drawing.Point(104, 21);
+            this.txtFLC_200_50.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.txtFLC_200_50.Name = "txtFLC_200_50";
+            this.txtFLC_200_50.Size = new System.Drawing.Size(66, 20);
+            this.txtFLC_200_50.TabIndex = 19;
+            this.txtFLC_200_50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "200 VAC / 50 Hz:";
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(442, 273);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 108;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -613,44 +623,79 @@
             this.label1.TabIndex = 109;
             this.label1.Text = "Machine Model:";
             // 
-            // textBox1
+            // txtMachCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(55, 20);
-            this.textBox1.TabIndex = 110;
+            this.txtMachCode.Location = new System.Drawing.Point(101, 6);
+            this.txtMachCode.Name = "txtMachCode";
+            this.txtMachCode.ReadOnly = true;
+            this.txtMachCode.Size = new System.Drawing.Size(55, 20);
+            this.txtMachCode.TabIndex = 110;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(182, 9);
+            this.label2.Location = new System.Drawing.Point(174, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 111;
             this.label2.Text = "Motor:";
             // 
-            // textBox2
+            // txtMtrName
             // 
-            this.textBox2.Location = new System.Drawing.Point(223, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(158, 20);
-            this.textBox2.TabIndex = 112;
+            this.txtMtrName.Location = new System.Drawing.Point(215, 6);
+            this.txtMtrName.Name = "txtMtrName";
+            this.txtMtrName.ReadOnly = true;
+            this.txtMtrName.Size = new System.Drawing.Size(158, 20);
+            this.txtMtrName.TabIndex = 112;
             // 
-            // frmMtrDefs
+            // lblMtr1HP
+            // 
+            this.lblMtr1HP.AutoSize = true;
+            this.lblMtr1HP.Location = new System.Drawing.Point(397, 9);
+            this.lblMtr1HP.Name = "lblMtr1HP";
+            this.lblMtr1HP.Size = new System.Drawing.Size(55, 13);
+            this.lblMtr1HP.TabIndex = 114;
+            this.lblMtr1HP.Text = "Motor HP:";
+            // 
+            // txtMtrHP
+            // 
+            this.txtMtrHP.Location = new System.Drawing.Point(456, 6);
+            this.txtMtrHP.Name = "txtMtrHP";
+            this.txtMtrHP.ReadOnly = true;
+            this.txtMtrHP.Size = new System.Drawing.Size(55, 20);
+            this.txtMtrHP.TabIndex = 115;
+            // 
+            // btnLookup
+            // 
+            this.btnLookup.Location = new System.Drawing.Point(361, 273);
+            this.btnLookup.Name = "btnLookup";
+            this.btnLookup.Size = new System.Drawing.Size(75, 23);
+            this.btnLookup.TabIndex = 116;
+            this.btnLookup.Text = "Lookup";
+            this.btnLookup.UseVisualStyleBackColor = true;
+            this.btnLookup.Visible = false;
+            this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
+            // 
+            // frmMachMtrDefs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 302);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(529, 302);
+            this.Controls.Add(this.btnLookup);
+            this.Controls.Add(this.txtMtrHP);
+            this.Controls.Add(this.lblMtr1HP);
+            this.Controls.Add(this.txtMtrName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMachCode);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button17);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.grp60Hz);
             this.Controls.Add(this.grp50Hz);
-            this.Name = "frmMtrDefs";
+            this.KeyPreview = true;
+            this.Name = "frmMachMtrDefs";
             this.Text = "Motor Defaults";
+            this.Load += new System.EventHandler(this.frmMachMtrDefs_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMachMtrDefs_KeyDown);
             this.grp60Hz.ResumeLayout(false);
             this.grp60Hz.PerformLayout();
             this.grp50Hz.ResumeLayout(false);
@@ -694,29 +739,31 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtFLC_200_50;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMtr_200_50;
+        private System.Windows.Forms.Button btnMtr_380_50;
+        private System.Windows.Forms.Button btnMtr_240_50;
+        private System.Windows.Forms.Button btnMtr_230_50;
+        private System.Windows.Forms.Button btnMtr_220_50;
+        private System.Windows.Forms.Button btnMtr_575_60;
+        private System.Windows.Forms.Button btnMtr_460_60;
+        private System.Windows.Forms.Button btnMtr_380_60;
+        private System.Windows.Forms.Button btnMtr_240_60;
+        private System.Windows.Forms.Button btnMtr_230_60;
+        private System.Windows.Forms.Button btnMtr_220_60;
+        private System.Windows.Forms.Button btnMtr_208_60;
+        private System.Windows.Forms.Button btnMtr_200_60;
+        private System.Windows.Forms.Button btnMtr_415_50;
+        private System.Windows.Forms.Button btnMtr_400_50;
+        private System.Windows.Forms.Button btnMtr_208_50;
         private System.Windows.Forms.TextBox txtFLC_208_50;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMachCode;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMtrName;
+        private System.Windows.Forms.Label lblMtr1HP;
+        private System.Windows.Forms.TextBox txtMtrHP;
+        private System.Windows.Forms.Button btnLookup;
     }
 }
