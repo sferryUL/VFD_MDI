@@ -39,7 +39,7 @@ namespace V1000_Prog_SQL
         const string Tbl_Chrt_V1000 = "CHRT_V1000";
         const string Tbl_Drv_Lst = "DRV_LIST";
         const string Tbl_Drv_V1000_Param = "DRV_V1000_PARAM";
-        const string Tbl_Mach = "MACH_DATA";
+        const string Tbl_Mach = "TMP_MACH_DATA";
 
         // VFD status and communication variables
         uint VFDReadRegCnt = 0;
@@ -1639,6 +1639,7 @@ namespace V1000_Prog_SQL
             
             UpdMachChrtInf(mach_code);
             SetDefDriveSel();
+            SetDefMtrSel();
             SetMachBtnEnable(0x07);
 
             /*
@@ -1660,7 +1661,7 @@ namespace V1000_Prog_SQL
             dBConn.Query(Tbl_Mach, drv_col_name, "MACH_CODE", mach_code);
             txtMachDrvName.Text = dBConn.Table.Rows[0][0].ToString();
             SetDefDriveSel();
-
+            SetDefMtrSel();
         }
 
         private void btnMachListLoad_Click(object sender, EventArgs e)
@@ -2069,6 +2070,38 @@ namespace V1000_Prog_SQL
                 cmbDrvList.SelectedIndex = idx;
         }
 
+        private void SetDefMtrSel()
+        {
+            // Get the machine selection
+            string mach_code = GetMachCode(cmbMachSel.Text);
+
+            // Build the column name based on voltage, frequency, and drive selection
+            string drv_num = cmbMachDrvNum.Text;
+            string supp_volt = cmbMachSupplyVolt.Text.Substring(0, cmbMachSupplyVolt.Text.IndexOf(" "));
+            string supp_freq = cmbMachSupplyFreq.Text.Substring(0, cmbMachSupplyFreq.Text.IndexOf(" "));
+            string mtr_col = String.Format("DEF_MTR{0}_{1}_{2}", drv_num, supp_volt, supp_freq);
+
+            // Query the Machine Data table to get the default motor selection
+            if(dBConn.QueryStr(Tbl_Mach, mtr_col, "MACH_CODE", mach_code) > 0)
+            {
+                string def_mtr = dBConn.Table.Rows[0][0].ToString();
+
+                // If the result is not blank or null then find the motor number 
+                // in the motor selection combobox
+                if((def_mtr != "") && (def_mtr != null))
+                {
+                    int idx = CmbFunc.FindIdxSubStr(ref cmbMtrPartNum, def_mtr);
+                    if(idx >= 0)
+                    {
+                        // if the return value is greater than zero then the default motor selection
+                        // value does exist in the motor table and can be selected.
+                        cmbMtrPartNum.SelectedIndex = idx;
+                    }
+                }
+            }
+
+        }
+
         private void cmbMachSupplyVolt_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbMtrVoltMax.SelectedIndex = cmbMachSupplyVolt.SelectedIndex;
@@ -2088,7 +2121,10 @@ namespace V1000_Prog_SQL
                 cmbMachSupplyFreq.Enabled = true;
 
             if(cmbMachSel.SelectedIndex >= 0)
+            {
                 SetDefDriveSel();
+                SetDefMtrSel();
+            }
         }
 
         private void cmbMachSupplyFreq_SelectedIndexChanged(object sender, EventArgs e)

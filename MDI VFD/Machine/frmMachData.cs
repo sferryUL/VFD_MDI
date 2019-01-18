@@ -75,7 +75,7 @@ namespace MDI_VFD.Machine
             
             LoadObjs();
 
-            if(Environment.UserName == "sferry")
+            if((Environment.UserName == "sferry") || (Environment.UserName == "mmorrow"))
                 btnModSave.Visible = true;
         }
 
@@ -89,7 +89,7 @@ namespace MDI_VFD.Machine
 
             LoadObjs();
 
-            if(Environment.UserName == "sferry")
+            if((Environment.UserName == "sferry") || (Environment.UserName == "mmorrow"))
                 btnModSave.Visible = true;
         }
 

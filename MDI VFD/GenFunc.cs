@@ -61,6 +61,15 @@ namespace GenFunc
 
     public static class CmbFunc
     {
+        /// <summary>
+        /// Finds the first index of a combobox object's collection that
+        /// contains a specific specified string in it
+        /// </summary>
+        /// <param name="p_Cmb"></param>
+        /// <param name="p_Str"></param>
+        /// <returns>
+        /// Combobox item that contains the p_Str string value
+        /// </returns>
         public static int FindIdxSubStr(ref ComboBox p_Cmb, string p_Str)
         {
             int ret_val = -1;
