@@ -19,7 +19,7 @@ namespace MDI_VFD.Machine
 
         // Database Globals
         dBClient dBConn;
-        const string TblMachList = "TMP_MACH_DATA";
+        const string TblMachList = "MACH_DATA";
 
         #endregion
 

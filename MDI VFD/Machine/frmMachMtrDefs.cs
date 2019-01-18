@@ -33,7 +33,7 @@ namespace MDI_VFD.Machine
         // Database Globals
         dBClient dBConn;
 
-        const string TblMachData = "TMP_MACH_DATA";
+        const string TblMachData = "MACH_DATA";
         const string TblMachGenData = "MACH_GEN_DATA";
         const string TblMachMtrData = "MACH_MTR_DEFS";
         const string TblMtrData = "MTR_DATA";

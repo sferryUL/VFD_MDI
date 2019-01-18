@@ -39,7 +39,7 @@ namespace V1000_Prog_SQL
         const string Tbl_Chrt_V1000 = "CHRT_V1000";
         const string Tbl_Drv_Lst = "DRV_LIST";
         const string Tbl_Drv_V1000_Param = "DRV_V1000_PARAM";
-        const string Tbl_Mach = "TMP_MACH_DATA";
+        const string Tbl_Mach = "MACH_DATA";
 
         // VFD status and communication variables
         uint VFDReadRegCnt = 0;
