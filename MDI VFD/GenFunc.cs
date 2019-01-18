@@ -61,11 +61,20 @@ namespace GenFunc
 
     public static class CmbFunc
     {
+        /// <summary>
+        /// Finds the first index of a combobox object's collection that
+        /// contains a specific specified string in it
+        /// </summary>
+        /// <param name="p_Cmb"></param>
+        /// <param name="p_Str"></param>
+        /// <returns>
+        /// Combobox item that contains the p_Str string value
+        /// </returns>
         public static int FindIdxSubStr(ref ComboBox p_Cmb, string p_Str)
         {
             int ret_val = -1;
 
-            if(p_Str != "")
+            if((p_Str != "") && (p_Str != null))
             {
                 for(int i=0;i<p_Cmb.Items.Count;i++)
                 {
@@ -283,6 +292,57 @@ namespace GenFunc
                 ret_val = ret_val && Char.IsNumber(c);
             }
             return ret_val;
+        }
+
+        public static bool NumCsv2List(string p_Str, ref List<String> p_List)
+        {
+            bool ret_val = false;
+            int not_num = 0;
+            
+            p_List.Clear();
+            if(p_Str != "")
+            {
+                Csv2List(p_Str, ref p_List);
+                for(int i=0;i<p_List.Count;i++)
+                {
+                    if(!IsNumeric(p_List[i]))
+                        not_num++;
+                }
+
+                if(not_num == 0)
+                    ret_val = true;
+                else
+                    p_List.Clear();
+            }
+            return ret_val;
+        }
+
+        public static void Csv2List(string p_Str, ref List<String> p_List)
+        {
+            p_List.Clear();
+            if(p_Str != "")
+            {
+                if(p_Str.IndexOf(',') < 0)
+                {
+                    p_List.Add(p_Str);
+                }
+                else
+                {
+                    while(p_Str.IndexOf(',') >= 0)
+                    {
+                        string str = p_Str.Substring(0, p_Str.IndexOf(','));
+                        str = str.TrimEnd();
+                        p_Str = p_Str.Remove(0, p_Str.IndexOf(',') + 1);
+                        p_Str = p_Str.TrimStart();
+                        if(str.Length > 0)
+                        {
+                            p_List.Add(str);
+                        }
+                    }
+                    if(p_Str.Length > 0)
+                        p_List.Add(p_Str.TrimEnd());
+                }
+            }
         }
     }
 }

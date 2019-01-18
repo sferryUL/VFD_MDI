@@ -72,11 +72,23 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Machine\frmMachInfo.cs">
+    <Compile Include="Machine\frmMachData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Machine\frmMachInfo.Designer.cs">
-      <DependentUpon>frmMachInfo.cs</DependentUpon>
+    <Compile Include="Machine\frmMachData.Designer.cs">
+      <DependentUpon>frmMachData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Machine\frmMachList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Machine\frmMachList.Designer.cs">
+      <DependentUpon>frmMachList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Machine\frmMachMtrDefs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Machine\frmMachMtrDefs.Designer.cs">
+      <DependentUpon>frmMachMtrDefs.cs</DependentUpon>
     </Compile>
     <Compile Include="Motor\frmMtrData.cs">
       <SubType>Form</SubType>
@@ -84,11 +96,11 @@
     <Compile Include="Motor\frmMtrData.Designer.cs">
       <DependentUpon>frmMtrData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Motor\frmMtrInfo.cs">
+    <Compile Include="Motor\frmMtrList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Motor\frmMtrInfo.Designer.cs">
-      <DependentUpon>frmMtrInfo.cs</DependentUpon>
+    <Compile Include="Motor\frmMtrList.Designer.cs">
+      <DependentUpon>frmMtrList.cs</DependentUpon>
     </Compile>
     <Compile Include="VFD Info\frmFlt.cs">
       <SubType>Form</SubType>
@@ -122,14 +134,20 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Machine\frmMachInfo.resx">
-      <DependentUpon>frmMachInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Machine\frmMachData.resx">
+      <DependentUpon>frmMachData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Machine\frmMachList.resx">
+      <DependentUpon>frmMachList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Machine\frmMachMtrDefs.resx">
+      <DependentUpon>frmMachMtrDefs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motor\frmMtrData.resx">
       <DependentUpon>frmMtrData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Motor\frmMtrInfo.resx">
-      <DependentUpon>frmMtrInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Motor\frmMtrList.resx">
+      <DependentUpon>frmMtrList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VFD Info\frmFlt.resx">
       <DependentUpon>frmFlt.cs</DependentUpon>

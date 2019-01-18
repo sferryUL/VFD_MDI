@@ -13,22 +13,46 @@ using GenFunc;
 
 namespace MDI_VFD.Motor
 {
-    public partial class frmMtrInfo : Form
+    public partial class frmMtrList : Form
     {
         #region Class Globals
         const string TblMtr = "MTR_DATA";
         dBClient dBConn;
 
         List<ComboBox>cmbSearch = new List<ComboBox>();
+
+        // Machine Motor Search Globals
+        bool MachMtrSearch = false;
+        string MtrHP;
+
+        // Events and delegates for sending selected motors from search mode back to the calling form
+        public delegate void SendMtrNumHandler(object sender, MtrNumEventArgs e);
+        private MtrNumEventArgs MtrNumArgs = new MtrNumEventArgs();
+
+        public event SendMtrNumHandler MtrNumSelected;
+
+
         #endregion
 
         #region Class Constructors
-        public frmMtrInfo(dBClient p_SqlClient)
+        public frmMtrList(dBClient p_SQLClient)
         {
-            dBConn = p_SqlClient;
             InitializeComponent();
+            dBConn = p_SQLClient;
             StartPosition = FormStartPosition.CenterScreen;
         }
+
+        public frmMtrList(dBClient p_SQLClient, string p_MtrHP)
+        {
+            InitializeComponent();
+            MachMtrSearch = true;
+
+            dBConn = p_SQLClient;
+            MtrHP = p_MtrHP;
+
+            StartPosition = FormStartPosition.CenterScreen;
+        }
+
         #endregion
 
         #region Form Load Methods
@@ -75,6 +99,17 @@ namespace MDI_VFD.Motor
 
             cmbSrchCode.SelectedIndex = 0;
             cmbMtrNum.Focus();
+
+            if(MachMtrSearch)
+            {
+                ctxtSrchRes_Delete.Visible = false;
+                ctxtSrchRes_Mod.Visible = false;
+                ctxtSrchRes_Ins.Visible = false;
+                btnInsert.Visible = false;
+                btnExitSel.Text = "Select";
+                cmbMtrHP.Text = MtrHP;
+                btnSearch_Click(sender, e);
+            }
         }
         #endregion
 
@@ -163,11 +198,21 @@ namespace MDI_VFD.Motor
             if(idx < 0)
                 goto dgvSrchRes_CellDblClk_Return;
 
-            frmMtrData mtr_data = new frmMtrData(dBConn, 0, dgvSrchRes.Rows[e.RowIndex].Cells[0].Value.ToString());
-            mtr_data.ShowDialog();
+            string mtr_num = dgvSrchRes.Rows[idx].Cells[0].Value.ToString();
 
-            btnSearch_Click(sender, (EventArgs)e);
-            dgvSrchRes.Rows[idx].Selected = true;
+            if(!MachMtrSearch)
+            {
+                frmMtrData mtr_data = new frmMtrData(dBConn, 0, mtr_num);
+                mtr_data.ShowDialog();
+
+                btnSearch_Click(sender, (EventArgs)e);
+                dgvSrchRes.Rows[idx].Selected = true;
+            }
+            else
+            {
+                EventArgs ee = new EventArgs();
+                btnExitSel_Click(sender, e);
+            }
 
             dgvSrchRes_CellDblClk_Return:
             return;
@@ -217,7 +262,17 @@ namespace MDI_VFD.Motor
 
         private void ctxtSrchRes_Details_Click(object sender, EventArgs e)
         {
-            dgvSrchRes_CellDoubleClick(sender, (DataGridViewCellEventArgs)e);
+            int idx = dgvSrchRes.SelectedRows[0].Index;
+            string mtr_num = dgvSrchRes.Rows[idx].Cells[0].Value.ToString();
+
+            frmMtrData mtr_data = new frmMtrData(dBConn, 0, mtr_num);
+            mtr_data.ShowDialog();
+
+            btnSearch_Click(sender, (EventArgs)e);
+            dgvSrchRes.Rows[idx].Selected = true;
+
+            
+            return;
         }
 
         private void ctxtSrchRes_Mod_Click(object sender, EventArgs e)
@@ -257,10 +312,38 @@ namespace MDI_VFD.Motor
         #endregion
 
         #region Form Exit Methods
-        private void btnExit_Click(object sender, EventArgs e)
+
+        private void btnExitSel_Click(object sender, EventArgs e)
         {
+            if(MachMtrSearch)
+            {
+                int idx = dgvSrchRes.SelectedRows[0].Index;
+                if(idx >= 0)
+                {
+                    string mtr_num = dgvSrchRes.Rows[idx].Cells[0].Value.ToString();
+                    MtrNumEventArgs args = new MtrNumEventArgs(mtr_num);
+                    MtrNumSelected(this, args);
+                }
+            }
             this.Close();
         }
+
         #endregion
+
+        private void frmMtrList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Escape)
+                this.Close();
+            if(e.KeyCode == Keys.Enter)
+                btnSearch_Click(sender, (EventArgs) e);
+        }
+    }
+
+    public class MtrNumEventArgs : EventArgs
+    {
+        public string MtrNum = "";
+
+        public MtrNumEventArgs() { }
+        public MtrNumEventArgs(string p_Num) { MtrNum = p_Num; }
     }
 }
