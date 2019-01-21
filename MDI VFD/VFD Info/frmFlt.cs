@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using GenFunc;
 using ULdB;
 using V1000_ModbusRTU;
@@ -27,8 +29,6 @@ namespace MDI_VFD
         public byte VFDAddr = 0;
 
         // Database Manipulation Variables
-        const string UL_Flt_Tbl = "DRV_V1000_FLT";
-        
         int FltTrcCnt = 0;
         int FltHstCnt = 0;
         int FltHstTimeCnt = 0;
@@ -51,14 +51,14 @@ namespace MDI_VFD
         
         private void frmFlt_Load(object sender, EventArgs e)
         {
-            FltTrcCnt = dBConn.QueryLikeStr(UL_Flt_Tbl, "*", "FLT_NUM", "U2-");
+            FltTrcCnt = dBConn.QueryLikeStr(Resources.tblDrvV1000Faults, "*", "FLT_NUM", "U2-");
             FltTrc_Data = CreateMonList(dBConn.Table.Rows);
 
-            string query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME NOT LIKE '%Time%';", UL_Flt_Tbl);
+            string query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME NOT LIKE '%Time%';", Resources.tblDrvV1000Faults);
             FltHstCnt = dBConn.QuerySQL(query);
             FltHst_Data = CreateMonList(dBConn.Table.Rows);
 
-            query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME LIKE '%Time%';", UL_Flt_Tbl);
+            query = string.Format("SELECT * FROM {0} WHERE FLT_NUM LIKE 'U3-%' AND FLT_NAME LIKE '%Time%';", Resources.tblDrvV1000Faults);
             FltHstTimeCnt = dBConn.QuerySQL(query);
             FltHstTime_Data = CreateMonList(dBConn.Table.Rows);
 

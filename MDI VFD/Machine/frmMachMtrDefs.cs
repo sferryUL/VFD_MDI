@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using ULdB;
 using MDI_VFD.Motor;
 using GenFunc;
@@ -32,12 +34,6 @@ namespace MDI_VFD.Machine
 
         // Database Globals
         dBClient dBConn;
-
-        const string TblMachData = "MACH_DATA";
-        const string TblMachGenData = "MACH_GEN_DATA";
-        const string TblMachMtrData = "MACH_MTR_DEFS";
-        const string TblMtrData = "MTR_DATA";
-        const string TblMtrFLC = "MTR_DATA_FLC";
 
         string dBMtrPrfx;
         int IdxMtrPNStrt = 0;
@@ -79,7 +75,7 @@ namespace MDI_VFD.Machine
         {
             if(GetDataMode() != ModeIns)
             {
-                if(dBConn.QueryStr(TblMachMtrData, "*", "MACH_CODE", MachCode) > 0)
+                if(dBConn.QueryStr(Resources.tblMachDataMtrDefs, "*", "MACH_CODE", MachCode) > 0)
                 {
                     for(int i=IdxMtrPNStrt, j=1;i<(IdxMtrPNStrt + MaxMtrPN);i++, j++)
                         Vals.ColData[i].Ctrl.Text = PartFunc.CnvFromULFrmt(dBConn.Table.Rows[0][i].ToString());
@@ -107,7 +103,7 @@ namespace MDI_VFD.Machine
         private void LoadObjs()
         {
             List<dBColInfo> lst = new List<dBColInfo>();
-            if(dBConn.GetTblColInfo(TblMachMtrData, ref lst) > 0)
+            if(dBConn.GetTblColInfo(Resources.tblMachDataMtrDefs, ref lst) > 0)
             {
                 Vals.Clear();
                 for(int i=0;i<lst.Count;i++)
@@ -262,7 +258,7 @@ namespace MDI_VFD.Machine
 
             // Search database for motor number and gather all the FLC data
             mtr_num = PartFunc.Cnv2ULFrmt(mtr_num);
-            dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", mtr_num);
+            dBConn.QueryStr(Resources.tblMtrDataFLC, "*", "MTR_NUM", mtr_num);
             if(dBConn.Table.Rows.Count > 0)
             {
                 int col_idx = dBConn.Table.Columns.IndexOf("FLC_200_50");

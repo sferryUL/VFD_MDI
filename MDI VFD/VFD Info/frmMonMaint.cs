@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using GenFunc;
 using ULdB;
 using V1000_ModbusRTU;
@@ -25,11 +27,6 @@ namespace MDI_VFD
         public bool CommPort = false;
         System.IO.Ports.SerialPort spVFD;
         public byte VFDAddr = 0;
-
-        // Database Manipulation Variables
-        const string UL_Srv = "ULSQL12T";
-        const string UL_dB = "ElectricalApps";
-        const string UL_Mon_Tbl = "DRV_V1000_MON";
 
         int MaintMonCnt = 0;
         
@@ -48,7 +45,7 @@ namespace MDI_VFD
         
         private void frmMon_Load(object sender, EventArgs e)
         {
-            MaintMonCnt = dBConn.QueryLikeStr(UL_Mon_Tbl, "*", "MON_NUM", "U4-");
+            MaintMonCnt = dBConn.QueryLikeStr(Resources.tblDrvV1000Mons, "*", "MON_NUM", "U4-");
             foreach(DataRow dr in dBConn.Table.Rows)
             {
                 V1000_Mon_Data dat = new V1000_Mon_Data();

@@ -272,7 +272,6 @@
             this.txtDB.Name = "txtDB";
             this.txtDB.Size = new System.Drawing.Size(100, 20);
             this.txtDB.TabIndex = 16;
-            this.txtDB.Text = "ULSQL12T";
             // 
             // label3
             // 

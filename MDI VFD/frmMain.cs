@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using V1000_Prog_SQL;
 using MDI_VFD.Motor;
 using MDI_VFD.Machine;
@@ -19,6 +21,7 @@ namespace MDI_VFD
     public partial class frmMain : Form
     {
         #region Class_Globals
+
         const string BuildVersion = "0.9.0";
 
         frmMonOp VFDMonOp;
@@ -31,22 +34,20 @@ namespace MDI_VFD
         byte SlaveAddr = 0x1F;
         bool CommPort = false;
 
-        const string UL_Srv = "ULSQL12T";
-        const string UL_EEdB = "ElectricalApps";
-
         dBClient dBConn = new dBClient();
+
         #endregion
 
         #region Form_Functions
         public frmMain()
         {
             InitializeComponent();
+            txtDB.Text = Resources.dBServer;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadCommComboBoxes();
-
             
             if(Environment.UserName == "sferry")
                 chkWinAuth.Checked = true;
@@ -182,7 +183,7 @@ namespace MDI_VFD
             if(dBConn.State == ConnectionState.Closed)
             {
                 bool auth = chkWinAuth.Checked;
-                if(!dBConn.Open(txtDB.Text, UL_EEdB, auth, txtUsr.Text, txtPass.Text))
+                if(!dBConn.Open(txtDB.Text, Resources.dBName, auth, txtUsr.Text, txtPass.Text))
                     MsgBox.Err("Unable to open Database!", "Program Error");
                 else
                 {
@@ -364,8 +365,6 @@ namespace MDI_VFD
                 MachList.BringToFront();
             }
         }
-
-
 
         #endregion
 

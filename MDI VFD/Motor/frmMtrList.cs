@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using ULdB;
 using GenFunc;
 
@@ -16,7 +18,6 @@ namespace MDI_VFD.Motor
     public partial class frmMtrList : Form
     {
         #region Class Globals
-        const string TblMtr = "MTR_DATA";
         dBClient dBConn;
 
         List<ComboBox>cmbSearch = new List<ComboBox>();
@@ -59,14 +60,14 @@ namespace MDI_VFD.Motor
         private void frmMtrInfo_Load(object sender, EventArgs e)
         {
             // Populate the motor part number combobox
-            dBConn.QueryDistStr(TblMtr, "MTR_NUM", p_OrderBy: "MTR_NUM");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_NUM", p_OrderBy: "MTR_NUM");
             foreach(DataRow dr in dBConn.Table.Rows)
                 cmbMtrNum.Items.Add(PartFunc.CnvFromULFrmt(dr[0].ToString()));
             cmbMtrNum.SelectedIndex = -1;
             cmbSearch.Add(cmbMtrNum);
 
             // Populate the horsepower combobox
-            dBConn.QueryDistStr(TblMtr, "MTR_HP");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_HP");
             DataTable tbl_hp = dBConn.Table.Copy();
             cmbMtrHP.DisplayMember = "MTR_HP";
             cmbMtrHP.DataSource = tbl_hp;
@@ -74,7 +75,7 @@ namespace MDI_VFD.Motor
             cmbSearch.Add(cmbMtrHP);
 
             // Populate the construction material combobox
-            dBConn.QueryDistStr(TblMtr, "MTR_CONST");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_CONST");
             DataTable tbl_const = dBConn.Table.Copy();
             cmbMtrConst.DisplayMember = "MTR_CONST";
             cmbMtrConst.DataSource = tbl_const;
@@ -82,7 +83,7 @@ namespace MDI_VFD.Motor
             cmbSearch.Add(cmbMtrConst);
 
             // Populate the pole count combobox
-            dBConn.QueryDistStr(TblMtr, "MTR_POLES");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_POLES");
             DataTable tbl_poles = dBConn.Table.Copy();
             cmbMtrPoles.DisplayMember = "MTR_POLES";
             cmbMtrPoles.DataSource = tbl_poles;
@@ -90,7 +91,7 @@ namespace MDI_VFD.Motor
             cmbSearch.Add(cmbMtrPoles);
 
             // Populate the manufacturer combobox
-            dBConn.QueryDistStr(TblMtr, "MTR_MFR");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_MFR");
             DataTable tbl_mfr = dBConn.Table.Copy();
             cmbMtrMfr.DisplayMember = "MTR_MFR";
             cmbMtrMfr.DataSource = tbl_mfr;
@@ -168,7 +169,7 @@ namespace MDI_VFD.Motor
             }
 
             string cols = "MTR_NUM, MTR_HP, MTR_POLES, MTR_CONST, MTR_MFR";
-            string sql = String.Format("SELECT {0} FROM {1} {2} ORDER BY MTR_NUM;", cols, TblMtr, where);
+            string sql = String.Format("SELECT {0} FROM {1} {2} ORDER BY MTR_NUM;", cols, Resources.tblMtrData, where);
             dBConn.QuerySQL(sql);
             DataTable srch_tbl = dBConn.Table.Copy();
             foreach(DataRow dr in srch_tbl.Rows)
@@ -291,7 +292,7 @@ namespace MDI_VFD.Motor
             string cap = "Delete Confirmation";
             if(MsgBox.YN(msg, cap) == DialogResult.Yes)
             {
-                if(dBConn.DeleteStr(TblMtr, "MTR_NUM", num))
+                if(dBConn.DeleteStr(Resources.tblMtrData, "MTR_NUM", num))
                 {
                     string DelMsg = String.Format("Motor part number {0} successfully deleted.", num);
                     MsgBox.Info(DelMsg, "Motor Record Delete");
