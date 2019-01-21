@@ -117,8 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="dBName" xml:space="preserve">
+    <value>ElectricalApps</value>
+    <comment>Electrical database name</comment>
+  </data>
+  <data name="dBServer" xml:space="preserve">
+    <value>ULSQL12T</value>
+    <comment>Server for the SQL database connection </comment>
+  </data>
+  <data name="tblMachData" xml:space="preserve">
+    <value>MACH_DATA</value>
+    <comment>Table containing the list of Urschel cutting machines, their default motors, and default drives.</comment>
+  </data>
+  <data name="tblMtrData" xml:space="preserve">
+    <value>MTR_DATA</value>
+    <comment>Table containing the list of Urschel motors, their full nameplate specifications, and all their electrical properties such as FLA, power factor, and efficiency.</comment>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="V1000" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\V1000.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tblChrtList" xml:space="preserve">
+    <value>CHRT_LST</value>
+    <comment>Table containing the master list of all VFD parameter chart part numbers for all machines and every single drive for each machine.</comment>
+  </data>
+  <data name="tblChrtV1000" xml:space="preserve">
+    <value>CHRT_V1000</value>
+    <comment>Table containing all the V1000 VFD parameter numbers and the actual Urschel VFD parameter chart values for each parameter.</comment>
+  </data>
+  <data name="tblDrvV1000Faults" xml:space="preserve">
+    <value>DRV_V1000_FLT</value>
+    <comment>Table containing all the fault parameter information for Yaskawa V1000 VFDs</comment>
+  </data>
+  <data name="tblDrvV1000Mons" xml:space="preserve">
+    <value>DRV_V1000_MON</value>
+    <comment>Table containing all the monitor parameter information for Yaskawa V1000 VFDs.</comment>
+  </data>
+  <data name="tblDrvV1000Params" xml:space="preserve">
+    <value>DRV_V1000_PARAM</value>
+    <comment>Table containing all the parameter number for Yaskawa V1000 drives, all the parameter properties, and the default setting based on drive part number.</comment>
+  </data>
+  <data name="tblMachDataGen" xml:space="preserve">
+    <value>MACH_GEN_DATA</value>
+    <comment>Table view of MACH_DATA that is stripped down just to Urschel cutting machine motor names, drive names, and default drive assignments</comment>
+  </data>
+  <data name="tblMachDataMtrDefs" xml:space="preserve">
+    <value>MACH_MTR_DEFS</value>
+    <comment>Table view of MACH_DATA that contains only the machine codes along with the default motor selections based on supply voltage and frequency.</comment>
+  </data>
+  <data name="tblMtrDataFLC" xml:space="preserve">
+    <value>MTR_DATA_FLC</value>
+    <comment>Table view of MTR_DATA that only has the FLC </comment>
+  </data>
+  <data name="tblVFDList" xml:space="preserve">
+    <value>VFD_LST</value>
+    <comment>Table containing all the VFDs used on Urschel machines</comment>
   </data>
 </root>

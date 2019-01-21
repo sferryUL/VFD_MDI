@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using ULdB;
 using GenFunc;
 
@@ -20,9 +22,7 @@ namespace MDI_VFD.Motor
         #region Class Global Values
         // Database globals
         dBClient dBConn;
-        const string TblMtr = "MTR_DATA";
-        const string TblMtrFLC = "MTR_DATA_FLC";
-
+        
         // Form user interaction mode globals
         const int ModeView = 0;
         const int ModeIns = 1;
@@ -78,7 +78,7 @@ namespace MDI_VFD.Motor
         private void frmMtrInfo_Load(object sender, EventArgs e)
         {
             List<dBColInfo>inf = new List<dBColInfo>();
-            dBConn.GetTblColInfo(TblMtr, ref inf);
+            dBConn.GetTblColInfo(Resources.tblMtrData, ref inf);
             for(int i=0;i<inf.Count;i++)
             {
                 MtrVal tmp = new MtrVal { ColInf = (dBColInfo)inf[i].Clone() };
@@ -89,7 +89,7 @@ namespace MDI_VFD.Motor
 
             if(txtMtrNum.Text != "")
             {
-                dBConn.QueryStr(TblMtr, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
+                dBConn.QueryStr(Resources.tblMtrData, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
                 if(dBConn.Table.Rows.Count > 0)
                 {
                     DataTable tbl = new DataTable();
@@ -98,7 +98,7 @@ namespace MDI_VFD.Motor
                     FillUrschInf(ref tbl);
                     FillGenInf(ref tbl);
 
-                    dBConn.QueryStr(TblMtrFLC, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
+                    dBConn.QueryStr(Resources.tblMtrDataFLC, "*", "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
                     tbl = new DataTable();
                     tbl = dBConn.Table.Copy();
                     tbl.Columns.Remove("MTR_NUM");
@@ -125,19 +125,19 @@ namespace MDI_VFD.Motor
         #region Database Information Acquisition Methods
         private void FillCBItems()
         {
-            dBConn.QueryDistStr(TblMtr, "MTR_HP", p_OrderBy: "MTR_HP");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_HP", p_OrderBy: "MTR_HP");
             for(int i = 0; i < dBConn.Table.Rows.Count; i++)
                 cmbHP.Items.Add(dBConn.Table.Rows[i][0].ToString());
 
-            dBConn.QueryDistStr(TblMtr, "MTR_FRM", p_OrderBy: "MTR_FRM");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_FRM", p_OrderBy: "MTR_FRM");
             for(int i = 0; i < dBConn.Table.Rows.Count; i++)
                 cmbFrame.Items.Add(dBConn.Table.Rows[i][0].ToString());
 
-            dBConn.QueryDistStr(TblMtr, "MTR_CONST", p_OrderBy: "MTR_CONST");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_CONST", p_OrderBy: "MTR_CONST");
             for(int i = 0; i < dBConn.Table.Rows.Count; i++)
                 cmbConst.Items.Add(dBConn.Table.Rows[i][0].ToString());
 
-            dBConn.QueryDistStr(TblMtr, "MTR_MFR", p_OrderBy: "MTR_MFR");
+            dBConn.QueryDistStr(Resources.tblMtrData, "MTR_MFR", p_OrderBy: "MTR_MFR");
             for(int i = 0; i < dBConn.Table.Rows.Count; i++)
                 cmbMfr.Items.Add(dBConn.Table.Rows[i][0].ToString());
         }
@@ -145,7 +145,7 @@ namespace MDI_VFD.Motor
         private void GetMtrDBCols()
         {
             List<dBColInfo> col_inf = new List<dBColInfo>();
-            int val = dBConn.GetTblColInfo(TblMtr, ref col_inf);
+            int val = dBConn.GetTblColInfo(Resources.tblMtrData, ref col_inf);
 
             return;
         }
@@ -481,7 +481,7 @@ namespace MDI_VFD.Motor
             }
             
             // Make sure motor does not already exist
-            if(dBConn.QueryStr(TblMtr, "IDX", "MTR_NUM", part_num) > 0)
+            if(dBConn.QueryStr(Resources.tblMtrData, "IDX", "MTR_NUM", part_num) > 0)
             {
                 string msg = "This motor already exists in the database, do you wish to overwrite the existing data?";
                 if(MsgBox.YN(msg, "Overwrite Confirmation") == DialogResult.No)
@@ -496,7 +496,7 @@ namespace MDI_VFD.Motor
             int InsCnt = Vals.GetdBInsertStrings(ref InsCols, ref InsVals);
             if(InsCnt > 0)
             {
-                if(dBConn.Insert(TblMtr, InsCols, InsVals))
+                if(dBConn.Insert(Resources.tblMtrData, InsCols, InsVals))
                 {
                     MsgBox.Info("Motor information successfully added to the database.");
                     ret_val = true;
@@ -526,7 +526,7 @@ namespace MDI_VFD.Motor
                 int UpdCnt = Vals.GetdBUpdateStrings(ref chg_idx, ref UpdCols, ref UpdVals);
                 if(UpdCnt > 0)
                 {
-                    if(dBConn.UpdateStr(TblMtr, UpdCols, UpdVals, "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text)))
+                    if(dBConn.UpdateStr(Resources.tblMtrData, UpdCols, UpdVals, "MTR_NUM", PartFunc.Cnv2ULFrmt(txtMtrNum.Text)))
                         MsgBox.Info("Motor information successfully updated.");
                 }
             }
@@ -538,7 +538,7 @@ namespace MDI_VFD.Motor
             string cap = "Delete Confirmation";
             if(MsgBox.YN(msg, cap) == DialogResult.Yes)
             {
-                dBConn.DeleteStr(TblMtr, "MTR_NUM", txtMtrNum.Text);
+                dBConn.DeleteStr(Resources.tblMtrData, "MTR_NUM", txtMtrNum.Text);
             }
             this.Close();
         }

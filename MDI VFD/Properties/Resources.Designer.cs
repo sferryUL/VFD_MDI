@@ -61,6 +61,123 @@ namespace MDI_VFD.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ElectricalApps.
+        /// </summary>
+        internal static string dBName {
+            get {
+                return ResourceManager.GetString("dBName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ULSQL12T.
+        /// </summary>
+        internal static string dBServer {
+            get {
+                return ResourceManager.GetString("dBServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHRT_LST.
+        /// </summary>
+        internal static string tblChrtList {
+            get {
+                return ResourceManager.GetString("tblChrtList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHRT_V1000.
+        /// </summary>
+        internal static string tblChrtV1000 {
+            get {
+                return ResourceManager.GetString("tblChrtV1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRV_V1000_FLT.
+        /// </summary>
+        internal static string tblDrvV1000Faults {
+            get {
+                return ResourceManager.GetString("tblDrvV1000Faults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRV_V1000_MON.
+        /// </summary>
+        internal static string tblDrvV1000Mons {
+            get {
+                return ResourceManager.GetString("tblDrvV1000Mons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRV_V1000_PARAM.
+        /// </summary>
+        internal static string tblDrvV1000Params {
+            get {
+                return ResourceManager.GetString("tblDrvV1000Params", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MACH_DATA.
+        /// </summary>
+        internal static string tblMachData {
+            get {
+                return ResourceManager.GetString("tblMachData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MACH_GEN_DATA.
+        /// </summary>
+        internal static string tblMachDataGen {
+            get {
+                return ResourceManager.GetString("tblMachDataGen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MACH_MTR_DEFS.
+        /// </summary>
+        internal static string tblMachDataMtrDefs {
+            get {
+                return ResourceManager.GetString("tblMachDataMtrDefs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MTR_DATA.
+        /// </summary>
+        internal static string tblMtrData {
+            get {
+                return ResourceManager.GetString("tblMtrData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MTR_DATA_FLC.
+        /// </summary>
+        internal static string tblMtrDataFLC {
+            get {
+                return ResourceManager.GetString("tblMtrDataFLC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VFD_LST.
+        /// </summary>
+        internal static string tblVFDList {
+            get {
+                return ResourceManager.GetString("tblVFDList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon V1000 {

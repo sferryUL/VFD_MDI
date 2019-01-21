@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using ULdB;
 using GenFunc;
 
@@ -30,9 +32,6 @@ namespace MDI_VFD.Machine
         // Database Globals
         dBClient dBConn;
         
-        const string TblMachData = "MACH_DATA";
-        const string TblMachGenData = "MACH_GEN_DATA";
-        const string TblMtrData = "MTR_DATA";
         const int MaxMtr = 5;
         const int MaxDrv = 5;
 
@@ -130,7 +129,7 @@ namespace MDI_VFD.Machine
 
         private void FillMachData()
         {
-            dBConn.QueryStr(TblMachGenData, "*", "MACH_CODE", MachCode);
+            dBConn.QueryStr(Resources.tblMachDataGen, "*", "MACH_CODE", MachCode);
 
             // Get general database information
             for(int i = 0; i < Vals.ColData.Count; i++)
@@ -156,7 +155,7 @@ namespace MDI_VFD.Machine
 
         private void FillHPCombos()
         {
-            if(dBConn.QueryDist(TblMtrData, "MTR_HP", p_OrderBy: "MTR_HP") > 0)
+            if(dBConn.QueryDist(Resources.tblMtrData, "MTR_HP", p_OrderBy: "MTR_HP") > 0)
             {
                 for(int i=0;i<dBConn.Table.Rows.Count;i++)
                 {
@@ -183,7 +182,7 @@ namespace MDI_VFD.Machine
         private void LoadDBObjs()
         {
             List<dBColInfo> lst = new List<dBColInfo>();
-            dBConn.GetTblColInfo(TblMachGenData, ref lst);
+            dBConn.GetTblColInfo(Resources.tblMachDataGen, ref lst);
             for(int i=0;i<lst.Count;i++)
             {
                 dBColCtrlData tmp = new dBColCtrlData { ColInf = (dBColInfo)lst[i].Clone() } ;
@@ -822,7 +821,7 @@ namespace MDI_VFD.Machine
                 goto MtrDataIns_return;
             }
 
-            if(dBConn.QueryStr(TblMachData, "IDX", "MACH_CODE", txtMachCode.Text) > 0)
+            if(dBConn.QueryStr(Resources.tblMachData, "IDX", "MACH_CODE", txtMachCode.Text) > 0)
             {
                 string msg = "This machine model already exists in the database, do you wish to overwrite?";
                 string cap = "Machine Record Overwrite";
@@ -842,7 +841,7 @@ namespace MDI_VFD.Machine
             int cnt = Vals.GetdBInsStrs(ref cols, ref col_vals);
             if(cnt > 0)
             {
-                if(dBConn.Insert(TblMachData, cols, col_vals))
+                if(dBConn.Insert(Resources.tblMachData, cols, col_vals))
                 {
                     MsgBox.Info("Machine model successfully added to the database.", "Machine Record Add");
                     ret_val = true;
@@ -877,7 +876,7 @@ namespace MDI_VFD.Machine
                 List<string> lst_vals = new List<string>();
                 if(Vals.GetdBUpdStrs(ref idx_chng, ref lst_cols, ref lst_vals) > 0)
                 {
-                    if(dBConn.UpdateStr(TblMachData, lst_cols, lst_vals, "MACH_CODE", txtMachCode.Text))
+                    if(dBConn.UpdateStr(Resources.tblMachData, lst_cols, lst_vals, "MACH_CODE", txtMachCode.Text))
                     {
                         string msg = "Machine database record successfully updated.";
                         string cap = "Machine Record Update";
@@ -902,7 +901,7 @@ namespace MDI_VFD.Machine
                 msg = "Are you really sure?";
                 if(MsgBox.YN(msg, cap) == DialogResult.Yes)
                 {
-                    if(dBConn.DeleteStr(TblMachData, "MACH_CODE", txtMachCode.Text))
+                    if(dBConn.DeleteStr(Resources.tblMachData, "MACH_CODE", txtMachCode.Text))
                     {
                         MsgBox.Info("Machine record successfully deleted.", cap);
                         this.Close();

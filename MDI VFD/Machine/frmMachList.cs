@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MDI_VFD.Properties;
+
 using ULdB;
 
 
@@ -19,8 +21,7 @@ namespace MDI_VFD.Machine
 
         // Database Globals
         dBClient dBConn;
-        const string TblMachList = "MACH_DATA";
-
+        
         #endregion
 
         #region Class Constructors
@@ -125,7 +126,7 @@ namespace MDI_VFD.Machine
         private void GetMachList(int p_ScrollIdx, int p_SelIdx)
         {
             
-            dBConn.Query(TblMachList, "MACH_CODE, MACH_DESC, MTR_CNT, DRV_CNT, CHRT_CNT");
+            dBConn.Query(Resources.tblMachData, "MACH_CODE, MACH_DESC, MTR_CNT, DRV_CNT, CHRT_CNT");
             DataTable tbl_list = dBConn.Table.Copy();
             dgvMachList.DataSource = tbl_list;
             dgvMachList.ClearSelection();
