@@ -22,7 +22,7 @@ namespace MDI_VFD
     {
         #region Class_Globals
 
-        const string BuildVersion = "0.9.0";
+        const string BuildVersion = "0.9.1";
 
         frmMonOp VFDMonOp;
         frmProg VFDProg;
