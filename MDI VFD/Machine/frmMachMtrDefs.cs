@@ -285,10 +285,8 @@ namespace MDI_VFD.Machine
 
                         Vals.ColData[i].Ctrl.Text = PartFunc.CnvFromULFrmt(mtr_num);
                     }
-                    
                 }
             }
-
         }
 
         private void ExtractVoltFreq(string p_Str, ref string p_Volt, ref string p_Freq)

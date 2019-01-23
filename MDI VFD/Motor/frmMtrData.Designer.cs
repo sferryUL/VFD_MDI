@@ -134,6 +134,7 @@
             this.btnViewUL = new System.Windows.Forms.Button();
             this.btnModSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnCalcFLC = new System.Windows.Forms.Button();
             this.grp50Hz.SuspendLayout();
             this.grpGenInf.SuspendLayout();
             this.grp60Hz.SuspendLayout();
@@ -1225,11 +1226,23 @@
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnCalcFLC
+            // 
+            this.btnCalcFLC.Location = new System.Drawing.Point(12, 709);
+            this.btnCalcFLC.Name = "btnCalcFLC";
+            this.btnCalcFLC.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcFLC.TabIndex = 106;
+            this.btnCalcFLC.Text = "FLC Calc";
+            this.btnCalcFLC.UseVisualStyleBackColor = true;
+            this.btnCalcFLC.Visible = false;
+            this.btnCalcFLC.Click += new System.EventHandler(this.btnCalcFLC_Click);
+            // 
             // frmMtrData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 738);
+            this.Controls.Add(this.btnCalcFLC);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnModSave);
             this.Controls.Add(this.grpPrnts);
@@ -1241,12 +1254,14 @@
             this.Controls.Add(this.grpGenInf);
             this.Controls.Add(this.grp50Hz);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMtrData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Urschel Motor Information";
             this.Load += new System.EventHandler(this.frmMtrInfo_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMtrData_KeyDown);
             this.grp50Hz.ResumeLayout(false);
             this.grp50Hz.PerformLayout();
             this.grpGenInf.ResumeLayout(false);
@@ -1368,5 +1383,6 @@
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnCalcFLC;
     }
 }

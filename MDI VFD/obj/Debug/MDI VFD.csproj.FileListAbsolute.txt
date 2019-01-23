@@ -33,3 +33,4 @@ C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.exe
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.pdb
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csprojAssemblyReference.cache
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrList.resources
+C:\Users\sferry\source\repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.Motor.frmMtrCalcFLC.resources

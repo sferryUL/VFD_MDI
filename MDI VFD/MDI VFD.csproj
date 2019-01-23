@@ -90,6 +90,12 @@
     <Compile Include="Machine\frmMachMtrDefs.Designer.cs">
       <DependentUpon>frmMachMtrDefs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Motor\frmMtrCalcFLC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motor\frmMtrCalcFLC.Designer.cs">
+      <DependentUpon>frmMtrCalcFLC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Motor\frmMtrData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Machine\frmMachMtrDefs.resx">
       <DependentUpon>frmMachMtrDefs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motor\frmMtrCalcFLC.resx">
+      <DependentUpon>frmMtrCalcFLC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motor\frmMtrData.resx">
       <DependentUpon>frmMtrData.cs</DependentUpon>

@@ -15,7 +15,6 @@ using GenFunc;
 
 namespace MDI_VFD.Motor
 {
-   
 
     public partial class frmMtrData : Form
     {
@@ -59,7 +58,7 @@ namespace MDI_VFD.Motor
             txtMtrNum.Text = p_MtrNum;
         }
 
-        // This constructor is only used for 
+        // This constructor is only used for motor searching to add to a machine default voltage selection
         public frmMtrData(dBClient p_SqlClient, bool p_MachMtrDetail, string p_MtrNum)
         {
             InitializeComponent();
@@ -120,6 +119,16 @@ namespace MDI_VFD.Motor
             }
 
         }
+        #endregion
+
+        #region General Form Operation Methods
+
+        private void frmMtrData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Escape)
+                btnExitCan_Click(sender, e);
+        }
+
         #endregion
 
         #region Database Information Acquisition Methods
@@ -285,6 +294,8 @@ namespace MDI_VFD.Motor
             btnBrwsVend.Enabled = CtrlEn;
             btnDescSrch.Enabled = CtrlEn;
 
+            btnCalcFLC.Visible = CtrlEn;
+
             txtMtrNum.Enabled = MtrNumEn;
         }
         #endregion
@@ -328,7 +339,7 @@ namespace MDI_VFD.Motor
             cmbPoles.SelectedIndex = CmbFunc.FindIdxSubStr(ref cmbPoles, str);
 
             txtBrgDE.Text = p_Tbl.Rows[0]["MTR_BRG_DE"].ToString();
-            txtBrgODE.Text = p_Tbl.Rows[0]["MTR_BRG_DE"].ToString();
+            txtBrgODE.Text = p_Tbl.Rows[0]["MTR_BRG_ODE"].ToString();
         }
 
         private void cmbHP_TextChanged(object sender, EventArgs e)
@@ -376,12 +387,13 @@ namespace MDI_VFD.Motor
 
             if(name == "btnBrwsVend")
             {
-                string dir = "N:\\Motors";
+                string base_dir = "N:\\Motors";
                 string subdir = PartFunc.CnvFromULFrmt(PartFunc.Cnv2ULFrmt(txtMtrNum.Text));
-                if(subdir != "")
-                    dir += String.Format("\\{0}", subdir);
-                    
-                opfd.InitialDirectory = dir;
+                string full_dir = String.Format("{0}\\{1}", base_dir, subdir);
+                if(System.IO.Directory.Exists(full_dir))
+                    opfd.InitialDirectory = full_dir;
+                else
+                    opfd.InitialDirectory = base_dir;
             }
             else
             {
@@ -428,6 +440,40 @@ namespace MDI_VFD.Motor
                 string cap = "Datasheet File Error!";
                 MsgBox.Err(msg,cap);
             }
+        }
+
+        #endregion
+
+        #region Full Load Current Calculate and Fill Methods
+
+        private void btnCalcFLC_Click(object sender, EventArgs e)
+        {
+            frmMtrCalcFLC calc_flc = new frmMtrCalcFLC();
+
+            // Assign CalcFLC_Store to the event FLCCalculated for calc_flc object. 
+            calc_flc.FLCCalculated += new frmMtrCalcFLC.FLCCalcHandler(CalcFLC_Store);
+
+            calc_flc.ShowDialog();
+        }
+
+        private void CalcFLC_Store(object sender, FLCEventArgs e)
+        {
+            // go through the list of voltage, frequency, and FLC values sent back
+            // from the frmMtrCalcFLC form. We want to put these values into the 
+            // textboxes for their associated values on this form.
+            for(int i = 0; i < e.FLCData.Count; i++)
+            {
+                // create the database column name so that the specific index for the FLC value
+                // entry can be located in the Vals master list of controls
+                string col_name = String.Format("FLC_{0}_{1}", e.FLCData[i].Volts, e.FLCData[i].Freq);
+                int idx = Vals.FindIndex(col_name); // find the index entry based on formed column name
+
+                // if the idx value is non-zero then the column actually exists (not 190 VAC @ 50 Hz)
+                // so we can add the FLC entry to the master list.
+                if(idx >= 0)
+                    Vals.ValList[idx].Ctrl.Text = e.FLCData[i].FLC.ToString();
+            }
+            return;
         }
 
         #endregion
@@ -520,7 +566,7 @@ namespace MDI_VFD.Motor
             {
                 // Force the Motor Value Collection to populate its values as strings using '' 
                 // or specific numbers to send to the database during inserts or updates.
-                Vals.SetValues();
+                Vals.SetValues(ref chg_idx);
                 List<string> UpdCols = new List<string>();
                 List<string> UpdVals = new List<string>();
                 int UpdCnt = Vals.GetdBUpdateStrings(ref chg_idx, ref UpdCols, ref UpdVals);
@@ -678,6 +724,38 @@ namespace MDI_VFD.Motor
                             break;
                     }
                 }
+            }
+        }
+
+        // Database assistance methods
+        public void SetValues(ref List<int> p_ChngIdx)
+        {
+            for(int i = 0; i < p_ChngIdx.Count; i++)
+            {
+                int idx = p_ChngIdx[i];
+                if(ValList[idx].Ctrl.Text != "")
+                {
+                    switch(ValList[idx].ColInf.DataType)
+                    {
+                        case "nchar":
+                        case "nvarchar":
+                        case "varchar":
+                        case "char":
+                            string tmp_val = ValList[idx].Ctrl.Text;
+                            if(ValList[idx].ColInf.Name == "MTR_NUM")
+                                tmp_val = PartFunc.Cnv2ULFrmt(tmp_val);
+                            if(ValList[idx].ColInf.Name == "MTR_INS")
+                                tmp_val = ValList[idx].Ctrl.Text.Substring(0, 1);
+
+                            ValList[idx].Value = String.Format("'{0}'", tmp_val);
+                            break;
+                        default:
+                            ValList[idx].Value = ValList[idx].Ctrl.Text;
+                            break;
+                    }
+                }
+                else
+                    ValList[idx].Value = "NULL";
             }
         }
 

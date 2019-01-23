@@ -28,8 +28,6 @@ namespace MDI_VFD.Motor
 
         // Events and delegates for sending selected motors from search mode back to the calling form
         public delegate void SendMtrNumHandler(object sender, MtrNumEventArgs e);
-        private MtrNumEventArgs MtrNumArgs = new MtrNumEventArgs();
-
         public event SendMtrNumHandler MtrNumSelected;
 
 
@@ -292,6 +290,7 @@ namespace MDI_VFD.Motor
             string cap = "Delete Confirmation";
             if(MsgBox.YN(msg, cap) == DialogResult.Yes)
             {
+                num = PartFunc.Cnv2ULFrmt(num);
                 if(dBConn.DeleteStr(Resources.tblMtrData, "MTR_NUM", num))
                 {
                     string DelMsg = String.Format("Motor part number {0} successfully deleted.", num);
