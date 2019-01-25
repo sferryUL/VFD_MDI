@@ -13,6 +13,7 @@ using MDI_VFD.Properties;
 using V1000_Prog_SQL;
 using MDI_VFD.Motor;
 using MDI_VFD.Machine;
+using MDI_VFD.VFD_Info;
 using GenFunc;
 using ULdB;
 
@@ -24,8 +25,9 @@ namespace MDI_VFD
 
         const string BuildVersion = "0.9.1";
 
-        frmMonOp VFDMonOp;
         frmProg VFDProg;
+        frmVFDParamList VFDParams;
+        frmMonOp VFDMonOp;
         frmMonMaint VFDMonMaint;
         frmFlt VFDFlt;
         frmMtrList MtrList;
@@ -58,9 +60,10 @@ namespace MDI_VFD
 
             if(dBConn.State == ConnectionState.Open)
             {
-                msMain_VFD_Prog_Click(sender, e);
+                //msMain_VFD_Prog_Click(sender, e);
                 //msMain_Mach_Info_Click(sender, e);
-                msMain_Mtr_Info_Click(sender, e);
+                //msMain_Mtr_Info_Click(sender, e);
+                msMain_VFD_Param_Click(sender, e);
             }
         }
 
@@ -71,6 +74,10 @@ namespace MDI_VFD
                 case "frmProg":
                     VFDProg.Dispose();
                     VFDProg = null;
+                    break;
+                case "frmVFDParamList":
+                    VFDParams.Dispose();
+                    VFDParams = null;
                     break;
                 case "frmMonOp":
                     VFDMonOp.Stop();
@@ -259,6 +266,21 @@ namespace MDI_VFD
             }
         }
 
+        private void msMain_VFD_Param_Click(object sender, EventArgs e)
+        {
+            if(VFDParams == null)
+            {
+                VFDParams = new frmVFDParamList(dBConn);
+                VFDParams.FormClosing += frmMain_ChildClosing;
+                VFDParams.MdiParent = this;
+                VFDParams.Show();
+            }
+            else
+            {
+                VFDParams.BringToFront();
+            }
+        }
+
         private void msMain_VFD_OpMon_Click(object sender, EventArgs e)
         {
             if(VFDMonOp == null)
@@ -368,10 +390,12 @@ namespace MDI_VFD
 
         #endregion
 
+        #region Help
         private void msMain_Help_About_Click(object sender, EventArgs e)
         {
             string msg = String.Format("Electrical Info Version: {0}", BuildVersion);
             MsgBox.Info(msg, "Program Information");
         }
+        #endregion
     }
 }

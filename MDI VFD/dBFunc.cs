@@ -160,28 +160,38 @@ namespace ULdB
 
         #region Query Functions
 
-        public int QueryStr(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true)
+        public int QueryStr(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true, string p_CondItem2 = "", string p_Cond2 = "")
         {
             p_Cond = string.Format("'{0}'", p_Cond);
-            return Query(p_Tbl, p_Cols, p_CondItem, p_Cond, p_OrderBy, p_Asc);
+            p_Cond2 = string.Format("'{0}'", p_Cond2);
+
+            return Query(p_Tbl, p_Cols, p_CondItem, p_Cond, p_OrderBy, p_Asc, p_CondItem2, p_Cond2);
         }
         
-        public int Query(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true)
+        public int Query(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true, string p_CondItem2 = "", string p_Cond2 = "")
         {
             string sql = String.Format("SELECT {0} FROM {1}", p_Cols, p_Tbl);
 
             if(p_CondItem != "")
-                sql += String.Format(" WHERE {0} = {1};", p_CondItem, p_Cond);
+            {
+                sql += String.Format(" WHERE {0} = {1}", p_CondItem, p_Cond);
+
+                if(p_CondItem2 != "")
+                {
+                    sql += String.Format(" AND {0} = {1}", p_CondItem2, p_Cond2);
+                }
+            }
 
             if(p_OrderBy != "")
             {
                 sql += String.Format(" ORDER BY {0}", p_OrderBy);
                 if(p_Asc)
-                    sql += String.Format(" ASC;");
+                    sql += String.Format(" ASC");
                 else
-                    sql += String.Format(" DESC;");
+                    sql += String.Format(" DESC");
             }
 
+            sql += ";";
             return ExQuery(sql);
         }
 
@@ -503,6 +513,36 @@ namespace ULdB
             return ret_val;
         }
 
+        public int GetTblColInfo(string p_Tbl, ref dBColInfCollection p_Collection)
+        {
+            List<dBColInfo> inf = new List<dBColInfo>();
+
+            int ret_val = GetTblColInfo(p_Tbl, ref inf);
+            if(ret_val >= 0)
+            {
+                for(int i=0;i<inf.Count;i++)
+                {
+                    p_Collection.Add(inf[i]);
+                }
+            }
+
+            return ret_val;
+        }
+
+        public bool VerChrtCol(string p_Tbl, string p_ChrtCol)
+        {
+            bool ret_val = false;
+
+            dBColInfCollection col_inf = new dBColInfCollection();
+            GetTblColInfo(p_Tbl, ref col_inf);
+
+            int idx = col_inf.FindIndex(p_ChrtCol);
+            if(idx >= 0)
+                ret_val = true;
+
+            return ret_val;
+        }
+
         #endregion
 
     } // class dBClient
@@ -536,6 +576,43 @@ namespace ULdB
         {
             return new dBColInfo(this.Name, this.Nullable, this.DataType, this.CharLen);
         }
+    }
+
+    public class dBColInfCollection : InternalDataCollectionBase
+    {
+        List<dBColInfo> ColList;
+
+        public dBColInfCollection ()
+        {
+            ColList = new List<dBColInfo>();
+        }
+
+        public dBColInfo this[int idx]
+        {
+            get => ColList[idx];
+            set => ColList[idx] = value;
+        }
+
+        public void Add(dBColInfo p_Val) { ColList.Add(p_Val); }
+        public void Clear() { ColList.Clear(); }
+        public override int Count { get => ColList.Count(); }
+
+        public int FindIndex(string p_Name)
+        {
+            int ret_val = -1;
+
+            for(int i = 0; i < ColList.Count; i++)
+            {
+                if(ColList[i].Name.Equals(p_Name))
+                {
+                    ret_val = i;
+                    break;
+                }
+            }
+            return ret_val;
+        }
+
+
     }
     
     public class dBColCtrlData

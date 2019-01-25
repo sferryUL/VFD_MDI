@@ -107,6 +107,10 @@ namespace GenFunc
             {
                 if(StrFunc.IsNumeric(p_Num))
                     ret_val = "0" + p_Num;
+                else if(p_Num[0] == 'L')
+                {
+                    ret_val = p_Num;
+                }
             }
             else if ((p_Num.ToUpper()).StartsWith("CP")) // CP text formatted part
             {
@@ -168,6 +172,9 @@ namespace GenFunc
                 }
             }
             
+            else if(p_Num[0] == '*')
+                ret_val = p_Num;
+            
             return ret_val;
         }
 
@@ -175,9 +182,9 @@ namespace GenFunc
         {
             string ret_val = "";
 
-            if(p_Num.Length == 6) // CP Part or Raw Material
+            if(p_Num.Length == 6) // Standard Urschel part numbering format
             {
-                if(p_Num[0] == '0') // formatted with leading 0
+                if(p_Num[0] == '0') // standard 5-digit part
                 {
                     ret_val = p_Num.Substring(1, 5);
                 }
@@ -185,24 +192,25 @@ namespace GenFunc
                 {
                     ret_val = String.Format("CP{0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(4, 2));
                 }
-                else
+                else if(p_Num[0] == '5') // Raw material
                     ret_val = p_Num;
+                else // non-standard Urschel format, therefore put an asterisk next to it to signify
+                    ret_val = "*" + p_Num;
             }
-            else if(p_Num.Length == 5) // 5-digit part input as 5-digits
+            else if(p_Num.Length == 7) // Project part with no separating dash
+            {
+                if(StrFunc.IsNumeric(p_Num))
+                {
+                    ret_val = String.Format("{0}-{1}", p_Num.Substring(0,4), p_Num.Substring(4, 3));
+                }
+            }
+            else if(p_Num[0] == 'L') // Literature part number
             {
                 ret_val = p_Num;
             }
-            else if(p_Num.Length == 8) // Project Part
-            {
-                if(StrFunc.IsNumeric(p_Num.Substring(0, 4))) // First for characters should be numbers
-                {
-                    if(p_Num.IndexOf('-') == 4) // a "-" should separate the first 4 digits from the last 3 digits
-                    {
-                        if(StrFunc.IsNumeric(p_Num.Substring(5, 3))) // The last 3 digits should be numbers as well
-                            ret_val = String.Format("Project {0}-{1}", p_Num.Substring(0, 4), p_Num.Substring(5, 3));
-                    }
-                }
-            }
+            else // non-standard Urschel format, therefore put an asterisk next to it to signify
+                ret_val = "*" + p_Num;
+            
 
             return ret_val;
         }

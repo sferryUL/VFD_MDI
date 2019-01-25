@@ -138,11 +138,11 @@
     <value>..\Resources\V1000.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tblChrtList" xml:space="preserve">
-    <value>CHRT_LST</value>
+    <value>TMP_CHRT_LST</value>
     <comment>Table containing the master list of all VFD parameter chart part numbers for all machines and every single drive for each machine.</comment>
   </data>
   <data name="tblChrtV1000" xml:space="preserve">
-    <value>CHRT_V1000</value>
+    <value>TMP_CHRT_V1000</value>
     <comment>Table containing all the V1000 VFD parameter numbers and the actual Urschel VFD parameter chart values for each parameter.</comment>
   </data>
   <data name="tblDrvV1000Faults" xml:space="preserve">
@@ -172,5 +172,21 @@
   <data name="tblVFDList" xml:space="preserve">
     <value>VFD_LST</value>
     <comment>Table containing all the VFDs used on Urschel machines</comment>
+  </data>
+  <data name="dBNameUL" xml:space="preserve">
+    <value>PartInfo</value>
+    <comment>Semi-official Urschel database for part information</comment>
+  </data>
+  <data name="tblPartInfo" xml:space="preserve">
+    <value>NewPMst</value>
+    <comment>Table containing all the general information for an Urschel part</comment>
+  </data>
+  <data name="tblDrvList" xml:space="preserve">
+    <value>DRV_LIST</value>
+    <comment>List of specific information on VFDs used in Urschel machines</comment>
+  </data>
+  <data name="tblDrvFamInf" xml:space="preserve">
+    <value>DRV_FAM_INF</value>
+    <comment>Table containing general information regarding where to find drive constants</comment>
   </data>
 </root>

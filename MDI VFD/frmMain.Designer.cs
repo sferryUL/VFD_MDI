@@ -35,6 +35,8 @@
             this.msMain_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_VFD = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_VFD_Prog = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMain_VFD_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.msMain_VFD_OpMon = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_VFD_FltData = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain_VFD_MaintMon = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +99,8 @@
             // 
             this.msMain_VFD.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msMain_VFD_Prog,
+            this.msMain_VFD_Param,
+            this.toolStripSeparator1,
             this.msMain_VFD_OpMon,
             this.msMain_VFD_FltData,
             this.msMain_VFD_MaintMon});
@@ -111,6 +115,18 @@
             this.msMain_VFD_Prog.Size = new System.Drawing.Size(198, 22);
             this.msMain_VFD_Prog.Text = "Parameter Programmer";
             this.msMain_VFD_Prog.Click += new System.EventHandler(this.msMain_VFD_Prog_Click);
+            // 
+            // msMain_VFD_Param
+            // 
+            this.msMain_VFD_Param.Name = "msMain_VFD_Param";
+            this.msMain_VFD_Param.Size = new System.Drawing.Size(198, 22);
+            this.msMain_VFD_Param.Text = "Parameter Chart Info";
+            this.msMain_VFD_Param.Click += new System.EventHandler(this.msMain_VFD_Param_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(195, 6);
             // 
             // msMain_VFD_OpMon
             // 
@@ -161,7 +177,7 @@
             // msMain_Mach_Info
             // 
             this.msMain_Mach_Info.Name = "msMain_Mach_Info";
-            this.msMain_Mach_Info.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Mach_Info.Size = new System.Drawing.Size(144, 22);
             this.msMain_Mach_Info.Text = "Machine Info";
             this.msMain_Mach_Info.Click += new System.EventHandler(this.msMain_Mach_Info_Click);
             // 
@@ -176,7 +192,7 @@
             // msMain_Help_About
             // 
             this.msMain_Help_About.Name = "msMain_Help_About";
-            this.msMain_Help_About.Size = new System.Drawing.Size(180, 22);
+            this.msMain_Help_About.Size = new System.Drawing.Size(107, 22);
             this.msMain_Help_About.Text = "About";
             this.msMain_Help_About.Click += new System.EventHandler(this.msMain_Help_About_Click);
             // 
@@ -374,6 +390,8 @@
         private System.Windows.Forms.ToolStripMenuItem msMain_Mtr_Info;
         private System.Windows.Forms.ToolStripMenuItem msMain_Help;
         private System.Windows.Forms.ToolStripMenuItem msMain_Help_About;
+        private System.Windows.Forms.ToolStripMenuItem msMain_VFD_Param;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

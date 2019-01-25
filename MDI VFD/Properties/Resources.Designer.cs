@@ -70,6 +70,15 @@ namespace MDI_VFD.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PartInfo.
+        /// </summary>
+        internal static string dBNameUL {
+            get {
+                return ResourceManager.GetString("dBNameUL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ULSQL12T.
         /// </summary>
         internal static string dBServer {
@@ -79,7 +88,7 @@ namespace MDI_VFD.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CHRT_LST.
+        ///   Looks up a localized string similar to TMP_CHRT_LST.
         /// </summary>
         internal static string tblChrtList {
             get {
@@ -88,11 +97,29 @@ namespace MDI_VFD.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CHRT_V1000.
+        ///   Looks up a localized string similar to TMP_CHRT_V1000.
         /// </summary>
         internal static string tblChrtV1000 {
             get {
                 return ResourceManager.GetString("tblChrtV1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRV_FAM_INF.
+        /// </summary>
+        internal static string tblDrvFamInf {
+            get {
+                return ResourceManager.GetString("tblDrvFamInf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRV_LIST.
+        /// </summary>
+        internal static string tblDrvList {
+            get {
+                return ResourceManager.GetString("tblDrvList", resourceCulture);
             }
         }
         
@@ -165,6 +192,15 @@ namespace MDI_VFD.Properties {
         internal static string tblMtrDataFLC {
             get {
                 return ResourceManager.GetString("tblMtrDataFLC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NewPMst.
+        /// </summary>
+        internal static string tblPartInfo {
+            get {
+                return ResourceManager.GetString("tblPartInfo", resourceCulture);
             }
         }
         

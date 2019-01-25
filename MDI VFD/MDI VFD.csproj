@@ -137,6 +137,18 @@
     <Compile Include="VFD Info\frmProg.designer.cs">
       <DependentUpon>frmProg.cs</DependentUpon>
     </Compile>
+    <Compile Include="VFD Info\frmVFDParamData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDParamData.Designer.cs">
+      <DependentUpon>frmVFDParamData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDParamList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDParamList.Designer.cs">
+      <DependentUpon>frmVFDParamList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +191,12 @@
     </Compile>
     <EmbeddedResource Include="VFD Info\frmProg.resx">
       <DependentUpon>frmProg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VFD Info\frmVFDParamData.resx">
+      <DependentUpon>frmVFDParamData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VFD Info\frmVFDParamList.resx">
+      <DependentUpon>frmVFDParamList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
