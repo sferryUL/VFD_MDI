@@ -114,15 +114,36 @@ namespace ULdB
             return ExCmd(sql);
         }
 
-        public bool DeleteStr(string p_Tbl, string p_CondItem, string p_Cond)
+        public bool DeleteStr(string p_Tbl, string p_CondItem, string p_Cond, string p_CondItem2 = "", string p_Cond2 = "")
         {
-            p_Cond = string.Format("'{0}'", p_Cond);
-            return Delete(p_Tbl, p_CondItem, p_Cond);
+            if(p_Cond != "")
+                p_Cond = string.Format("'{0}'", p_Cond);
+
+            if(p_Cond2 != "")
+                p_Cond2 = string.Format("'{0}'", p_Cond2);
+
+            return Delete(p_Tbl, p_CondItem, p_Cond, p_CondItem2, p_Cond2);
         }
 
-        public bool Delete(string p_Tbl, string p_CondItem, string p_Cond)
+        public bool Delete(string p_Tbl, string p_CondItem, string p_Cond, string p_CondItem2 = "", string p_Cond2 = "")
         {
-            string sql = string.Format("DELETE FROM {0} WHERE {1} = {2};", p_Tbl, p_CondItem, p_Cond);
+            string sql = string.Format("DELETE FROM {0} WHERE {1} ", p_Tbl, p_CondItem);
+
+            if(p_Cond != "")
+                sql += String.Format("= {0}", p_Cond);
+            else
+                sql += String.Format("{0} IS NULL", p_Cond);
+
+            if(p_CondItem2 != "")
+            {
+                if(p_Cond2 != "")
+                    sql += String.Format(" AND {0} = {1}", sql, p_CondItem2, p_Cond2);
+                else
+                    sql += String.Format(" AND {0} IS NULL", p_CondItem2);
+            }
+
+            sql += ";";
+
             return ExCmd(sql);
         }
 
@@ -162,8 +183,11 @@ namespace ULdB
 
         public int QueryStr(string p_Tbl, string p_Cols, string p_CondItem = "", string p_Cond = "", string p_OrderBy = "", bool p_Asc = true, string p_CondItem2 = "", string p_Cond2 = "")
         {
-            p_Cond = string.Format("'{0}'", p_Cond);
-            p_Cond2 = string.Format("'{0}'", p_Cond2);
+            if(p_Cond != "")
+                p_Cond = string.Format("'{0}'", p_Cond);
+            
+            if(p_Cond2 != "")
+                p_Cond2 = string.Format("'{0}'", p_Cond2);
 
             return Query(p_Tbl, p_Cols, p_CondItem, p_Cond, p_OrderBy, p_Asc, p_CondItem2, p_Cond2);
         }
@@ -174,13 +198,21 @@ namespace ULdB
 
             if(p_CondItem != "")
             {
-                sql += String.Format(" WHERE {0} = {1}", p_CondItem, p_Cond);
+
+                if(p_Cond != "")
+                    sql += String.Format(" WHERE {0} = {1}", p_CondItem, p_Cond);
+                else
+                    sql += String.Format(" WHERE {0} IS NULL", p_CondItem, p_Cond);
 
                 if(p_CondItem2 != "")
                 {
-                    sql += String.Format(" AND {0} = {1}", p_CondItem2, p_Cond2);
+                    if(p_Cond2 != "")
+                        sql += String.Format(" AND {0} = {1}", p_CondItem2, p_Cond2);
+                    else
+                        sql += String.Format(" AND {0} IS NULL", p_CondItem2, p_Cond2);
                 }
             }
+            else
 
             if(p_OrderBy != "")
             {

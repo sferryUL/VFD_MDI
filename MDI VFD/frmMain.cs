@@ -26,7 +26,7 @@ namespace MDI_VFD
         const string BuildVersion = "0.9.1";
 
         frmProg VFDProg;
-        frmVFDParamList VFDParams;
+        frmVFDChartList VFDParams;
         frmMonOp VFDMonOp;
         frmMonMaint VFDMonMaint;
         frmFlt VFDFlt;
@@ -270,7 +270,7 @@ namespace MDI_VFD
         {
             if(VFDParams == null)
             {
-                VFDParams = new frmVFDParamList(dBConn);
+                VFDParams = new frmVFDChartList(dBConn);
                 VFDParams.FormClosing += frmMain_ChildClosing;
                 VFDParams.MdiParent = this;
                 VFDParams.Show();

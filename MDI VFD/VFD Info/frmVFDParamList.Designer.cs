@@ -28,225 +28,234 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvChrtList = new System.Windows.Forms.DataGridView();
-            this.dgvChrtList_cmMachCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvChrtList_cmChrtNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvChrtList_cmParamStored = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvChrtList_cmChrtDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbChrtLst = new System.Windows.Forms.ComboBox();
-            this.cmbSrchCode = new System.Windows.Forms.ComboBox();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.cmbMachCode = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbChrtRev = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvChrtList)).BeginInit();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgvParamViewFull = new System.Windows.Forms.DataGridView();
+            this.cmRegAddr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmParamNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmParmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmDefVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmVFDVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpSetDrv = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbDrvFam = new System.Windows.Forms.ComboBox();
+            this.lblDriveSel = new System.Windows.Forms.Label();
+            this.cmbDrvParamGrp = new System.Windows.Forms.ComboBox();
+            this.cmbDrvList = new System.Windows.Forms.ComboBox();
+            this.lblParamGroup = new System.Windows.Forms.Label();
+            this.lblDriveDuty = new System.Windows.Forms.Label();
+            this.cmbDrvDuty = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParamViewFull)).BeginInit();
+            this.grpSetDrv.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvChrtList
+            // dgvParamViewFull
             // 
-            this.dgvChrtList.AllowUserToAddRows = false;
-            this.dgvChrtList.AllowUserToDeleteRows = false;
-            this.dgvChrtList.AllowUserToResizeColumns = false;
-            this.dgvChrtList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChrtList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvChrtList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChrtList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvChrtList_cmMachCode,
-            this.dgvChrtList_cmChrtNum,
-            this.dgvChrtList_cmParamStored,
-            this.dgvChrtList_cmChrtDesc});
+            this.dgvParamViewFull.AllowUserToAddRows = false;
+            this.dgvParamViewFull.AllowUserToDeleteRows = false;
+            this.dgvParamViewFull.AllowUserToResizeColumns = false;
+            this.dgvParamViewFull.AllowUserToResizeRows = false;
+            this.dgvParamViewFull.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvParamViewFull.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmRegAddr,
+            this.cmParamNum,
+            this.cmParmName,
+            this.cmDefVal,
+            this.cmVFDVal});
+            this.dgvParamViewFull.Location = new System.Drawing.Point(12, 125);
+            this.dgvParamViewFull.Name = "dgvParamViewFull";
+            this.dgvParamViewFull.RowHeadersVisible = false;
+            this.dgvParamViewFull.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvParamViewFull.Size = new System.Drawing.Size(610, 637);
+            this.dgvParamViewFull.TabIndex = 37;
+            this.dgvParamViewFull.TabStop = false;
+            // 
+            // cmRegAddr
+            // 
+            this.cmRegAddr.DataPropertyName = "RegAddress";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvChrtList.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvChrtList.Location = new System.Drawing.Point(12, 96);
-            this.dgvChrtList.MultiSelect = false;
-            this.dgvChrtList.Name = "dgvChrtList";
-            this.dgvChrtList.ReadOnly = true;
-            this.dgvChrtList.RowHeadersVisible = false;
-            this.dgvChrtList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChrtList.Size = new System.Drawing.Size(640, 247);
-            this.dgvChrtList.TabIndex = 0;
-            this.dgvChrtList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChrtList_CellDoubleClick);
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmRegAddr.DefaultCellStyle = dataGridViewCellStyle6;
+            this.cmRegAddr.HeaderText = "Parameter Address";
+            this.cmRegAddr.Name = "cmRegAddr";
+            this.cmRegAddr.ReadOnly = true;
+            this.cmRegAddr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cmRegAddr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cmRegAddr.Width = 60;
             // 
-            // dgvChrtList_cmMachCode
+            // cmParamNum
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvChrtList_cmMachCode.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvChrtList_cmMachCode.Frozen = true;
-            this.dgvChrtList_cmMachCode.HeaderText = "Machine";
-            this.dgvChrtList_cmMachCode.Name = "dgvChrtList_cmMachCode";
-            this.dgvChrtList_cmMachCode.ReadOnly = true;
+            this.cmParamNum.DataPropertyName = "ParamNum";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmParamNum.DefaultCellStyle = dataGridViewCellStyle7;
+            this.cmParamNum.HeaderText = "Parameter Number";
+            this.cmParamNum.Name = "cmParamNum";
+            this.cmParamNum.ReadOnly = true;
+            this.cmParamNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cmParamNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cmParamNum.Width = 60;
             // 
-            // dgvChrtList_cmChrtNum
+            // cmParmName
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvChrtList_cmChrtNum.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvChrtList_cmChrtNum.HeaderText = "Chart Number";
-            this.dgvChrtList_cmChrtNum.Name = "dgvChrtList_cmChrtNum";
-            this.dgvChrtList_cmChrtNum.ReadOnly = true;
-            this.dgvChrtList_cmChrtNum.Width = 65;
+            this.cmParmName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmParmName.DataPropertyName = "ParamName";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.cmParmName.DefaultCellStyle = dataGridViewCellStyle8;
+            this.cmParmName.HeaderText = "Parameter Name";
+            this.cmParmName.Name = "cmParmName";
+            this.cmParmName.ReadOnly = true;
+            this.cmParmName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // dgvChrtList_cmParamStored
+            // cmDefVal
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvChrtList_cmParamStored.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvChrtList_cmParamStored.HeaderText = "Chart Revision";
-            this.dgvChrtList_cmParamStored.Name = "dgvChrtList_cmParamStored";
-            this.dgvChrtList_cmParamStored.ReadOnly = true;
-            this.dgvChrtList_cmParamStored.Width = 60;
+            this.cmDefVal.DataPropertyName = "DefVal";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmDefVal.DefaultCellStyle = dataGridViewCellStyle9;
+            this.cmDefVal.HeaderText = "Default Value";
+            this.cmDefVal.Name = "cmDefVal";
+            this.cmDefVal.ReadOnly = true;
+            this.cmDefVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cmDefVal.Width = 70;
             // 
-            // dgvChrtList_cmChrtDesc
+            // cmVFDVal
             // 
-            this.dgvChrtList_cmChrtDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.dgvChrtList_cmChrtDesc.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvChrtList_cmChrtDesc.HeaderText = "Chart Description";
-            this.dgvChrtList_cmChrtDesc.Name = "dgvChrtList_cmChrtDesc";
-            this.dgvChrtList_cmChrtDesc.ReadOnly = true;
+            this.cmVFDVal.DataPropertyName = "VFDVal";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmVFDVal.DefaultCellStyle = dataGridViewCellStyle10;
+            this.cmVFDVal.HeaderText = "VFD Value";
+            this.cmVFDVal.Name = "cmVFDVal";
+            this.cmVFDVal.ReadOnly = true;
+            this.cmVFDVal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cmVFDVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cmVFDVal.Width = 70;
             // 
-            // label1
+            // grpSetDrv
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Urschel VFD Chart Part Number:";
+            this.grpSetDrv.Controls.Add(this.label6);
+            this.grpSetDrv.Controls.Add(this.cmbDrvFam);
+            this.grpSetDrv.Controls.Add(this.lblDriveSel);
+            this.grpSetDrv.Controls.Add(this.cmbDrvParamGrp);
+            this.grpSetDrv.Controls.Add(this.cmbDrvList);
+            this.grpSetDrv.Controls.Add(this.lblParamGroup);
+            this.grpSetDrv.Location = new System.Drawing.Point(12, 12);
+            this.grpSetDrv.Name = "grpSetDrv";
+            this.grpSetDrv.Size = new System.Drawing.Size(611, 107);
+            this.grpSetDrv.TabIndex = 52;
+            this.grpSetDrv.TabStop = false;
+            this.grpSetDrv.Text = "Drive Settings";
             // 
-            // cmbChrtLst
+            // label6
             // 
-            this.cmbChrtLst.FormattingEnabled = true;
-            this.cmbChrtLst.Location = new System.Drawing.Point(178, 14);
-            this.cmbChrtLst.Name = "cmbChrtLst";
-            this.cmbChrtLst.Size = new System.Drawing.Size(95, 21);
-            this.cmbChrtLst.TabIndex = 2;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(31, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.TabIndex = 56;
+            this.label6.Text = "Drive Family:";
             // 
-            // cmbSrchCode
+            // cmbDrvFam
             // 
-            this.cmbSrchCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSrchCode.FormattingEnabled = true;
-            this.cmbSrchCode.Items.AddRange(new object[] {
-            "Starts with",
-            "Contains",
-            "Equals"});
-            this.cmbSrchCode.Location = new System.Drawing.Point(279, 14);
-            this.cmbSrchCode.Name = "cmbSrchCode";
-            this.cmbSrchCode.Size = new System.Drawing.Size(81, 21);
-            this.cmbSrchCode.TabIndex = 3;
+            this.cmbDrvFam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDrvFam.Enabled = false;
+            this.cmbDrvFam.FormattingEnabled = true;
+            this.cmbDrvFam.Location = new System.Drawing.Point(104, 19);
+            this.cmbDrvFam.Name = "cmbDrvFam";
+            this.cmbDrvFam.Size = new System.Drawing.Size(152, 21);
+            this.cmbDrvFam.TabIndex = 55;
             // 
-            // btnInsert
+            // lblDriveSel
             // 
-            this.btnInsert.Location = new System.Drawing.Point(577, 40);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(75, 23);
-            this.btnInsert.TabIndex = 10;
-            this.btnInsert.Text = "Insert";
-            this.btnInsert.UseVisualStyleBackColor = true;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            this.lblDriveSel.AutoSize = true;
+            this.lblDriveSel.Location = new System.Drawing.Point(16, 49);
+            this.lblDriveSel.Name = "lblDriveSel";
+            this.lblDriveSel.Size = new System.Drawing.Size(82, 13);
+            this.lblDriveSel.TabIndex = 40;
+            this.lblDriveSel.Text = "Drive Selection:";
             // 
-            // btnClear
+            // cmbDrvParamGrp
             // 
-            this.btnClear.Location = new System.Drawing.Point(577, 67);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 11;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.cmbDrvParamGrp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDrvParamGrp.Enabled = false;
+            this.cmbDrvParamGrp.FormattingEnabled = true;
+            this.cmbDrvParamGrp.Location = new System.Drawing.Point(104, 73);
+            this.cmbDrvParamGrp.Name = "cmbDrvParamGrp";
+            this.cmbDrvParamGrp.Size = new System.Drawing.Size(277, 21);
+            this.cmbDrvParamGrp.TabIndex = 1;
             // 
-            // btnSearch
+            // cmbDrvList
             // 
-            this.btnSearch.Location = new System.Drawing.Point(577, 12);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 9;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.cmbDrvList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDrvList.FormattingEnabled = true;
+            this.cmbDrvList.Location = new System.Drawing.Point(104, 46);
+            this.cmbDrvList.Name = "cmbDrvList";
+            this.cmbDrvList.Size = new System.Drawing.Size(277, 21);
+            this.cmbDrvList.TabIndex = 0;
             // 
-            // cmbMachCode
+            // lblParamGroup
             // 
-            this.cmbMachCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMachCode.FormattingEnabled = true;
-            this.cmbMachCode.Location = new System.Drawing.Point(178, 69);
-            this.cmbMachCode.Name = "cmbMachCode";
-            this.cmbMachCode.Size = new System.Drawing.Size(95, 21);
-            this.cmbMachCode.TabIndex = 12;
+            this.lblParamGroup.AutoSize = true;
+            this.lblParamGroup.Location = new System.Drawing.Point(8, 76);
+            this.lblParamGroup.Name = "lblParamGroup";
+            this.lblParamGroup.Size = new System.Drawing.Size(90, 13);
+            this.lblParamGroup.TabIndex = 41;
+            this.lblParamGroup.Text = "Parameter Group:";
             // 
-            // label4
+            // lblDriveDuty
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(93, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Machine Code:";
+            this.lblDriveDuty.AutoSize = true;
+            this.lblDriveDuty.Location = new System.Drawing.Point(12, 773);
+            this.lblDriveDuty.Name = "lblDriveDuty";
+            this.lblDriveDuty.Size = new System.Drawing.Size(107, 13);
+            this.lblDriveDuty.TabIndex = 49;
+            this.lblDriveDuty.Text = "Drive Default Values:";
             // 
-            // cmbChrtRev
+            // cmbDrvDuty
             // 
-            this.cmbChrtRev.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbChrtRev.FormattingEnabled = true;
-            this.cmbChrtRev.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.cmbChrtRev.Location = new System.Drawing.Point(178, 42);
-            this.cmbChrtRev.Name = "cmbChrtRev";
-            this.cmbChrtRev.Size = new System.Drawing.Size(95, 21);
-            this.cmbChrtRev.TabIndex = 14;
+            this.cmbDrvDuty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDrvDuty.Enabled = false;
+            this.cmbDrvDuty.FormattingEnabled = true;
+            this.cmbDrvDuty.Items.AddRange(new object[] {
+            "Heavy Duty",
+            "Normal Duty"});
+            this.cmbDrvDuty.Location = new System.Drawing.Point(125, 768);
+            this.cmbDrvDuty.Name = "cmbDrvDuty";
+            this.cmbDrvDuty.Size = new System.Drawing.Size(115, 21);
+            this.cmbDrvDuty.TabIndex = 48;
             // 
-            // label2
+            // button1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Drive Count:";
+            this.button1.Location = new System.Drawing.Point(547, 768);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "Change";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmVFDParamList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 356);
-            this.Controls.Add(this.cmbChrtRev);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbMachCode);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.cmbSrchCode);
-            this.Controls.Add(this.cmbChrtLst);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvChrtList);
+            this.ClientSize = new System.Drawing.Size(636, 813);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.grpSetDrv);
+            this.Controls.Add(this.lblDriveDuty);
+            this.Controls.Add(this.dgvParamViewFull);
+            this.Controls.Add(this.cmbDrvDuty);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmVFDParamList";
-            this.Text = "Parameter Chart Listing";
-            this.Load += new System.EventHandler(this.frmVFDParams_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvChrtList)).EndInit();
+            this.Text = "Parameter Listing";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParamViewFull)).EndInit();
+            this.grpSetDrv.ResumeLayout(false);
+            this.grpSetDrv.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,20 +263,21 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvChrtList;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbChrtLst;
-        private System.Windows.Forms.ComboBox cmbSrchCode;
-        private System.Windows.Forms.Button btnInsert;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox cmbMachCode;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbChrtRev;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtList_cmMachCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtList_cmChrtNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtList_cmParamStored;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtList_cmChrtDesc;
+        private System.Windows.Forms.DataGridView dgvParamViewFull;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmRegAddr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmParamNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmParmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmDefVal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmVFDVal;
+        private System.Windows.Forms.GroupBox grpSetDrv;
+        private System.Windows.Forms.Label lblDriveSel;
+        private System.Windows.Forms.ComboBox cmbDrvParamGrp;
+        private System.Windows.Forms.ComboBox cmbDrvList;
+        private System.Windows.Forms.Label lblParamGroup;
+        private System.Windows.Forms.Label lblDriveDuty;
+        private System.Windows.Forms.ComboBox cmbDrvDuty;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbDrvFam;
+        private System.Windows.Forms.Button button1;
     }
 }

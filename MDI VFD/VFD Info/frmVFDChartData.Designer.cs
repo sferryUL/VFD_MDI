@@ -1,6 +1,6 @@
 ﻿namespace MDI_VFD.VFD_Info
 {
-    partial class frmVFDParamData
+    partial class frmVFDChartData
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvChrtView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvChrtView_cmParamNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvChrtView_cmParamName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvChrtView_cmDefVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvChrtView_cmSpecVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtChrtNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,6 +50,8 @@
             this.cmbDrvFam = new System.Windows.Forms.ComboBox();
             this.txtChrtRev = new System.Windows.Forms.TextBox();
             this.cmbMach = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChrtView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,66 +63,69 @@
             this.dgvChrtView.AllowUserToResizeRows = false;
             this.dgvChrtView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChrtView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dgvChrtView.Enabled = false;
+            this.dgvChrtView_cmParamNum,
+            this.dgvChrtView_cmParamName,
+            this.dgvChrtView_cmDefVal,
+            this.dgvChrtView_cmSpecVal});
             this.dgvChrtView.Location = new System.Drawing.Point(12, 65);
+            this.dgvChrtView.MultiSelect = false;
             this.dgvChrtView.Name = "dgvChrtView";
             this.dgvChrtView.RowHeadersVisible = false;
             this.dgvChrtView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChrtView.Size = new System.Drawing.Size(600, 355);
+            this.dgvChrtView.Size = new System.Drawing.Size(600, 579);
             this.dgvChrtView.TabIndex = 41;
             this.dgvChrtView.TabStop = false;
+            this.dgvChrtView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvChrtView_CellBeginEdit);
+            this.dgvChrtView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChrtView_CellEndEdit);
             // 
-            // dataGridViewTextBoxColumn2
+            // dgvChrtView_cmParamNum
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ParamNum";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Parameter Number";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 60;
+            this.dgvChrtView_cmParamNum.DataPropertyName = "ParamNum";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChrtView_cmParamNum.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvChrtView_cmParamNum.HeaderText = "Parameter Number";
+            this.dgvChrtView_cmParamNum.Name = "dgvChrtView_cmParamNum";
+            this.dgvChrtView_cmParamNum.ReadOnly = true;
+            this.dgvChrtView_cmParamNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvChrtView_cmParamNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvChrtView_cmParamNum.Width = 60;
             // 
-            // dataGridViewTextBoxColumn3
+            // dgvChrtView_cmParamName
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "ParamName";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Parameter Name";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvChrtView_cmParamName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvChrtView_cmParamName.DataPropertyName = "ParamName";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvChrtView_cmParamName.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvChrtView_cmParamName.HeaderText = "Parameter Name";
+            this.dgvChrtView_cmParamName.Name = "dgvChrtView_cmParamName";
+            this.dgvChrtView_cmParamName.ReadOnly = true;
+            this.dgvChrtView_cmParamName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // dataGridViewTextBoxColumn4
+            // dgvChrtView_cmDefVal
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DefVal";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Default Value";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn4.Width = 70;
+            this.dgvChrtView_cmDefVal.DataPropertyName = "DefVal";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChrtView_cmDefVal.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvChrtView_cmDefVal.HeaderText = "Default Value";
+            this.dgvChrtView_cmDefVal.Name = "dgvChrtView_cmDefVal";
+            this.dgvChrtView_cmDefVal.ReadOnly = true;
+            this.dgvChrtView_cmDefVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvChrtView_cmDefVal.Width = 70;
             // 
-            // dataGridViewTextBoxColumn5
+            // dgvChrtView_cmSpecVal
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "SpecVal";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Specified Value";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn5.Width = 70;
+            this.dgvChrtView_cmSpecVal.DataPropertyName = "SpecVal";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChrtView_cmSpecVal.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvChrtView_cmSpecVal.HeaderText = "Specified Value";
+            this.dgvChrtView_cmSpecVal.Name = "dgvChrtView_cmSpecVal";
+            this.dgvChrtView_cmSpecVal.ReadOnly = true;
+            this.dgvChrtView_cmSpecVal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvChrtView_cmSpecVal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvChrtView_cmSpecVal.Width = 70;
             // 
             // label1
             // 
@@ -155,7 +160,7 @@
             this.cmbDrvNum.FormattingEnabled = true;
             this.cmbDrvNum.Location = new System.Drawing.Point(272, 38);
             this.cmbDrvNum.Name = "cmbDrvNum";
-            this.cmbDrvNum.Size = new System.Drawing.Size(52, 21);
+            this.cmbDrvNum.Size = new System.Drawing.Size(32, 21);
             this.cmbDrvNum.TabIndex = 46;
             this.cmbDrvNum.SelectedIndexChanged += new System.EventHandler(this.cmbDrvNum_SelectedIndexChanged);
             // 
@@ -170,7 +175,7 @@
             // 
             // btnExitCan
             // 
-            this.btnExitCan.Location = new System.Drawing.Point(537, 426);
+            this.btnExitCan.Location = new System.Drawing.Point(537, 650);
             this.btnExitCan.Name = "btnExitCan";
             this.btnExitCan.Size = new System.Drawing.Size(75, 23);
             this.btnExitCan.TabIndex = 48;
@@ -181,7 +186,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(376, 40);
+            this.label4.Location = new System.Drawing.Point(336, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 13);
             this.label4.TabIndex = 50;
@@ -190,11 +195,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(458, 15);
+            this.label5.Location = new System.Drawing.Point(12, 655);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 52;
-            this.label5.Text = "Drive Duty:";
+            this.label5.Text = "Default Value Display:";
             // 
             // cmbDrvDuty
             // 
@@ -203,7 +208,7 @@
             this.cmbDrvDuty.Items.AddRange(new object[] {
             "Heavy Duty",
             "Normal Duty"});
-            this.cmbDrvDuty.Location = new System.Drawing.Point(524, 12);
+            this.cmbDrvDuty.Location = new System.Drawing.Point(129, 652);
             this.cmbDrvDuty.Name = "cmbDrvDuty";
             this.cmbDrvDuty.Size = new System.Drawing.Size(88, 21);
             this.cmbDrvDuty.TabIndex = 51;
@@ -231,7 +236,8 @@
             // 
             // txtChrtRev
             // 
-            this.txtChrtRev.Location = new System.Drawing.Point(461, 38);
+            this.txtChrtRev.Enabled = false;
+            this.txtChrtRev.Location = new System.Drawing.Point(421, 38);
             this.txtChrtRev.Name = "txtChrtRev";
             this.txtChrtRev.ReadOnly = true;
             this.txtChrtRev.Size = new System.Drawing.Size(44, 20);
@@ -248,11 +254,32 @@
             this.cmbMach.TabIndex = 56;
             this.cmbMach.SelectedIndexChanged += new System.EventHandler(this.cmbMach_SelectedIndexChanged);
             // 
-            // frmVFDParamData
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(375, 650);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 57;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
+            // 
+            // btnModify
+            // 
+            this.btnModify.Location = new System.Drawing.Point(456, 650);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.TabIndex = 58;
+            this.btnModify.Text = "Modify";
+            this.btnModify.UseVisualStyleBackColor = true;
+            // 
+            // frmVFDChartData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 461);
+            this.ClientSize = new System.Drawing.Size(624, 685);
+            this.Controls.Add(this.btnModify);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cmbMach);
             this.Controls.Add(this.txtChrtRev);
             this.Controls.Add(this.label6);
@@ -267,9 +294,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvChrtView);
-            this.Name = "frmVFDParamData";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmVFDChartData";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Parameter Chart Details";
             this.Load += new System.EventHandler(this.frmVFDParamData_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVFDChartData_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChrtView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,10 +318,6 @@
         private System.Windows.Forms.ComboBox cmbDrvNum;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnExitCan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbDrvDuty;
@@ -296,5 +325,11 @@
         private System.Windows.Forms.ComboBox cmbDrvFam;
         private System.Windows.Forms.TextBox txtChrtRev;
         private System.Windows.Forms.ComboBox cmbMach;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtView_cmParamNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtView_cmParamName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtView_cmDefVal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChrtView_cmSpecVal;
+        private System.Windows.Forms.Button btnModify;
     }
 }

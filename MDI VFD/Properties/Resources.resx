@@ -185,8 +185,8 @@
     <value>DRV_LIST</value>
     <comment>List of specific information on VFDs used in Urschel machines</comment>
   </data>
-  <data name="tblDrvFamInf" xml:space="preserve">
-    <value>DRV_FAM_INF</value>
-    <comment>Table containing general information regarding where to find drive constants</comment>
+  <data name="tblVFDFamInf" xml:space="preserve">
+    <value>VFD_FAM_INF</value>
+    <comment>Table containing information regarding general information for each VFD family. Such as default parameter table, default group information tables, drive manufacturer, default parameter value columns.</comment>
   </data>
 </root>

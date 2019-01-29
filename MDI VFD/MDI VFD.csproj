@@ -137,11 +137,23 @@
     <Compile Include="VFD Info\frmProg.designer.cs">
       <DependentUpon>frmProg.cs</DependentUpon>
     </Compile>
-    <Compile Include="VFD Info\frmVFDParamData.cs">
+    <Compile Include="VFD Info\frmVFDChartData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VFD Info\frmVFDParamData.Designer.cs">
-      <DependentUpon>frmVFDParamData.cs</DependentUpon>
+    <Compile Include="VFD Info\frmVFDChartData.Designer.cs">
+      <DependentUpon>frmVFDChartData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDChartList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDChartList.Designer.cs">
+      <DependentUpon>frmVFDChartList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDChartNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VFD Info\frmVFDChartNew.Designer.cs">
+      <DependentUpon>frmVFDChartNew.cs</DependentUpon>
     </Compile>
     <Compile Include="VFD Info\frmVFDParamList.cs">
       <SubType>Form</SubType>
@@ -192,8 +204,14 @@
     <EmbeddedResource Include="VFD Info\frmProg.resx">
       <DependentUpon>frmProg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VFD Info\frmVFDParamData.resx">
-      <DependentUpon>frmVFDParamData.cs</DependentUpon>
+    <EmbeddedResource Include="VFD Info\frmVFDChartData.resx">
+      <DependentUpon>frmVFDChartData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VFD Info\frmVFDChartList.resx">
+      <DependentUpon>frmVFDChartList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VFD Info\frmVFDChartNew.resx">
+      <DependentUpon>frmVFDChartNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VFD Info\frmVFDParamList.resx">
       <DependentUpon>frmVFDParamList.cs</DependentUpon>

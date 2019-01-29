@@ -106,15 +106,6 @@ namespace MDI_VFD.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DRV_FAM_INF.
-        /// </summary>
-        internal static string tblDrvFamInf {
-            get {
-                return ResourceManager.GetString("tblDrvFamInf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DRV_LIST.
         /// </summary>
         internal static string tblDrvList {
@@ -201,6 +192,15 @@ namespace MDI_VFD.Properties {
         internal static string tblPartInfo {
             get {
                 return ResourceManager.GetString("tblPartInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VFD_FAM_INF.
+        /// </summary>
+        internal static string tblVFDFamInf {
+            get {
+                return ResourceManager.GetString("tblVFDFamInf", resourceCulture);
             }
         }
         

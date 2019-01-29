@@ -312,6 +312,16 @@ namespace V1000_ModbusRTU
         public string ParamValDisp { get => _ParamValDisp; }
         public string DefValDisp { get => _DefValDisp; }
 
+        public ushort Sgl2ValFormat(Single p_Val)
+        {
+            ushort ret_val;
+
+            p_Val = (p_Val * this.Multiplier);
+            ret_val = (ushort)p_Val;
+
+            return ret_val;
+        }
+        
         public object Clone()
         {
             return new V1000_Param_Data(this.RegAddress, this.ParamNum, this.ParamName, this.ParamVal, this.DefVal, this.Multiplier, this.NumBase, this.Units, this.DefValDisp, this.ParamValDisp);

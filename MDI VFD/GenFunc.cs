@@ -6,9 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XL = Microsoft.Office.Interop.Excel;
+using ULdB;
 
 namespace GenFunc
 {
+    // Enumerated Value to differentiate different form dialog entry modes.
+    public enum FormMode { View, Modify, Insert, Revise };
+
+    // Static MsgBox class to simplify implementation of MessageBox pop-up objects.
     public static class MsgBox
     {
         public static DialogResult Err(string p_Msg, string p_Caption = "Entry Error")
@@ -35,28 +40,6 @@ namespace GenFunc
             return result;
         }
 
-    }
-
-    public static class xlFunc
-    {
-        public static void xlClose(ref XL.Application p_App, ref XL._Workbook p_WB, ref XL._Worksheet p_WS, ref XL.Range p_Rng)
-        {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            p_WB.Close();
-            p_App.Quit();
-
-            // release COM objects
-            Marshal.ReleaseComObject(p_Rng);
-            Marshal.ReleaseComObject(p_WS);
-            Marshal.ReleaseComObject(p_WB);
-            Marshal.ReleaseComObject(p_App);
-        }
-    }
-
-    public static class xlDB
-    {
-        
     }
 
     public static class CmbFunc
@@ -92,12 +75,23 @@ namespace GenFunc
         
     }
 
+    public static class DgvFunc
+    {
+
+
+    }
+
+    // Class to ease the transition between Urschel part numbers formatted for easier
+    // readability and back to the format used in the official Urschel database
     public static class PartFunc
     {
         public static string Cnv2ULFrmt(string p_Num)
         {
             string ret_val = "";
             
+            if(p_Num == "")
+                goto Cnv2ULFrmt_Return;
+
             if(p_Num.Length == 6) // 5-digit part with leading 0, CP Part, or Raw Material
             {
                 if(StrFunc.IsNumeric(p_Num))
@@ -171,10 +165,10 @@ namespace GenFunc
                     }
                 }
             }
-            
             else if(p_Num[0] == '*')
                 ret_val = p_Num;
             
+            Cnv2ULFrmt_Return:
             return ret_val;
         }
 
@@ -214,6 +208,20 @@ namespace GenFunc
 
             return ret_val;
         }
+
+        public static string GetULPartDesc(string p_Srvr, string p_dB, string p_Tbl, string p_PartNum)
+        {
+            string ret_val = "";
+
+            dBClient db = new dBClient();
+            db.Open(p_Srvr, p_dB, true);
+            db.QueryStr(p_Tbl, "FULLDESCRIPTION", "PARTNBR", p_PartNum);
+            if(db.Table.Rows.Count > 0)
+                ret_val = db.Table.Rows[0][0].ToString();
+            db.Close();
+
+            return ret_val;
+        }
     }
 
     public class PartInfo
@@ -240,6 +248,9 @@ namespace GenFunc
         public string DrvFam;
         public string ParamTbl;
         public string GrpDescTbl;
+        public string DefColHD;
+        public string DefColND;
+        public string ChrtTbl;
 
         public VFDInfo()
         {
@@ -247,6 +258,9 @@ namespace GenFunc
             DrvFam = "";
             ParamTbl = "";
             GrpDescTbl = "";
+            DefColHD = "";
+            DefColND = "";
+            ChrtTbl = "";
         }
 
         public void Clear()
@@ -255,12 +269,14 @@ namespace GenFunc
             DrvFam = "";
             ParamTbl = "";
             GrpDescTbl = "";
+            DefColHD = "";
+            DefColND = "";
+            ChrtTbl = "";
         }
     }
 
     public static class NumFunc
     {
-
         public static byte Hex2Byte(string p_CellVal)
         {
             byte RetVal = 0;
@@ -285,7 +301,37 @@ namespace GenFunc
             return RetVal;
         }
 
-        
+        public static bool Hex2UShrt(string p_Val, ref ushort p_CnvVal)
+        {
+            bool ret_val = false;
+
+            p_Val = p_Val.ToUpper(); // make string uppercase for easier checking
+
+            // Check for 0X at the beginning for string formatted hex characters
+            int idx = p_Val.IndexOf('X');
+            if(idx >= 0)
+                p_Val = p_Val.Substring(idx + 1);
+
+            // Strip off any spaces or units that are at the end of the value
+            idx = p_Val.IndexOf(' ');
+            if(idx >= 0)
+                p_Val = p_Val.Substring(0, idx);
+
+            try
+            {
+                p_CnvVal = Convert.ToUInt16(p_Val, 16);
+            }
+            catch
+            {
+                ret_val = false;
+                goto Hex2Ushrt_Return;
+            }
+
+            ret_val = true;
+
+            Hex2Ushrt_Return:
+            return ret_val;
+        }
 
     } // class NumFunc
 
@@ -299,6 +345,56 @@ namespace GenFunc
             {
                 ret_val = ret_val && Char.IsNumber(c);
             }
+            return ret_val;
+        }
+
+        public static bool Str2Int(string p_Val, ref int p_CnvVal)
+        {
+            bool ret_val = false;
+
+            // Strip off any spaces or units that are at the end of the value
+            int idx = p_Val.IndexOf(' ');
+            if(idx >= 0)
+                p_Val = p_Val.Substring(0, idx);
+
+            try
+            {
+                p_CnvVal = Convert.ToInt32(p_Val);
+            }
+            catch
+            {
+                ret_val = false;
+                goto Str2Int_Return;
+            }
+
+            ret_val = true;
+
+            Str2Int_Return:
+            return ret_val;
+        }
+
+        public static bool Str2Sgl(string p_Val, ref Single p_CnvVal)
+        {
+            bool ret_val = false;
+
+            // Strip off any spaces or units that are at the end of the value
+            int idx = p_Val.IndexOf(' ');
+            if(idx >= 0)
+                p_Val = p_Val.Substring(0, idx);
+
+            try
+            {
+                p_CnvVal = Convert.ToSingle(p_Val);
+            }
+            catch
+            {
+                ret_val = false;
+                goto Str2Sgl_Return;
+            }
+
+            ret_val = true;
+
+            Str2Sgl_Return:
             return ret_val;
         }
 

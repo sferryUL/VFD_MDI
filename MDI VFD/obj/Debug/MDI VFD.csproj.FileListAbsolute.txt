@@ -34,5 +34,7 @@ C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csproj.CoreCompil
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.exe
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\VFD Info.pdb
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI VFD.csprojAssemblyReference.cache
-C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.VFD_Info.frmVFDParamData.resources
 C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.VFD_Info.frmVFDParamList.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.VFD_Info.frmVFDChartData.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.VFD_Info.frmVFDChartList.resources
+C:\Users\sferry\Source\Repos\VFD_MDI\MDI VFD\obj\Debug\MDI_VFD.VFD_Info.frmVFDChartNew.resources
